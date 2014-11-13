@@ -110,7 +110,7 @@ public function add_tipocambio($int_cod_mon,$var_fec_tc,$dec_val_tc,$var_desc_tc
 		$res=mysql_query($sql,Conectar::con());
 		echo "<script type='text/javascript'>
 		alert('El registro ha sido modificado correctamente');
-		window.location='mod_tipocambio.php?id=$id && fecha=$fecha && load=1';
+		window.location='mod_tipocambio.php?id=$id && fecha=$var_fec_tc && load=1';
 		</script>
 		<SCRIPT LANGUAGE=javascript>
   
