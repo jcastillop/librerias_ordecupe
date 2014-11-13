@@ -17,7 +17,7 @@ header('Content-Type: text/html; charset=UTF-8');
 
 	<title>GUÍA</title>
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
-    	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
+    <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
 	<script type="text/javascript">
@@ -42,7 +42,7 @@ header('Content-Type: text/html; charset=UTF-8');
 	</script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.js"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.dataTables.js"></script>
-    	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/dataTables.tableTools.js"></script>
+    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/dataTables.tableTools.js"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.j"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
@@ -64,7 +64,6 @@ header('Content-Type: text/html; charset=UTF-8');
 		}
 	} );
 } );
-
 
 $(document).ready(function() {
 	var table = $('#example').DataTable();
@@ -164,17 +163,18 @@ $(document).ready(function() {
 				<thead>
 					<tr class="cabecera" >
 						<th >#</th>
-			                        <th style=" width:200px;" >N.Documento</th>
-			                        <th style=" width:250px;">Sucursal</th>
-			                        <th style=" width:300px;">Partida</th>
-			                        <th style=" width:300px;">Destino</th>
-			                        <th style=" width:100px;">Condicion</th>
-			                        <th style=" width:150px;">Vendedor</th>
-			                        <th style=" width:200px;">Fecha Envio.</th>
-			                        <th style=" width:200px;">Fecha Guia</th>
-			                        <th>Exp.</th>
-			                        <th>Impr.</th>
-			                        <th>Anular</th>
+			            <th style=" width:200px;">N.Documento</th>
+			            <th style=" width:250px;">Sucursal</th>
+			            <th style=" width:300px;">Partida</th>
+			            <th style=" width:300px;">Destino</th>
+			            <th style=" width:100px;">Condicion</th>
+			            <th style=" width:150px;">Vendedor</th>
+			            <th style=" width:200px;">Fecha Envio.</th>
+			            <th style=" width:200px;">Fecha Guia</th>
+			            <th >Estado Impresion</th>
+                        <th>Exp.</th>
+                        <th>Impr.</th>
+                        <th>Anular</th>
 					</tr>
 				</thead>
 				<tbody align="center">
@@ -188,14 +188,15 @@ $(document).ready(function() {
 						<td><?php echo $reg[$i]["id"];?></td>                  
 						<td><?php echo '00'.$reg[$i]["var_cod_ser"]."-".$reg[$i]["var_cod_guia_cab"];?></td> 
 						<td><?php echo $reg[$i]["var_rsoc_cli"];?></td>
-                				 <td><?php echo $reg[$i]["var_pun_part_guia_cab"];?></td>
+                        <td><?php echo $reg[$i]["var_pun_part_guia_cab"];?></td>
 						<td><?php echo $reg[$i]["var_pun_lleg_guia_cab"];?></td>
-                        			<td><?php echo $reg[$i]["var_desc_mov"];?></td>
+                        <td><?php echo $reg[$i]["var_desc_mov"];?></td>
 						<td><?php echo $reg[$i]["var_nom_usu"];?></td>
-                				<td><?php echo $reg[$i]["date_fecenv_guia_cab"];?></td>
+                        <td><?php echo $reg[$i]["date_fecenv_guia_cab"];?></td>
 						<td><?php echo $reg[$i]["date_fecadd_guia_cab"];?></td>
-						<td align='center' ><a href=" javascript:poptastic('reporte_historial.php?id=<?php echo $reg[$i]["var_cod_guia_cab"];?>'); " ><img src='../../../img/images/pdf.png' width='15px' height='15px'></a></td>
-						<td align='center' ><a href=" javascript:impr('imprimir.php?id=<?php echo $reg[$i]["var_cod_guia_cab"];?>'); " ><img src='../../../img/images/impre.gif' width='15px' height='15px'></a></td>
+                        <td><?php echo $reg[$i]["int_est_impr_guia_cab"];?></td>
+						<td align='center'><a href=" javascript:poptastic('reporte_historial.php?id=<?php echo $reg[$i]["var_cod_guia_cab"];?>'); " ><img src='../../../img/images/pdf.png' width='15px' height='15px'></a></td>
+						<td align='center'><a href=" javascript:impr('imprimir.php?id=<?php echo $reg[$i]["var_cod_guia_cab"];?>'); " ><img src='../../../img/images/impre.gif' width='15px' height='15px'></a></td>
 						<td align='center' ><a href=" javascript:elim('eliminar_guia.php?id=<?php echo $reg[$i]["var_cod_guia_cab"];?>'); " ><img src='../../../img/images/close_delete.png' width='15px' height='15px'></a></td>
 					
 					</tr>
