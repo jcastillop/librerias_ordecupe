@@ -83,6 +83,19 @@ class sucursal
 		}
 			return $this->usuario;
 	}
+
+	public function get_combo_sucursales($emp_id)
+	{
+		$sql="select int_cod_suc,var_nom_suc from T_sucursal where int_est_suc<>0 and int_cod_emp='$emp_id' ORDER BY int_cod_suc";
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->sucursal[]=$reg;
+		}
+			return $this->sucursal;
+	}
 	
 	public function get_combo_sucursal()
 	{
