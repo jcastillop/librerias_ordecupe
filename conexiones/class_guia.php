@@ -42,6 +42,7 @@ class guia_cabecera
 				g.int_cod_mov,
 				m.var_desc_mov,
 				g.int_est_guia_cab,
+				case when g.int_est_impr_guia_cab=1 then 'Sin imprimir' else 'Impreso' end int_est_impr_guia_cab,
 				date(g.date_fecenv_guia_cab) as date_fecenv_guia_cab,
 				g.date_fecadd_guia_cab
 				from T_guia_cabecera g	
