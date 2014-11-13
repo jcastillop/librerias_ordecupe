@@ -1,17 +1,79 @@
-            function Abrir_ventana (pagina) {
-var opciones="toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, width=508, height=525, top=15, left=140";
-window.open(pagina,"",opciones);
-}
-            function notificacion(){
-				alertify.log("No se puede registrar mas Títulos"); 
-				return false;
-			} 
-            
+
             $(document).ready(function(){
-                 $("#trans_dat").css("display", "none");
-		 $("#trans_dat1").css("display", "none");   
+              $("#trans_dat").css("display", "none");
+		          $("#trans_dat1").css("display", "none");   
                 //Iniciando el datepicker
                 $( "#datepicker" ).datepicker({dateFormat: 'dd-mm-yy'});
+                 //capturando los datos para la edicion
+                if(typeof $_GET("id") != 'undefined'){
+                  
+                var id_completo=$_GET("id");
+                var id = id_completo.substring(6, 12);
+                var serie = id_completo.substring(0, 5); 
+                alert(id_completo);
+
+                    $.ajax({
+                        type: "GET",
+                        url: "guias_buscar.php",
+                        data: "id=" + id,
+                        success: function(datos){
+                       
+                                       
+                        var jsonData = JSON.parse(datos);
+                        
+                        for(i=0;i<jsonData.length;i++){
+                        
+                        cadena = "<tr>";
+                        cadena = cadena + "<td><input name='codigo[]' class='input username' type='text' value='"+ jsonData[i].var_isbn_tit +"' size='15' OnFocus='this.blur()'/><input name='codigo_titulo[]' id='codigo_titulo[]' type='hidden' value='"+ jsonData[i].int_cod_tit +"'/></td>";
+                        cadena = cadena + "<td><input name='nombre[]' class='input username' id='nombre[]' type='text' value='"+ jsonData[i].var_nom_tit +"' size='30' OnFocus='this.blur()'/></td>";
+                        cadena = cadena + "<td><input name='precio[]' class='input username' type='text' value='"+ jsonData[i].dec_pvent_guia_det +"' size='30' OnFocus='this.blur()'/></td>";
+                        cadena = cadena + "<td><input name='cantidad[]' class='input username' id='cantidad[]' type='text' value='"+ jsonData[i].int_cant_guia_det +"' size='30' OnFocus='this.blur()'/></td>";
+                        cadena = cadena + "<td><input name='total[]' class='input username' id='total[]' type='text' value='"+ jsonData[i].dec_pvent_guia_det * jsonData[i].int_cant_guia_det +"' size='30' OnFocus='this.blur()'/></td>";
+                        cadena = cadena + "<td><a class='elimina'><img src='delete.png' /></a></td>";
+                        $("#grilla tbody").append(cadena);
+                        $("#valor_ide").focus();
+                        fn_dar_eliminar();
+                        fn_cantidad();
+                        fn_sumatotal();
+
+                        };
+                        
+                        //$('#sucursal option[value="1"]')
+                        
+                        //alert(date('d-m-Y', jsonData[0].date_fecenv_guia_cab));
+                        
+                        $('#sucursal option[value="'+jsonData[0].int_cod_suc+'"]').attr('selected', 'selected');
+                        $('#cliente option[value="'+jsonData[0].int_cod_cli+'"]').attr('selected', 'selected');
+                        $('#vendedor option[value="'+jsonData[0].int_cod_usu+'"]').attr('selected', 'selected');
+                        $("#datepicker").val(jsonData[0].date_fecenv_guia_cab);
+                        $("#datepicker").val('07-12-2014');
+                        $("#ruc").val(jsonData[0].var_ruc_cli);
+                        $("#direccion_compra").val(jsonData[0].var_dir_env_guia_cab);
+                        $("#punto_partida").val(jsonData[0].var_pun_part_guia_cab);
+                        $("#punto_llegada").val(jsonData[0].var_pun_lleg_guia_cab);
+                        $("#transporte_mn").val(jsonData[0].var_tran_marca_guia_cab);
+                        $("#transporte_c").val(jsonData[0].var_tran_constancia_guia_cab);
+                        $("#transporte_l").val(jsonData[0].var_tran_licencia_guia_cab);
+                        $("#transportista_rs").val(jsonData[0].var_trans_rs_guia_cab);
+                        $("#transportista_dir").val(jsonData[0].var_trans_dir_guia_cab);
+                        $("#transportista_ruc").val(jsonData[0].var_trans_ruc_guia_cab);
+                        $("#codigo_cabecera").val(jsonData[0].var_cod_guia_cab);
+
+                        
+
+                        /*
+                        
+                        
+                        
+                        $("#punto_llegada").val(jsonData[0].var_dir_cli);
+                        */
+                       
+                        },
+                        error: function(datos) {
+                        alert("Data not found");
+                        }
+                    });
+                };
                 //Iniciando las validaciones del formulario
 				$("#form").validate({
                 //Especificando las reglas de validacion
@@ -64,6 +126,7 @@ window.open(pagina,"",opciones);
                     submitHandler: function(form) {
                         //Variables Cabecera Pedido
                         
+                    var codigo_cabecera=$("#codigo_cabecera").val();
                     var cod_emp=1;
                     var cod_suc = $("#sucursal").val();
                     var cod_cli = $("#cliente").val();
@@ -116,7 +179,8 @@ window.open(pagina,"",opciones);
                         alert("Registre correctamente los campos as");
                     } else {
                                         //Datos Cabecera Pedido
-                        var dataString= 'cod_emp='+cod_emp+
+                        var dataString= 'codigo_cabecera='+codigo_cabecera+
+                                        '&cod_emp='+cod_emp+
                                         '&cod_suc='+cod_suc+
                                         '&cod_cli='+cod_cli+
                                         '&fec_pedido='+fec_pedido+
@@ -357,6 +421,43 @@ window.open(pagina,"",opciones);
                                fn_cantidad(); 
                             fn_sumatotal();
                             
+};
+            function Abrir_ventana (pagina) {
+var opciones="toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, width=508, height=525, top=15, left=140";
+window.open(pagina,"",opciones);
+};
+            function notificacion(){
+        alertify.log("No se puede registrar mas Títulos"); 
+        return false;
+      }; 
+
+      function $_GET(param)
+{
+/* Obtener la url completa */
+url = document.URL;
+/* Buscar a partir del signo de interrogación ? */
+url = String(url.match(/\?+.+/));
+/* limpiar la cadena quitándole el signo ? */
+url = url.replace("?", "");
+/* Crear un array con parametro=valor */
+url = url.split("&");
+
+/* 
+Recorrer el array url
+obtener el valor y dividirlo en dos partes a través del signo = 
+0 = parametro
+1 = valor
+Si el parámetro existe devolver su valor
+*/
+x = 0;
+while (x < url.length)
+{
+p = url[x].split("=");
+if (p[0] == param)
+{
+return decodeURIComponent(p[1]);
 }
-  
+x++;
+}
+};
 

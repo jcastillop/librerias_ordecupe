@@ -85,6 +85,35 @@ INNER JOIN T_titulos t on  t.int_cod_tit=d.int_cod_tit where d.var_cod_guia_cab=
 		}
 			return $this->guia_cabecera;
 	}
+		public function get_guia_cabecera_detalle_por_codcabecera($cod)
+	{
+		
+		$sql="select c.var_cod_guia_cab, c.var_cod_ser, c.int_cod_suc, s.var_nom_suc, s.var_dir_suc,c.int_cod_emp, c.var_dir_env_guia_cab, 
+				c.int_cod_cli, cli.var_rsoc_cli, cli.var_ruc_cli, cli.var_dir_cli, c.var_cod_pedi_cab, c.int_cod_mov,c.int_cod_smov,c.var_pun_part_guia_cab, 
+				c.var_pun_lleg_guia_cab,c.int_est_guia_cab, c.int_cod_usu, 
+				concat(u.var_appat_usu,' ',u.var_apmat_usu,' ',u.var_nom_usu) as nombre, c.var_dist_guia_cab,
+				c.int_turn_guia_cab, c.var_telf_guia_cab, c.var_tran_marca_guia_cab, c.var_tran_constancia_guia_cab, 
+				c.var_tran_licencia_guia_cab, c.var_trans_rs_guia_cab, c.var_trans_ruc_guia_cab, c.var_trans_dir_guia_cab, 
+				DATE(c.date_fecenv_guia_cab) as date_fecenv_guia_cab, d.var_cod_guia_det, d.int_cod_tit,t.var_nom_tit, t.var_isbn_tit, d.int_cant_guia_det,
+				d.dec_pvent_guia_det,d.dec_pimpt_guia_det,d.dec_pdesc_guia_det,d.dec_vtotal_guia_det
+				from T_guia_cabecera c
+				inner join T_guia_detalle d on c.var_cod_guia_cab=d.var_cod_guia_cab 
+				inner join T_sucursal s on c.int_cod_suc=s.int_cod_suc 
+				inner join T_cliente cli on c.int_cod_cli=cli.int_cod_cli 
+				inner join T_usuario u on c.int_cod_usu=u.int_cod_usu
+				inner join T_titulos t on d.int_cod_tit=t.int_cod_tit
+				where c.var_cod_guia_cab='$cod'
+		
+		";	
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->guia_cabecera[]=$reg;
+		}
+			return $this->guia_cabecera;
+	}
 	
 	
 	

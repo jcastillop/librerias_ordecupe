@@ -70,7 +70,17 @@ $(document).ready(function() {
 	var table = $('#example').DataTable();
 
 	$('#example tbody').on( 'dblclick', 'tr', function () {
-		$(this).toggleClass('selected');
+	
+		//var children = $(this).find("td:first").innerHTML;
+		var name = $('td', this).eq(1).text();
+		
+		//alert(name);
+		//$('#tt').tabs('select', 'Registro Ventas');
+		
+		//addTab('Registro Ventas','vista/almacen/registro/index.php');
+		window.parent.addTab('Transacciones','vista/almacen/registro/index.php?id='+name);
+
+	
 	} );
 
 	$('#button').click( function () {
