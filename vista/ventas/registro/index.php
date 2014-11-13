@@ -22,7 +22,9 @@ require_once("../../../conexiones/conexion.php");
         <script type='text/javascript' src="busquedas/js/jquery.autocomplete.js"></script>
 <link rel="stylesheet" type="text/css" href="busquedas/js/jquery.autocomplete.css" />
         
- <script type="text/javascript">
+<script type="text/javascript">
+
+
 
  function validaCondicion(b_valida)
  {
@@ -53,7 +55,6 @@ $().ready(function() {
 		$("#ruc").val(data[2]);
 		$("#direccion").val(data[3]);
 		$("#distrito").val(data[4]);
-		$('#ruc').prop('readonly', true);
 	
 	});
 });
@@ -80,6 +81,15 @@ function Abrir_ventana (pagina) {
 var opciones="toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, width=508, height=525, top=15, left=140";
 window.open(pagina,"",opciones);
 }
+
+function abrir_popup()
+	{
+		xpos=(screen.width/2)-200; 
+		ypos=(screen.height/2)-315; 
+		window.open('cliente_nuevo.php','','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=500, left='+ xpos+', top='+ ypos);
+	}
+
+
 function detectar_tecla(){
     with (event){
         if (keyCode==8 ){
@@ -93,47 +103,124 @@ function detectar_tecla(){
         }
     }
 }
+
+function error(){
+				alertify.error("SELECCIONE CORRECTAMENTE SU OPCION"); 
+				return false; 
+			}
+
+
+function validar_sucursal()
+{
+	var factura = document.getElementById("sucursal").value;
+	if (factura=="")
+	{
+		
+		document.getElementById("sucursal").style.borderColor = "#F00";
+	}
+	else
+	{
+		document.getElementById("sucursal").style.borderColor = "#CCC";
+	}
+
+}
+function validar_factura()
+{
+	var factura = document.getElementById("tipo_doc").value;
+	if (factura=="")
+	{
+		
+		document.getElementById("tipo_doc").style.borderColor = "#F00";
+		
+		 error();
+			
+		
+		
+	}
+	else
+	{
+		document.getElementById("tipo_doc").style.borderColor = "#CCC";
+	}
+	
+	if (factura==1){
+	
+	document.getElementById('rsocial').innerHTML = 'DNI';
+	}
+	else if (factura==2){
+		document.getElementById('rsocial').innerHTML = 'R.U.C';
+		}
+	
+	
+	
+}
+
+function validar_datos(){
+	validar_sucursal();
+	validar_factura();
+	}
+
+
 function validar_cliente()
 {
 	
 	var factura = document.getElementById("tipo_doc").value;
-
-	
-	
-var id_cliente=document.getElementById("clienteID").value ;
-
-
-if(id_cliente=="")
+    var id_cliente=document.getElementById("clienteID").value ;
+if(id_cliente==""  )
 {
-	document.getElementById("ruc").disabled=true;	
-var r = confirm("CLIENTE NO EXISTE, DESEA AGREGAR UNO NUEVO!");
+	document.getElementById("ruc").disabled=true;
+	document.getElementById("direccion").disabled=true;
+	document.getElementById("distrito").disabled=true;
+	document.getElementById("valor_ide").disabled=true;
+	document.getElementById("valor_uno").disabled=true;
+	document.getElementById("valor_dos").disabled=true;
+	document.getElementById("valor_tres").disabled=true;	
+    var r = confirm("CLIENTE NO EXISTE, DESEA AGREGAR UNO NUEVO!");
 
 if (r == true) {
-   Abrir_ventana('cliente_nuevo.php');
-   document.getElementById("cliente").value='';
-   	document.getElementById("cliente").style.borderColor = "#ff0000";
-	document.getElementsByName('cliente')[0].placeholder='Ingrese Correctamente un Cliente ';
-	document.getElementById("ruc").disabled=false;
-
+   abrir_popup();
+    document.getElementById("clienteID").value=0;
+    document.getElementById("ruc").disabled=true;
+	document.getElementById("direccion").disabled=true;
+	document.getElementById("distrito").disabled=true;
+   	document.getElementById("cliente").style.borderColor = "#F00";
+	document.getElementsByName('cliente')[0].placeholder='INGRESE CLIENTE CREADO ';	
 	
-} 
 
+} 
  else{
 	 if (factura==2)
 	 {
+		 
+		 
+		 
+	
+		 
+		 
+		 
 		 alert('NO SE PUEDE CREAR UNA FACTURA SIN CLIENTE')
 		 document.getElementById("cliente").style.borderColor = "#ff0000";
 		 document.getElementById("cliente").value="";
    
 	document.getElementsByName('cliente')[0].placeholder='Ingrese Correctamente un Cliente ';
-	document.getElementById("ruc").disabled=true;
+	
+	
+	
 	 }
 	 else
 	 {
 	document.getElementById("clienteID").value="999";
 	document.getElementById("cliente").value="PRUEBA";
+	document.getElementById("ruc").value="00000000";
    
+	
 	document.getElementById("ruc").disabled=false;
+	document.getElementById("direccion").disabled=false;
+	document.getElementById("distrito").disabled=false;
+	document.getElementById("valor_ide").disabled=false;
+	document.getElementById("valor_uno").disabled=false;
+	document.getElementById("valor_dos").disabled=false;
+	document.getElementById("valor_tres").disabled=false;
+	
 	document.getElementById("cliente").style.borderColor = "#0066CC";
 	//document.getElementById("cliente").style.borderColor = "#ff0000";
 	//document.getElementsByName('cliente')[0].placeholder='Ingrese Correctamente un Cliente ';
@@ -148,8 +235,62 @@ document.getElementById("cliente").style.borderColor = "#FFF";
 }
 }
 
+function validar_ruc_2(){
+	
+	var id_cliente=document.getElementById("clienteID").value ;
+	if(id_cliente==9999)
+	{
+		var cant=document.getElementById("clienteID").value.length ;
+		
+	}
+	}
 
-       
+    function validar_ruc(){
+		//alert('validar_ruc');
+	var id_cliente=document.getElementById("clienteID").value ;
+	
+	
+	if ( id_cliente==9999){
+
+	document.getElementById("ruc").disabled=true;
+	document.getElementById("direccion").disabled=true;
+	document.getElementById("distrito").disabled=true;
+	document.getElementById("valor_ide").disabled=true;
+	document.getElementById("valor_uno").disabled=true;
+	document.getElementById("valor_dos").disabled=true;
+	document.getElementById("valor_tres").disabled=true;
+	var cant=document.getElementById("clienteID").value.length ;
+	if(cant >0)
+	{
+	document.getElementById("ruc").disabled=false;
+	document.getElementById("direccion").disabled=false;
+	document.getElementById("distrito").disabled=false;
+	document.getElementById("valor_ide").disabled=false;
+	document.getElementById("valor_uno").disabled=false;
+	document.getElementById("valor_dos").disabled=false;
+	document.getElementById("valor_tres").disabled=false;
+	document.getElementById("clienteID").value="";
+	document.getElementById("ruc").value="";
+	}
+
+	}
+	else if (id_cliente > 0 )
+	{
+		
+	document.getElementById("ruc").disabled=false;
+	document.getElementById("direccion").disabled=false;
+	document.getElementById("distrito").disabled=false;
+	document.getElementById("valor_ide").disabled=false;
+	document.getElementById("valor_uno").disabled=false;
+	document.getElementById("valor_dos").disabled=false;
+	document.getElementById("valor_tres").disabled=false;
+	
+	}
+	else
+	{
+		
+	}
+}   
         </script>
         
         
@@ -174,7 +315,7 @@ document.getElementById("cliente").style.borderColor = "#FFF";
 </script> 
     
 <body>	
-            <form  id="contact-form" class="login-form">
+            <form name="form" id="contact-form" class="login-form">
     
    <div class="container" >
             <h4 align="center" >Registro de Ventas</h4>
@@ -187,7 +328,7 @@ document.getElementById("cliente").style.borderColor = "#FFF";
                             <option value="2">Factura</option>
                         </select>
                         <label for="lblsuc">Sucursal procedencia    : </label>
-                        <select  name="sucursal" id="sucursal"  style="width:150px;margin-right:50px;" class="menu" onChange="from(document.form1.sucursal.value,'midiv','prueba.php')">
+                        <select  name="sucursal" id="sucursal"  style="width:150px;margin-right:50px;" class="menu" onChange="from(document.form1.sucursal.value,'midiv','prueba.php')" onfocus="validar_factura()">
                             <option value="">-Seleccione-</option>
                             <?php
                                  $tra=new sucursal();
@@ -201,7 +342,7 @@ document.getElementById("cliente").style.borderColor = "#FFF";
                             ?>
                         </select>
 						 <label for="lblvend">Vendedor:</label>
-                    <select  name="vendedor" id="vendedor"   class="menu">
+                    <select  name="vendedor" id="vendedor"   class="menu" onfocus="validar_sucursal()">
                       <option value="">-Seleccione-</option>
                       <?php
                                  $tra=new usuario();
@@ -215,12 +356,12 @@ document.getElementById("cliente").style.borderColor = "#FFF";
                             ?>
                     </select><br>
                         <label for="lblfec" style="margin-left:75px">Fecha:</label>
-                        <input name ="fecha_registro" type="text" id="datepicker" class="fecha"  />
+                        <input name ="fecha_registro" type="text" id="datepicker" class="fecha" onfocus="validar_datos()"  />
                         <label for="lblcond" style="margin-left:235px">Condicion:</label>
                         <label name="lbl_ventas" id="lbl_ventas" style="width:80px;margin-left:40px"><input name="ventas" type="checkbox" style="width:80px;" onclick="javascript:validaCondicion(this.checked)" id="ventas"/>Venta a Plazo: </label>
                         <input name="condiciones" class="condiciones" id="condiciones" value="0" disabled type="text" id="condiciones">   
                   <br><label for="lblcli" style="margin-left:68px"> Cliente:</label>
-                    <input name="cliente" class="cliente"  type="text" id="cliente"  onKeyDown ="detectar_tecla (event)"  />
+                    <input name="cliente" class="cliente"  type="text" id="cliente"  onKeyDown ="detectar_tecla (event);validar_ruc();" onkeyup="validar_ruc();validar_ruc_2();" onfocus="validar_datos()"  />
                    
                    <label for="lblruc" > R.U.C:</label>
                     <input name="ruc" class="input username" style="width:150px;margin-left:9px" type="text"  id="ruc"  onFocus="validar_cliente()" /></td>
