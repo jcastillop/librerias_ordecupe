@@ -115,6 +115,21 @@ INNER JOIN T_titulos t on  t.int_cod_tit=d.int_cod_tit where d.var_cod_guia_cab=
 			return $this->guia_cabecera;
 	}
 	
+	public function actualizar_estado_impreson($id)
+	{
+		$sql="update T_guia_cabecera "
+			." set "
+		
+		."
+		int_est_impr_guia_cab=2			
+		"
+		
+			." where "
+			." var_cod_guia_cab='$id' ";
+		$res=mysql_query($sql,Conectar::con());
+		
+		
+	}
 	
 	
 }

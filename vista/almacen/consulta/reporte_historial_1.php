@@ -3,9 +3,8 @@
 
 require_once("../../../conexiones/class_guia_pdf.php");
 
-
-
-
+$tra= new guia_cabecera();
+$tra->actualizar_estado_impreson($_GET['id']);
 
 require("fpdf/fpdf.php");
 
