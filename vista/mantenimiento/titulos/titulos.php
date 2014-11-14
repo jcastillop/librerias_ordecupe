@@ -76,17 +76,15 @@ function validar(e) { // 1
 } 
 
 function formulario(f) {
-	if (f.titulo.value   == '') { alert ('El campo Título esta vacío, ingrese un dato porfavor!!');  
-	f.titulo.focus(); return false; }  
-	if (f.isbn.value   == '') { alert ('El campo ISBN esta vacío, ingrese un dato porfavor!!');  
-	f.isbn.focus(); return false; }  
-	if (f.editorial.value   == '--Seleccione--') { alert ('El campo Editorial esta vacío, ingrese un dato porfavor!!');  
-	f.editorial.focus(); return false; }
-	if (f.genero.value   == '--Seleccione--') { alert ('El campo Género esta vacío, ingrese un dato porfavor!!');  
-	f.genero.focus(); return false; } 
-	if (f.pais.value   == '--Seleccione--') { alert ('El campo País esta vacío, ingrese un dato porfavor!!');  
-	f.pais.focus(); return false; } 
-	
+  if (f.titulo.value   == '') { alert ('El campo Título esta vacío, ingrese un dato porfavor!!');  
+  f.titulo.focus(); return false; }   
+  if (f.editorial.value   == '--Seleccione--') { alert ('El campo Editorial esta vacío, ingrese un dato porfavor!!');  
+  f.editorial.focus(); return false; }
+  if (f.genero.value   == '--Seleccione--') { alert ('El campo Género esta vacío, ingrese un dato porfavor!!');  
+  f.genero.focus(); return false; } 
+  if (f.pais.value   == '--Seleccione--') { alert ('El campo País esta vacío, ingrese un dato porfavor!!');  
+  f.pais.focus(); return false; } 
+  
  return true; } 
  
 </script>

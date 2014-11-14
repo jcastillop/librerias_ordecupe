@@ -125,5 +125,23 @@ class genero
 		window.location='eliminar_generos.php?eliminado=1';
 		</script>";
 	}
+
+	public function get_combo_generos()
+	{
+		$sql="select 
+			t.int_cod_gen,
+			t.var_nom_gen,
+			t.var_des_gen,
+			t.int_est_gen
+			from T_generos t
+	 		where int_est_gen=1";		
+		 
+		$res=mysql_query($sql,Conectar::con());
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->generos[]=$reg;
+		}
+			return $this->generos;
+	}
 }
 ?>
