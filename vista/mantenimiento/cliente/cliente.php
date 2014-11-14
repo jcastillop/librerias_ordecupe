@@ -38,8 +38,7 @@ header('Content-Type: text/html; charset=UTF-8');
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
- <script type="text/javascript" src="../../paquetes/js/validar.js"></script>
+<script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 
 <!--Slider-in icons-->
 <script type="text/javascript">
@@ -119,46 +118,33 @@ function from(id,ide,url){
 }
 
 
-function validar(e) { // 1
-
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-} 
-
 function formulario(f) {
 	if (f.tip_per.value   == '--Seleccione--') 
     { 
       alert ('El campo Tipo de Persona esta vacío, ingrese un dato porfavor!!');  
 	   f.tip_per.focus(); return false; 
-   }  
-	if (f.rsoc.value   == '') { alert ('El campo Razon Social esta vacío, ingrese un dato porfavor!!');  
-	f.rsoc.focus(); return false; }  
-  if (f.ruc.value  != '' && f.ruc.value.length < 11) { alert ('El campo RUC tiene menos de 11 Digitos, Complete los digitos porfavor!!');
-  f.ruc.focus(); return false; }
-	
-	
+  	 }  
+	if (f.rsoc.value   == '') { 
+		alert ('El campo Razon Social esta vacío, ingrese un dato porfavor!!');  
+		f.rsoc.focus(); return false; } 
+		 
+ 	if (f.ruc.value  != '' && f.ruc.value.length < 11) {
+		 alert ('El campo RUC tiene menos de 11 Digitos, Complete los digitos porfavor!!');
+  		f.ruc.focus(); return false; 
+		}
 
+	if (f.distrito.value   == '') { 
+		alert ('El campo Distrito esta vacío, ingrese un dato porfavor!!');  
+		f.distrito.focus(); return false; }
 	
+	if (f.dni.value!='' && f.dni.value.length < 8) { 
+		 alert ('El campo DNI tiene menos de 8 Digitos, Complete los digitos porfavor!!');
+ 		 f.dni.focus(); return false; }
 	
-
-	
-	
-	
-
-	if (f.distrito.value   == '') { alert ('El campo Distrito esta vacío, ingrese un dato porfavor!!');  
-	f.distrito.focus(); return false; }
-	if (f.telefono.value   == '') { alert ('El campo Teléfono esta vacío, ingrese un dato porfavor!!');  
-	f.telefono.focus(); return false; }
-  if (f.dni.value!='' && f.dni.value.length < 8) { alert ('El campo DNI tiene menos de 8 Digitos, Complete los digitos porfavor!!');
-  f.ruc.focus(); return false; }
+	if (f.telefono.value   == '') { 
+		alert ('El campo Teléfono esta vacío, ingrese un dato porfavor!!');  
+		f.telefono.focus(); return false; }
+  
 	
  return true; } 
   
@@ -261,7 +247,7 @@ function formulario(f) {
 		</tr>
         <tr>
           <td>DNI: </td>
-		   <td><input name="dni" type="text" maxlength="8" style="width: 150px;" class="input username" id="dni" onkeyUp="return ValNumero(this);" /></td>	
+		   <td><input name="dni" type="text" maxlength="8"  style="width: 150px;" class="input username" id="dni" onkeyUp="return ValNumero(this);" /></td>	
 		 </tr>
         <tr>
         <td>Telefono: </td>

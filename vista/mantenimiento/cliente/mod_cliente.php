@@ -85,8 +85,6 @@ header('Content-Type: text/html; charset=UTF-8');
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
  <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
-
- <script type="text/javascript" src="js/validar.js"></script>
 <!--Slider-in icons-->
 <script type="text/javascript">
 $(document).ready(function() {	
@@ -164,19 +162,31 @@ function from(id,ide,url){
        miPeticion.send(null);
 
 }
-function validar(e) { // 1
 
-    tecla = (document.all) ? e.keyCode : e.which; // 2
+function formulario(f) {
+	if (f.rsoc.value   == '') { 
+		alert ('El campo Razon Social esta vacío, ingrese un dato porfavor!!');  
+		f.rsoc.focus(); return false; } 
+		 
+ 	if (f.ruc.value  != '' && f.ruc.value.length < 11) {
+		 alert ('El campo RUC tiene menos de 11 Digitos, Complete los digitos porfavor!!');
+  		f.ruc.focus(); return false; 
+		}
 
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-}
+	if (f.dist.value   == '') { 
+		alert ('El campo Distrito esta vacío, ingrese un dato porfavor!!');  
+		f.dist.focus(); return false; }
+	
+	if (f.dni.value!='' && f.dni.value.length < 8) { 
+		 alert ('El campo DNI tiene menos de 8 Digitos, Complete los digitos porfavor!!');
+ 		 f.dni.focus(); return false; }
+	
+	if (f.tel.value   == '') { 
+		alert ('El campo Teléfono esta vacío, ingrese un dato porfavor!!');  
+		f.tel.focus(); return false; }
+  
+	
+ return true; } 
 
 </script>
 
@@ -194,7 +204,7 @@ function validar(e) { // 1
     <br />
 
 <!--LOGIN FORM-->
-<form name="form1" class="login-form" action="mod_cliente.php" method="get">
+<form name="form1" class="login-form" action="mod_cliente.php" method="get" onSubmit="return formulario(this)">
 
 	<!--HEADER-->
     <div class="header">
@@ -346,7 +356,7 @@ function validar(e) { // 1
         </tr>
 		<tr>
 		  <td>DNI: </td>
-		   <td><input name="dni" type="text" maxlength="8" class="input username" style="width: 150px;" id="dni" onkeyUp="return ValNumero(this);"  value="<?php echo $dni_cli;	 ?>" /></td>
+		   <td><input name="dni" type="text" maxlength="8" class="input username" style="width: 150px;" id="dni" onkeyUp="return ValNumero(this);" value="<?php echo $dni_cli;	 ?>" /></td>
            </tr>
         <tr>
 		<td>Telefono: </td>

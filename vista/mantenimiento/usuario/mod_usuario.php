@@ -68,7 +68,7 @@ www.amitjakhu.com
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
+<script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 <!--Slider-in icons-->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -86,6 +86,19 @@ $(document).ready(function() {
 		$(".pass-icon").css("left","0px");
 	});
 });
+
+function formulario(f) {
+	if (f.nick_usu.value   == '') { alert ('El campo Nick Usuario esta vacío, ingrese un dato porfavor!!');  
+	f.nick_usu.focus(); return false; } 
+	
+	if (f.clave_usu.value  == '' ) { 
+		alert ('El campo Clave esta vacio, ingrese un datos porfavor');
+		f.clave_usu.focus(); return false; }
+	else if (f.clave_usu.value  != '' && f.clave_usu.value.length <=6) { 
+			alert ('La clave debe de tener mas de 5 digitos!');
+			f.clave_usu.focus(); return false;
+		} 
+ return true; } 
 </script>
 
 </head>
@@ -102,7 +115,7 @@ $(document).ready(function() {
     <br />
 
 <!--LOGIN FORM-->
-<form name="login-form" class="login-form" action="mod_usuario.php" method="get">
+<form name="f" class="login-form" action="mod_usuario.php" method="get" onSubmit="return formulario(this)">
 
 	<!--HEADER-->
     <div class="header">
@@ -154,15 +167,15 @@ $(document).ready(function() {
            </tr>
         <tr>
           <td>Nombres Completos: </td>
-          <td><input name="nombres_usu" type="text"  maxlength="50" class="input username" id="nombres_usu" onKeyPress="return tab(event,this)" value="<?php echo $nombre_usuario;?>" /></td>
+          <td><input name="nombres_usu" type="text"  maxlength="50" class="input username" id="nombres_usu" onKeyPress="return validar(event)" value="<?php echo $nombre_usuario;?>" /></td>
         </tr>
         <tr>
           <td>Apellido Paterno: </td>
-          <td><input name="ap_pat" type="text"  maxlength="50" class="input username" style="width: 200px;" onKeyPress="return tab(event,this)" value="<?php echo $apellido_usuario;?>" /></td>
+          <td><input name="ap_pat" type="text"  maxlength="50" class="input username" style="width: 200px;" onKeyPress="return validar(event)" value="<?php echo $apellido_usuario;?>" /></td>
            </tr>
         <tr>
           <td>Apellido Materno :</td>
-          <td><input name="ap_mat" type="text"  maxlength="50" class="input username" style="width: 200px;" onKeyPress="return tab(event,this)" value="<?php echo $materno_usuario;?>" /></td>
+          <td><input name="ap_mat" type="text"  maxlength="50" class="input username" style="width: 200px;" onKeyPress="return validar(event)" value="<?php echo $materno_usuario;?>" /></td>
         </tr>
         <tr>
           <td>Estado: </td>

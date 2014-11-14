@@ -90,7 +90,6 @@ www.amitjakhu.com
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
   <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 
 <!--Slider-in icons-->
@@ -169,20 +168,19 @@ function from(id,ide,url){
        miPeticion.send(null);
 
 }
-function validar(e) { // 1
-
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-}
- 
+function formulario(f) {
+	if (f.raz_soc.value   == '') { alert ('El campo Razon Social esta vacío, ingrese un dato porfavor!!');  
+	f.raz_soc.focus(); return false; }  
+	if (f.nro_doc.value  != '' && f.nro_doc.value.length < 11) {
+		 alert ('El campo RUC tiene menos de 11 Digitos, Complete los digitos porfavor!!');
+  		f.nro_doc.focus(); return false; 
+		}
+	if (f.direccion.value   == '') { alert ('El campo Dirección  esta vacío, ingrese un dato porfavor!!');  
+	f.direccion.focus(); return false; }
+	if (f.telefono.value   == '') { alert ('El campo Teléfono esta vacío, ingrese un dato porfavor!!');  
+	f.telefono.focus(); return false; }
+	
+ return true; }  
 </script>
 
 </head>
@@ -199,7 +197,7 @@ function validar(e) { // 1
     <br />
 
 <!--LOGIN FORM-->
-<form name="form1" class="login-form" action="mod_proveedor.php" method="get">
+<form name="form1" class="login-form" action="mod_proveedor.php" method="get" onSubmit="return formulario(this)">
 
 	<!--HEADER-->
     <div class="header">
@@ -235,7 +233,7 @@ function validar(e) { // 1
 			?>   
           </select>
           RUC: 
-          <input name="nro_doc" type="text" maxlength="15" style="width: 180px;" class="input username" onkeyUp="return ValNumero(this);" value="<?php echo $nrodoc_prov;?>" /></td>
+          <input name="nro_doc" type="text" maxlength="11" style="width: 180px;" class="input username" onkeyUp="return ValNumero(this);" value="<?php echo $nrodoc_prov;?>" /></td>
         </tr>
         <tr>
           <td>Pais: </td>

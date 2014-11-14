@@ -37,7 +37,7 @@ www.amitjakhu.com
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
+ <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 <!--Slider-in icons-->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -54,25 +54,20 @@ $(document).ready(function() {
 		$(".pass-icon").css("left","0px");
 	});
 });
-function validar(e) { // 1
 
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-} 
 
 function formulario(f) {
 	if (f.nick_usu.value   == '') { alert ('El campo Nick Usuario esta vacío, ingrese un dato porfavor!!');  
-	f.nick_usu.focus(); return false; }  
-	if (f.clave_usu.value   == '') { alert ('El campo Clave esta vacío, ingrese un dato porfavor!!');  
-	f.clave_usu.focus(); return false; }  
+	f.nick_usu.focus(); return false; } 
+	
+	if (f.clave_usu.value  == '' ) { 
+		alert ('El campo Clave esta vacio, ingrese un datos porfavor');
+		f.clave_usu.focus(); return false; }
+	else if (f.clave_usu.value  != '' && f.clave_usu.value.length <=6) { 
+			alert ('La clave debe de tener mas de 6 digitos!');
+			f.clave_usu.focus(); return false;
+		}
+	
 	if (f.rol.value   == '--Seleccione--') { alert ('El campo Seleccione Rol esta vacío, ingrese un dato porfavor!!');  
 	f.rol.focus(); return false; }
 	if (f.nombres_usu.value   == '') { alert ('El campo Nombres completos esta vacío, ingrese un dato porfavor!!');  
