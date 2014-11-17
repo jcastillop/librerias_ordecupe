@@ -98,12 +98,13 @@ $(document).ready(function() {
 
 	} );
 */
-	$('#example tbody').on( 'dblclick', 'tr', function () {
+	$('#example tbody').on( 'click', 'tr', function () {
 	
 		//var children = $(this).find("td:first").innerHTML;
 		var name = $('td', this).eq(1).text();
 		alert(name);
-		$('#tt').tabs('select', 'Registro Ventas');
+		//$('#tt').tabs('select', 'Registro Ventas');
+		window.parent.addTab('Gastos','vista/compras/gastos/index.php?id='+name);
 		//addTab('Registro Ventas','vista/almacen/registro/index.php');
 	
 
@@ -193,6 +194,7 @@ $(document).ready(function() {
                         <th style="width: 200px;">Empresa</th>
                         <th style="width: 150px;">Mes</th>
                         <th style="width: 100px;">Año</th>
+                        <th style="width: 100px;">Gastos</th>
 					</tr>
 				</thead>
 				<tbody align="center">
@@ -210,6 +212,7 @@ $(document).ready(function() {
                         <td><?php echo $reg[$i]["var_nom_emp"];?></td>
                         <td><?php echo nombremes($reg[$i]["mes"]);?></td>
                         <td><?php echo $reg[$i]["año"];?></td>
+                        <td align='center'><a href="#" ><img src='images/img_gastos.jpg' width='15px' height='15px'></a></td>
 
 					</tr>
 				
