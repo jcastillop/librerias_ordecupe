@@ -101,7 +101,7 @@ $(document).ready(function () {
 </script> 
     
 <body>	
-            <form  id="contact-form" class="login-form">
+            <form name="form"  id="contact-form" class="login-form">
     
    <div class="container" >
             <h4 align="center" >Registro de Ventas</h4>
