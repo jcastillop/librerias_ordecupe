@@ -10,7 +10,7 @@
                 var id_completo=$_GET("id");
                 var id = id_completo.substring(6, 12);
                 var serie = id_completo.substring(0, 5); 
-                alert(id_completo);
+               
 
                     $.ajax({
                         type: "GET",
@@ -57,9 +57,12 @@
                         $("#transportista_rs").val(jsonData[0].var_trans_rs_guia_cab);
                         $("#transportista_dir").val(jsonData[0].var_trans_dir_guia_cab);
                         $("#transportista_ruc").val(jsonData[0].var_trans_ruc_guia_cab);
-                        $("#codigo_cabecera").val(jsonData[0].var_cod_guia_cab);
-
+                        $("#codigo_guia_cabecera").val(jsonData[0].var_cod_guia_cab);
+                        $("#codigo_pedido_cabecera").val(jsonData[0].var_cod_pedi_cab);
+                        $("#codigo_serie").val(jsonData[0].var_cod_ser);
                         
+
+                         
 
                         /*
                         
@@ -126,7 +129,9 @@
                     submitHandler: function(form) {
                         //Variables Cabecera Pedido
                         
-                    var codigo_cabecera=$("#codigo_cabecera").val();
+                    var codigo_guia_cabecera=$("#codigo_guia_cabecera").val();
+                    var codigo_pedido_cabecera=$("#codigo_pedido_cabecera").val();
+                    var codigo_serie=$("#codigo_serie").val();
                     var cod_emp=1;
                     var cod_suc = $("#sucursal").val();
                     var cod_cli = $("#cliente").val();
@@ -179,7 +184,9 @@
                         alert("Registre correctamente los campos as");
                     } else {
                                         //Datos Cabecera Pedido
-                        var dataString= 'codigo_cabecera='+codigo_cabecera+
+                        var dataString= 'codigo_serie='+codigo_serie+
+                                        '&codigo_guia_cabecera='+codigo_guia_cabecera+
+                                        '&codigo_pedido_cabecera='+codigo_pedido_cabecera+
                                         '&cod_emp='+cod_emp+
                                         '&cod_suc='+cod_suc+
                                         '&cod_cli='+cod_cli+
@@ -220,7 +227,10 @@
                             
                             var res = jQuery.parseJSON(result);
                            alert(res.mensaje);
-                             Abrir_ventana('../consulta/reporte_historial_1.php?id='+res.codigo);
+                           if(res.tipo==0){
+                            Abrir_ventana('../consulta/reporte_historial_1.php?id='+res.codigo);
+                           };
+                             
                             limpiarformulario("#form");
                             $("#condiciones").val("Transacción");   
                           },

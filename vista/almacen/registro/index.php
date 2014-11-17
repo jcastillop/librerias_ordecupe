@@ -47,7 +47,9 @@ require_once("../../../conexiones/class_cliente.php");
             <form  id="form">
     <div class="container" >
             <h4 align="center" >Guía Remisión</h4>
-            <input name ="codigo_cabecera" type="hidden" id="codigo_cabecera"/>
+            <input name ="codigo_guia_cabecera" type="hidden" id="codigo_guia_cabecera"/>
+            <input name ="codigo_pedido_cabecera" type="hidden" id="codigo_pedido_cabecera"/>
+            <input name ="codigo_serie" type="hidden" id="codigo_serie"/>
             <label for="lblsucursal_procedencia" >Sucursal procedencia:</label>
             <select  name="sucursal" id="sucursal"  style="width:150px;margin-left:0px;;margin-top:0px" class="menu" >
                 <option value="">-Seleccione-</option>
