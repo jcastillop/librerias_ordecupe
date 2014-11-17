@@ -98,18 +98,6 @@ $(document).ready(function() {
 
 	} );
 */
-	$('#example tbody').on( 'click', 'tr', function () {
-	
-		//var children = $(this).find("td:first").innerHTML;
-		var name = $('td', this).eq(1).text();
-		alert(name);
-		//$('#tt').tabs('select', 'Registro Ventas');
-		window.parent.addTab('Gastos','vista/compras/gastos/index.php?id='+name);
-		//addTab('Registro Ventas','vista/almacen/registro/index.php');
-	
-
-	} );
-
 	$('#button').click( function () {
 		alert( table.rows('.selected').data().length +' row(s) selected' );
 	} );
@@ -212,7 +200,7 @@ $(document).ready(function() {
                         <td><?php echo $reg[$i]["var_nom_emp"];?></td>
                         <td><?php echo nombremes($reg[$i]["mes"]);?></td>
                         <td><?php echo $reg[$i]["año"];?></td>
-                        <td align='center'><a href="#" ><img src='images/img_gastos.jpg' width='15px' height='15px'></a></td>
+                        <td align='center'><a href=" javascript:window.parent.addTab('Transacciones','vista/compras/gastos/index.php?id=<?php echo $reg[$i]["var_cod_comp_cab"];?>'); " ><img src='images/img_gastos.jpg' width='15px' height='15px'></a></td>
 
 					</tr>
 				
