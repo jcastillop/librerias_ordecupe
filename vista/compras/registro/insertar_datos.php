@@ -1,5 +1,6 @@
 <?php
 	require_once("conexion.php");
+	
 	$_cod_emp=$_POST['cod_emp'];
 	$_cod_suc=$_POST['cod_suc'];
 	$_fec_rec=$_POST['fec_rec'];

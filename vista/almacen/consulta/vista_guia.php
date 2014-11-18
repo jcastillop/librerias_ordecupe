@@ -73,11 +73,14 @@ $(document).ready(function() {
 		//var children = $(this).find("td:first").innerHTML;
 		var name = $('td', this).eq(1).text();
 		
+		var sucursal= $('td', this).eq(1).children('#cod_sucursal').val();
+		
+		
 		//alert(name);
 		//$('#tt').tabs('select', 'Registro Ventas');
 		
 		//addTab('Registro Ventas','vista/almacen/registro/index.php');
-		window.parent.addTab('Transacciones','vista/almacen/registro/index.php?id='+name);
+		window.parent.addTab('Transacciones','vista/almacen/registro/index.php?id='+name+'&sucursal='+sucursal);
 
 	
 	} );
@@ -186,7 +189,10 @@ $(document).ready(function() {
 				 ?>  
 					<tr>     
 						<td><?php echo $reg[$i]["id"];?></td>                  
-						<td><?php echo '00'.$reg[$i]["var_cod_ser"]."-".$reg[$i]["var_cod_guia_cab"];?></td> 
+						<td>
+							<?php echo $reg[$i]["var_cod_ser"]."-".$reg[$i]["var_cod_guia_cab"];?>
+							<input name ="cod_sucursal" type="hidden" id="cod_sucursal" value="<?php echo $reg[$i]["int_cod_suc"];?>"/>
+						</td> 
 						<td><?php echo $reg[$i]["var_rsoc_cli"];?></td>
                         <td><?php echo $reg[$i]["var_pun_part_guia_cab"];?></td>
 						<td><?php echo $reg[$i]["var_pun_lleg_guia_cab"];?></td>

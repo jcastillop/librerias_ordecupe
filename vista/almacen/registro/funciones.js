@@ -8,17 +8,19 @@
                 if(typeof $_GET("id") != 'undefined'){
                   
                 var id_completo=$_GET("id");
-                var id = id_completo.substring(6, 12);
-                var serie = id_completo.substring(0, 5); 
-               
-
+                var id = id_completo.substring(4, 12);
+                var serie = id_completo.substring(0, 3); 
+                var sucursal=$_GET("sucursal");
+                var empresa=1;
+               alert(id);
+               alert(suc);
                     $.ajax({
                         type: "GET",
                         url: "guias_buscar.php",
-                        data: "id=" + id,
+                        data: "id=" + id + "&serie=" + serie+ "&sucursal=" + sucursal + "&empresa=" + empresa,
                         success: function(datos){
                        
-                                       
+                        alert(datos); 
                         var jsonData = JSON.parse(datos);
                         
                         for(i=0;i<jsonData.length;i++){

@@ -29,7 +29,7 @@ class guia_cabecera
 				c.var_ruc_cli,
 				c.var_dir_cli,	
 				c.var_dist_cli,
-        			c.var_telf_cli,
+        		c.var_telf_cli,
 				c.var_refdom_cli,
 				g.var_dir_env_guia_cab,
 				g.var_dist_guia_cab,
@@ -85,7 +85,7 @@ INNER JOIN T_titulos t on  t.int_cod_tit=d.int_cod_tit where d.var_cod_guia_cab=
 		}
 			return $this->guia_cabecera;
 	}
-		public function get_guia_cabecera_detalle_por_codcabecera($cod)
+		public function get_guia_cabecera_detalle_por_codcabecera($cod_guia,$cod_serie,$cod_suc,$cod_emp)
 	{
 		
 		$sql="select c.var_cod_guia_cab, c.var_cod_ser, c.int_cod_suc, s.var_nom_suc, s.var_dir_suc,c.int_cod_emp, c.var_dir_env_guia_cab, 
@@ -102,7 +102,7 @@ INNER JOIN T_titulos t on  t.int_cod_tit=d.int_cod_tit where d.var_cod_guia_cab=
 				inner join T_cliente cli on c.int_cod_cli=cli.int_cod_cli 
 				inner join T_usuario u on c.int_cod_usu=u.int_cod_usu
 				inner join T_titulos t on d.int_cod_tit=t.int_cod_tit
-				where c.var_cod_guia_cab='$cod'
+				where c.var_cod_guia_cab='$cod_guia' and c.var_cod_ser='$cod_serie' and c.int_cod_cli='$cod_suc' and c.int_cod_emp='$cod_emp'
 		
 		";	
 		

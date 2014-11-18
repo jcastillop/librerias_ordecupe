@@ -51,7 +51,7 @@ class ordcomp_cabecera
 		}
 			return $this->ordcomp_cabecera;
 	}
-	
+
 	/*
 	public function get_combo_editorial()
 	{

@@ -131,11 +131,44 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
                   $("#frm_usu").css("display", "none");
                   }
                   });
-                  
+
+    //buscar registros cargados y mostrar una alerta
+     $("input:file").change(function (){
+       var fileName = $(this).val().split('\\').pop();
+      
+       
+                    $.ajax({
+                        type: "GET",
+                        url: "excel_buscar.php",
+                        data: "id=" + fileName,
+                        success: function(datos){
+                        
+                        var jsonData = JSON.parse(datos);
+                        
+                        if(jsonData.length>0){
+
+                            if (confirm("Existen " + jsonData.length + " archivo(s) similares, desea continuar?") == true) {
+                               $("#lblfec_rec").focus();
+                            } else {
+                               $('#file').attr({ value: '' });   
+                            }
+
+                        }
+
+
+                        },
+                        error: function(datos) {
+                        alert("Data not founds");
+                        }
+                    });
+
+
+     });                  
                 //Carga xls a la tabla
     $("#cargarxls").click(function() {
-       
-                    
+       var valor=$('#file').val();
+      
+   
         var formData = new FormData();
         formData.append('file', $('#file').get(0).files[0]);
                   
