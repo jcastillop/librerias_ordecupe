@@ -15,15 +15,15 @@
 		$monto = $array[$i]->monto;
 		
 		//falta codigo de barra del libro
-		$query_call_spcompgas = "CALL proc_insertar_comp_gas(".$_cod_com.",".$_cod_suc.","
-																.$_cod_emp.",".$desc.",".$monto.",'".$_ped_usu."',@n_Flag, @c_msg, @cod_generado)";
+		$query_call_spcompgas = "CALL proc_insertar_comp_gas('".$_cod_com."',".$_cod_suc.","
+																.$_cod_emp.",'".$desc."',".$monto.",'".$_ped_usu."',@n_Flag, @c_msg)";
 																
-
+		echo $query_call_spcompgas;
 		mysql_query($query_call_spcompgas,Conectar::con());
 	
 		$array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
 		$array_mensaje = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
-		$mensaje = $array_mensaje["@n_Flag"];
+		$mensaje = $array_mensaje["@c_msg"];
 		
 	
 		$contador=$contador+1; 

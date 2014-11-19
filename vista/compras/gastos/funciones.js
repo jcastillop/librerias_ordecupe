@@ -63,7 +63,7 @@
                                         '&cod_suc='+cod_suc+
                                         '&cod_emp='+cod_emp+
                                         '&detalle='+detalle;
-                        alert(dataString);                                      
+                                                         
                         $.ajax({
                           type: "POST",
                           url: "insertar_datos.php",
