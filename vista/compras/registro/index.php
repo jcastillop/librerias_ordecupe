@@ -135,7 +135,7 @@ header('Content-Type: text/html; charset=UTF-8');
               
             </div></div>
             	
-			<div class="container4" style="height:115px; overflow: scroll;" >
+			<div class="container4" style="height:auto; overflow: scroll;" >
             <table id="grilla">
               <thead>
                     <tr>
