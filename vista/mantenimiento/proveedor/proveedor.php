@@ -174,12 +174,12 @@ function formulario(f) {
                 <option value="2">Persona Juridica</option>
               </select>
               RUC:
-          <input name="nro_doc" type="text" maxlength="11" style="width: 180px;" class="input username" onkeyUp="return ValNumero(this);" /></td>	
+          <input name="nro_doc" type="text" maxlength="11" style="width: 180px;" class="input username" onKeyPress="return tab(event,this)"  onkeyUp="return ValNumero(this);" /></td>	
         </tr>
         <tr>
           <td>País: </td>
           <td>
-          <select  name="pais" id="pais" style="width: 160px;" class="input username" onChange="from(document.form1.pais.value,'midiv','proveedor_dep.php')">
+          <select  name="pais" id="pais" style="width: 160px;" class="input username" onKeyPress="return tab(event,this)" onChange="from(document.form1.pais.value,'midiv','proveedor_dep.php')" >
           <option value="999">--Seleccione--</option>
           <?php
 			$tra=new pais();
@@ -199,20 +199,20 @@ function formulario(f) {
         <tr>
           <td>Departamento:</td>
           <td>
-          <div id='midiv'><select style="width: 200px;" class="input username">
+          <div id='midiv'><select style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
           <option>--Seleccione--</option></select></div>
           </td>
            </tr>
         <tr>
           <td>Provincia: </td>
           <td>
-          <div id="madiv"><select style="width: 200px;" class="input username">
+          <div id="madiv"><select style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
           <option>--Seleccione--</option></select></div>
           </td>
         </tr>
         <tr>
           <td>Distrito: </td>
-          <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" onKeyPress="return validar(event)" /></td>
+          <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" onKeyPress="return tab(event,this)" onKeyPress="return validar(event)" /></td>
            </tr>
         <tr>
           <td>Dirección: </td>
@@ -220,14 +220,14 @@ function formulario(f) {
            </tr>
         <tr>
           <td>Telefono: </td>
-          <td><input name="telefono" type="text" maxlength="15" style="width: 150px;" class="input username" onkeyUp="return ValNumero(this);" />
+          <td><input name="telefono" type="text" maxlength="15" style="width: 150px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" />
           Celular:
-          <input name="celular" type="text" maxlength="15" style="width: 150px;" class="input username" onkeyUp="return ValNumero(this);" /></td>
+          <input name="celular" type="text" maxlength="15" style="width: 150px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" /></td>
            </tr>
         <tr>
           <td>Fax: </td>
           <td><input name="fax" type="text" maxlength="15" style="width: 160px;" class="input username" onkeyUp="return ValNumero(this);" />
-          <input name="estado" id="estado" type="hidden" value="1" class="input username"  /></td>
+          <input name="estado" id="estado" type="hidden" value="1" class="input username" /></td>
         </tr>
       </table>
     </div>

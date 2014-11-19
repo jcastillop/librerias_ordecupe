@@ -202,7 +202,7 @@ function formulario(f) {
         <tr>
            <td>País: </td>
           <td>
-          <select  name="pais" id="pais" style="width: 160px;" class="input username" onChange="from(document.form1.pais.value,'midiv','sucursal_dep.php')">
+          <select  name="pais" id="pais" style="width: 160px;" class="input username" onKeyPress="return tab(event,this)" onChange="from(document.form1.pais.value,'midiv','sucursal_dep.php')">
           <option value="999">--Seleccione--</option>
           <?php
 			$tra=new pais();
@@ -220,14 +220,14 @@ function formulario(f) {
 		 <tr>
           <td>Departamento:</td>
           <td>
-          <div id='midiv'><select style="width: 200px;" class="input username">
+          <div id='midiv'><select style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
           <option>--Seleccione--</option></select></div>
           </td>
         </tr>
         <tr>
           <td>Provincia: </td>
           <td>
-          <div id="madiv"><select style="width: 200px;" class="input username">
+          <div id="madiv"><select style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
           <option>--Seleccione--</option></select></div>
           </td>
         </tr>

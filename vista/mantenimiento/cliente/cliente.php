@@ -192,15 +192,14 @@ function formulario(f) {
           <td><input name="rsoc" type="text" maxlength="50" class="input username" style="width: 400px;" id="rsoc"  onKeyPress="return tab(event,this)" /></td>
         </tr>
         <tr>
-        <td><input name="estado" id="estado" type="hidden" value="1" class="input username" />
-        	RUC: </td>
+        <td>RUC: </td>
             <td>
-          	<input name="ruc" type="text" maxlength="11" class="input username" style="width: 180px;" id="ruc" onkeyUp="return ValNumero(this);" /></td> 	
+          	<input name="ruc" type="text" maxlength="11" class="input username" style="width: 180px;" id="ruc" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" /></td> 	
          </tr>
         <tr>
          <td>País: </td>
           <td>
-          <select  name="pais" id="pais" class="input username" style="width: 160px;" onChange="from(document.form1.pais.value,'midiv','cliente_dep.php')">
+          <select  name="pais" id="pais" class="input username" style="width: 160px;" onKeyPress="return tab(event,this)" onChange="from(document.form1.pais.value,'midiv','cliente_dep.php')">
           <option value="999">--Seleccione--</option>
           <?php
 			$tra=new pais();
@@ -220,7 +219,7 @@ function formulario(f) {
         <tr>	  
        <td>Departamento:</td>
           <td>
-          <div id='midiv'><select style="width: 200px;" class="input username">
+          <div id='midiv'><select style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
           <option value="99999">--Seleccione--</option>
          </select></div>
           </td>
@@ -228,14 +227,14 @@ function formulario(f) {
         <tr>
         <td>Provincia: </td>
           <td>
-          <div id="madiv"><select style="width: 200px;" class="input username">
+          <div id="madiv"><select style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
           <option value="999">--Seleccione--</option>
           </select></div>
           </td>		
            </tr>
         <tr>  
          <td>Distrito: </td>
-         <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" id="distrito"  onKeyPress="return validar(event)"/></td>
+         <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" id="distrito" onKeyPress="return tab(event,this)"  onKeyPress="return validar(event)"/></td>
             </tr>
         <tr>
 		 <td>Direccion: </td>
@@ -247,16 +246,16 @@ function formulario(f) {
 		</tr>
         <tr>
           <td>DNI: </td>
-		   <td><input name="dni" type="text" maxlength="8"  style="width: 150px;" class="input username" id="dni" onkeyUp="return ValNumero(this);" /></td>	
+		   <td><input name="dni" type="text" maxlength="8"  style="width: 150px;" class="input username" id="dni" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" /></td>	
 		 </tr>
         <tr>
         <td>Telefono: </td>
-		 <td><input name="telefono" type="text" maxlength="15" style="width: 150px;" class="input username" id="telefono" onkeyUp="return ValNumero(this);" />
-         Fax:<input name="fax" type="text" maxlength="15" style="width: 160px;" class="input username" id="fax" onkeyUp="return ValNumero(this);" /></td>
+		 <td><input name="telefono" type="text" maxlength="15" style="width: 150px;" class="input username" id="telefono" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" />
+         Fax:<input name="fax" type="text" maxlength="15" style="width: 160px;" class="input username" id="fax" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" /></td>
 		 </tr>
         <tr>
          <td>Correo: </td>
-		   <td><input name="correo" type="text" maxlength="50" style="width: 400px;" class="input username" id="correo" onKeyPress="return tab(event,this)" /></td>
+		   <td><input name="correo" type="text" maxlength="50" style="width: 400px;" class="input username" id="correo" /><input name="estado" id="estado" type="hidden" value="1" class="input username" /></td>
 		
 		</tr>
       </table>

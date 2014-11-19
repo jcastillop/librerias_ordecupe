@@ -164,23 +164,18 @@ function formulario(f) {
       <table width="80%" border="1">
         <tr>
           <td height="20">Nombre de Moneda: </td>
-          <td><input name="var_nom_mon" type="text" maxlength="10" style="width: 400px;" class="input username" onKeyPress="return tab(event,this)" /></td>	
+          <td><input name="var_nom_mon" type="text" maxlength="10" style="width: 200px;" class="input username" onKeyPress="return tab(event,this)" /></td>	
            </tr>
         <tr>
-          <td height="20">Descripcion: </td>
+          <td height="20">Descripción: </td>
         <td><input type="text" class="input username" style="width: 160px;"   name="var_des_mon" id="var_des_mon" /></td>
-		   Estado:
-          <select class="input username" style="width: 155px;" name="int_est_mon" id="int_est_mon"  >
-              <option selected='selected' value='1'>Activo</option>
-            
-           <option  value='0'>Inactivo</option>
-         
-          
-      
-      </select>
-    </tr>
+    </tr>   
+    <tr>
+          <td><input name="estado" id="estado" type="hidden" value="1" class="input username"  /></td>
+        </tr>
         
        </table>
+       <br><br>
     </div>
     <!--END CONTENT-->
     

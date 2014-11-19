@@ -142,21 +142,21 @@ function formulario(f) {
            </tr>
         <tr>
           <td>Nombres Completos: </td>
-          <td><input name="nombres_usu" type="text" maxlength="50" class="input username" id="nombres_usu" style="width: 200px;"  onKeyPress="return validar(event)" /></td>
+          <td><input name="nombres_usu" type="text" maxlength="50" class="input username" id="nombres_usu" style="width: 200px;" onKeyPress="return tab(event,this)"  onKeyPress="return validar(event)" /></td>
         </tr>
         <tr>
           <td>Apellido Paterno: </td>
-          <td><input name="ap_pat" type="text" maxlength="50" class="input username" style="width: 200px;" onKeyPress="return validar(event)" /></td>
+          <td><input name="ap_pat" type="text" maxlength="50" class="input username" style="width: 200px;" onKeyPress="return tab(event,this)" onKeyPress="return validar(event)" /></td>
           </tr>
         <tr>
           <td>Apellido Materno :</td>
-          <td><input name="ap_mat" type="text" maxlength="50" class="input username" style="width: 200px;"  onKeyPress="return validar(event)" /></td>
+          <td><input name="ap_mat" type="text" maxlength="50" class="input username" style="width: 200px;" onKeyPress="return validar(event)" /></td>
         </tr>
         <tr>
           <td><input name="estado" id="estado" type="hidden" value="1" class="input username"  /></td>
         </tr>
       </table>
-      <br>
+      <br><br>
     </div>
     <!--END CONTENT-->
     

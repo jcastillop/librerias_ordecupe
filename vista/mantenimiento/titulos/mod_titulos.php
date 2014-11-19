@@ -58,12 +58,7 @@ if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 			$nom_edit=$reg[0]["var_nom_edit"];
 			$cod_gen=$reg[0]["int_cod_gen"];
 			$nom_gen=$reg[0]["var_nom_gen"];
-			$cod_pais=$reg[0]["int_cod_pais"];
-			$nom_pais=$reg[0]["var_nom_pais"];
-			$estados=$reg[0]["int_est_tit"]; 
-			$preven_def_tit=$reg[0]["dec_preven_def_tit"];
-			$preven_sug_tit=$reg[0]["dec_preven_sug_tit"];
-			$cod_barra_tit=$reg[0]["var_cod_bar_tit"]; 
+			
 ?>
 
 
@@ -181,6 +176,12 @@ function validar(e) { // 1
           <select class="input username" style="width: 200px;"   name="editorial" id="editorial" onKeyPress="return tab(event,this)">
           <option value="<?php echo $cod_edit;?>" selected><?php echo $nom_edit;?></option>
           <?php		  
+		  $cod_pais=$reg[0]["int_cod_pais"];
+			$nom_pais=$reg[0]["var_nom_pais"];
+			$estados=$reg[0]["int_est_tit"]; 
+			$preven_def_tit=$reg[0]["dec_preven_def_tit"];
+			$preven_sug_tit=$reg[0]["dec_preven_sug_tit"];
+			$cod_barra_tit=$reg[0]["var_cod_bar_tit"]; 
 			$tra=new editorial();
 			$reg=$tra->get_combo_editorial_update($cod_edit);
 			for ($i=0;$i<count($reg);$i++)
@@ -201,7 +202,7 @@ function validar(e) { // 1
           <option value="<?php echo $cod_gen;?>" selected><?php echo $nom_gen;?></option>
           <?php		  
 			$tra=new genero();
-			$reg=$tra->get_combo_generos_update($cod_edit);
+			$reg=$tra->get_combo_generos($cod_gen);
 			for ($i=0;$i<count($reg);$i++)
 			{
 			?>

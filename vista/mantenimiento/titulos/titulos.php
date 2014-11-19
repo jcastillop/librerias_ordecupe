@@ -41,7 +41,6 @@ www.amitjakhu.com
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
   
 <!--Slider-in icons-->
 <script type="text/javascript">
@@ -132,13 +131,13 @@ function formulario(f) {
         </tr>
         <tr>
           <td height="20">ISBN: </td>
-          <td><input name="isbn" type="text" maxlength="50" style="width: 200px;" class="input username" onKeyPress="return tab(event,this)" />
+          <td><input name="isbn" type="text" maxlength="50" style="width: 200px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);"/>
           Edición: 
-          <input name="edicion" type="text" maxlength="50" style="width: 160px;" class="input username" onkeyUp="return ValNumero(this);" /></td>	
+          <input name="edicion" type="text" maxlength="50" style="width: 160px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" /></td>	
         </tr>
         <tr>
           <td height="20">N° Página: </td>
-          <td><input name="n_pagina" type="text" maxlength="5" style="width: 160px;" class="input username" onkeyUp="return ValNumero(this);" />	
+          <td><input name="n_pagina" type="text" maxlength="5" style="width: 160px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" />	
           Editorial: 
           <select  name="editorial" id="editorial" style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
           <option>--Seleccione--</option>
@@ -194,15 +193,14 @@ function formulario(f) {
         </tr>
         <tr>
           <td height="20">Precio Definido: </td>
-          <td><input name="pre_definido" type="text" maxlength="10" style="width: 120px;" class="input username" onkeyUp="return decimal(this);" />
+          <td><input name="pre_definido" type="text" maxlength="10" style="width: 120px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return decimal(this);" />
           Precio Sugerido: 
-          <input name="pre_sugerido" type="text" maxlength="10" style="width: 120px;" class="input username" onkeyUp="return decimal(this);" /></td>	
+          <input name="pre_sugerido" type="text" maxlength="10" style="width: 120px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return decimal(this);" /></td>	
         </tr>
         <tr>
-          <td><input name="estado" id="estado" type="hidden" value="1" class="input username"  />
-          Cod.Barra: </td>
+          <td>Cod.Barra: </td>
           <td>
-          <input name="cod_barra" type="text" maxlength="80" style="width: 200px;" class="input username" onKeyPress="return tab(event,this)" /></td>	
+          <input name="cod_barra" type="text" maxlength="80" style="width: 200px;" class="input username" onkeyUp="return ValNumero(this);" /><input name="estado" id="estado" type="hidden" value="1" /></td>	
         </tr>
       </table>
     </div>

@@ -37,7 +37,7 @@ www.amitjakhu.com
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
+<script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 <!--Slider-in icons-->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -111,7 +111,7 @@ function formulario(f) {
         </tr>
         <tr>
           <td height="20">Descripción: </td>
-          <td><input name="desc_edit" type="text" maxlength="100" style="width: 400px;" class="input username" onKeyPress="return tab(event,this)" /></td>	
+          <td><input name="desc_edit" type="text" maxlength="100" style="width: 400px;" class="input username" /></td>	
         </tr>
         <tr>
           <td><input name="est_edit" id="est_edit" type="hidden" value="1" class="input username"  /></td>

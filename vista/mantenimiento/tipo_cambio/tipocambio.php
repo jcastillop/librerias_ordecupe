@@ -15,8 +15,9 @@ require_once("../../../conexiones/conexion.php");
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 
 <head>
 
@@ -42,7 +43,6 @@ www.amitjakhu.com
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 
- <script type="text/javascript" src="js/validar.js"></script>
 <!--Slider-in icons-->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -97,10 +97,10 @@ var miPeticion = obtiene_http_request();
 
 
 function from(id,ide,url){
-		var mi_aleatorio=parseInt(Math.random()*99999999);//para que no guarde la pï¿½gina en el cachï¿½...
+		var mi_aleatorio=parseInt(Math.random()*99999999);//para que no guarde la p?gina en el cach?...
 		var vinculo=url+"?id="+id+"&rand="+mi_aleatorio;
 		//alert(vinculo);
-		miPeticion.open("GET",vinculo,true);//ponemos true para que la peticiï¿½n sea asincrï¿½nica
+		miPeticion.open("GET",vinculo,true);//ponemos true para que la petici?n sea asincr?nica
 		miPeticion.onreadystatechange=miPeticion.onreadystatechange=function(){
                if (miPeticion.readyState==4)
                {
@@ -137,7 +137,7 @@ function validar(e) { // 1
 
 } 
 function formulario(f) {
-	if (f.var_nom_mon.value   == '') { alert ('El campo Nombre moneda esta vacÃ­o, ingrese un dato porfavor!!');  
+	if (f.var_nom_mon.value   == '') { alert ('El campo Nombre moneda esta vacío, ingrese un dato porfavor!!');  
 	f.var_nom_mon.focus(); return false; }  
 	
  return true; } 
@@ -192,14 +192,14 @@ function formulario(f) {
            </tr>
         <tr>
           <td height="20">Fecha: </td>
-          <td><input type="text" class="input username" style="width: 160px;"   name="var_fec_tc" id="var_fec_tc" /></td>
+          <td><input type="text" class="input username" style="width: 160px;"   name="var_fec_tc" id="var_fec_tc" onKeyPress="return tab(event,this)" /></td>
 		</tr>
 		 <tr>
           <td height="20">Valor: </td>
-          <td><input type="text" class="input username" style="width: 160px;"   name="dec_val_tc" id="dec_val_tc" /></td>
+          <td><input type="text" class="input username" style="width: 160px;"   name="dec_val_tc" id="dec_val_tc" onKeyPress="return tab(event,this)" /></td>
 		</tr>
 		<tr>
-          <td height="20">descripciÃ³n: </td>
+          <td height="20">Descripción: </td>
           <td><input type="text" class="input username" style="width: 160px;"   name="var_desc_tc" id="var_desc_tc" /></td>
 		</tr>
        </table>

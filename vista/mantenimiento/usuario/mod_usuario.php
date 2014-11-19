@@ -95,7 +95,7 @@ function formulario(f) {
 		alert ('El campo Clave esta vacio, ingrese un datos porfavor');
 		f.clave_usu.focus(); return false; }
 	else if (f.clave_usu.value  != '' && f.clave_usu.value.length <=6) { 
-			alert ('La clave debe de tener mas de 5 digitos!');
+			alert ('La clave debe de tener mas de 6 digitos!');
 			f.clave_usu.focus(); return false;
 		} 
  return true; } 

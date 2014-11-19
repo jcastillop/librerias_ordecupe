@@ -29,7 +29,14 @@ require_once("../../../conexiones/conexion.php");
 var newwindow;
 function poptastic(url)
 {
-	newwindow=window.open(url,'name','height=425,width=580,left=400');
+	newwindow=window.open(url,'name','height=300,width=407,left=400');
+	if (window.focus) {newwindow.focus()}
+}
+var newwindow;
+var newwindow;
+function modificar(url)
+{
+	newwindow=window.open(url,'name','height=285,width=407,left=400');
 	if (window.focus) {newwindow.focus()}
 }
 var newwindow;
@@ -226,9 +233,9 @@ $(document).ready(function() {
 					<tr class="cabecera" >
 						
 						<th><a href="javascript:poptastic('monedas.php');"><img src="../../../css/images/list-add.png" width="98" height="30" /></a></th>
-						<th>Nombre de Moneda</th>
-			                        <th>Descripcion</th>
-			                        <th>Estado</th>
+						<th>Código</th>
+                        <th>Nombre de Moneda</th>
+			            <th>Descripcion</th>
 						<th></th>
 				
 					</tr>
@@ -244,12 +251,11 @@ for ($i=0;$i<count($reg);$i++)
 
 
 					<tr>
-                  <td align='center' ><a href=" javascript:poptastic('mod_monedas.php?id=<?php echo $reg[$i]["int_cod_mon"];?>'); " ><img src='../../../img/images/edit.png' width='15px' height='15px' title='Actualizar'></a></td>
+                  <td align='center' ><a href=" javascript:modificar('mod_monedas.php?id=<?php echo $reg[$i]["int_cod_mon"];?>'); " ><img src='../../../img/images/edit.png' width='15px' height='15px' title='Actualizar'></a></td>
                       
+                      	<td><?php echo $reg[$i]["int_cod_mon"];?></td>
 						<td><?php echo $reg[$i]["var_nom_mon"];?></td>
-                        			<td><?php echo $reg[$i]["var_desc_mon"];?></td>
-						  			<td><?php echo $reg[$i]["int_est_mon"];?></td>
-						
+                        <td><?php echo $reg[$i]["var_desc_mon"];?></td>						  							
 		
                        <td align='center' ><a href=" javascript:elim('eliminar_monedas.php?id=<?php echo $reg[$i]["int_cod_mon"];?>'); " ><img src='../../../img/images/delete.png' width='15px' height='15px' title='Eliminar'></a></td>
 

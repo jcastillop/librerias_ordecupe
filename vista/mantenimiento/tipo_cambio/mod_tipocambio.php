@@ -44,8 +44,9 @@ $reg=$tra->get_tipocambio_por_id($_GET["id"] , $_GET["fecha"]);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 
 <head>
 
@@ -118,10 +119,10 @@ var miPeticion = obtiene_http_request();
 
 
 function from(id,ide,url){
-		var mi_aleatorio=parseInt(Math.random()*99999999);//para que no guarde la pï¿½gina en el cachï¿½...
+		var mi_aleatorio=parseInt(Math.random()*99999999);//para que no guarde la p?gina en el cach?...
 		var vinculo=url+"?id="+id+"&rand="+mi_aleatorio;
 		//alert(vinculo);
-		miPeticion.open("GET",vinculo,true);//ponemos true para que la peticiï¿½n sea asincrï¿½nica
+		miPeticion.open("GET",vinculo,true);//ponemos true para que la petici?n sea asincr?nica
 		miPeticion.onreadystatechange=miPeticion.onreadystatechange=function(){
                if (miPeticion.readyState==4)
                {
@@ -216,7 +217,7 @@ function validar(e) { // 1
           <td><input type="text" class="input username" style="width: 160px;"   name="dec_val_tc" id="dec_val_tc" value="<?php echo $dec_val_tc; ?>"/></td>
 		</tr>
 		<tr>
-          <td height="20">descripciÃ³n: </td>
+          <td height="20">Descripción: </td>
           <td><input type="text" class="input username" style="width: 160px;"   name="var_desc_tc" id="var_desc_tc" value="<?php echo $var_desc_tc; ?>" /></td>
 		</tr>
       </table>

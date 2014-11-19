@@ -9,7 +9,7 @@ $tra=new monedas();
 
 $tra->add_monedas($_POST["var_nom_mon"],
 					$_POST["var_des_mon"],
-					$_POST["int_est_mon"],					
+					$_POST["estado"],					
 					$user,
 					$fecha_actual,
 					$user,

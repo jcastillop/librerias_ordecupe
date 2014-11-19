@@ -187,10 +187,10 @@ function validar(e) { // 1
       <table width="80%" border="1">
       	<tr>
           <td height="20">Nombre de Moneda: </td>
-          <td><input name="var_nom_mon" type="text" maxlength="10" style="width: 400px;" class="input username" id="var_nom_mon" value="<?php echo $var_nom_mon;?>" /> </td>
+          <td><input name="var_nom_mon" type="text" maxlength="10" style="width: 200px;" class="input username" id="var_nom_mon" value="<?php echo $var_nom_mon;?>" /> </td>
            </tr>
         <tr>
-          <td height="20">Descripcion: </td>
+          <td height="20">Descripción: </td>
           <td><input type="text" class="input username" style="width: 160px;"   name="var_des_mon" id="var_des_mon" value="<?php echo $var_des_mon;?>" /></td>
            
           Estado:

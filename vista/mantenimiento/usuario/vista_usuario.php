@@ -34,7 +34,13 @@ header('Content-Type: text/html; charset=UTF-8');
 var newwindow;
 function poptastic(url)
 {
-	newwindow=window.open(url,'name','height=371,width=414,left=500');
+	newwindow=window.open(url,'name','height=376,width=407,left=500');
+	if (window.focus) {newwindow.focus()}
+}
+var newwindow;
+function modificar(url)
+{
+	newwindow=window.open(url,'name','height=370,width=406,left=500');
 	if (window.focus) {newwindow.focus()}
 }
 var newwindow;
@@ -189,14 +195,13 @@ $(document).ready(function() {
 				<thead>
 					<tr class="cabecera" >
 						
-						<th width="14%"><a href="javascript:poptastic('usuario.php');"><img src="../../../css/images/list-add.png" width="98" height="30" /> </a></th>
-						<th width="13%">Nick Usu</th>
-                        <th width="9%">Nombres</th>
-						<th width="32%">Apellido Pat.</th>
-						<th width="18%">Apellido Mat.</th>
-						<th width="10%">Rol</th>
-						<th width="10%">Estado</th>
-						<th width="4%"></th>
+						<th><a href="javascript:poptastic('usuario.php');"><img src="../../../css/images/list-add.png" width="98" height="30" /> </a></th>
+						<th>Nick Usu</th>
+                        <th>Nombres</th>
+						<th>Apellido Pat.</th>
+						<th>Apellido Mat.</th>
+						<th>Rol</th>
+						<th></th>
 				
 					</tr>
 				</thead>
@@ -210,14 +215,13 @@ for ($i=0;$i<count($reg);$i++)
 
 
 					<tr>
-                  <td align='center' ><a href=" javascript:poptastic('mod_usuario.php?id=<?php echo $reg[$i]["int_cod_usu"];?>'); " ><img src='../../../img/images/edit.png' width='15px' height='15px' title='Actualizar'></a></td>
+                  <td align='center' ><a href=" javascript:modificar('mod_usuario.php?id=<?php echo $reg[$i]["int_cod_usu"];?>'); " ><img src='../../../img/images/edit.png' width='15px' height='15px' title='Actualizar'></a></td>
                       
 						<td><?php echo $reg[$i]["var_nick_usu"];?></td>
 						<td><?php echo $reg[$i]["var_nom_usu"];?></td>
 						<td><?php echo $reg[$i]["var_appat_usu"];?></td>
 						<td><?php echo $reg[$i]["var_apmat_usu"];?></td>
 						<td><?php echo $reg[$i]["var_nom_rol"];?></td>
-						<td><?php echo $reg[$i]["int_est_usu"];?></td>
                        <td align='center' ><a href=" javascript:elim('eliminar_usuario.php?id=<?php echo $reg[$i]["int_cod_usu"];?>'); " ><img src='../../../img/images/delete.png' width='15px' height='15px' title='Eliminar'></a></td>
 		
 					</tr>			 
