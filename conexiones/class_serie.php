@@ -40,14 +40,24 @@
 
   	public function add_serie($cod_suc, $cod_emp, $cod_ser, $usuadd_ser, $fecadd_ser)
 	{
-		$sql="insert into T_serie(int_cod_suc, int_cod_emp, var_cod_ser, int_est_ser, var_usuadd_ser, date_fecadd_ser) 
-		                   values('$cod_suc', '$cod_emp', '$cod_ser', 1, '$usuadd_ser', '$fecadd_ser')";
+		$sql="CALL proc_insertar_serie($cod_suc.,$cod_emp,'$cod_ser',1,'$usuadd_ser','$fecadd_ser',@n_Flag, @c_msg); ";
 		$res=mysql_query($sql,Conectar::con());
-		echo "<script type='text/javascript'>
-		        alert('SE INSERTO CORRECTAMENTE');
-		        cerrar();
-		        window.location='series.php?load=1';
-		      </script>";
+		$array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
+        $array_msg = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
+        $codigo_flag = $array_flag["@n_Flag"];
+        $codigo_msg = $array_msg["@c_msg"];
+		if ($codigo_flag==0){
+           echo "<script type='text/javascript'>
+		          alert('".$codigo_msg."');
+		          cerrar();
+		          window.location='series.php?load=1';
+		         </script>";
+		}
+		else{
+           echo "<script type='text/javascript'>
+		          alert('".$codigo_msg."');
+		         </script>";
+		}
 	}
 
 	public function edit_serie($cod_suc, $cod_emp, $cod_ser, $est_ser, $usumod_ser, $fecmod_ser)
