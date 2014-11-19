@@ -193,9 +193,9 @@ function formulario(f) {
         </tr>
         <tr>
           <td height="20">Precio Definido: </td>
-          <td><input name="pre_definido" type="text" maxlength="10" style="width: 120px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return decimal(this);" />
+          <td><input name="pre_definido" type="text" maxlength="10" style="width: 120px;" class="input username" onkeydown="return tab(event,this)" onKeyPress="return decimal(event,this)" />
           Precio Sugerido: 
-          <input name="pre_sugerido" type="text" maxlength="10" style="width: 120px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return decimal(this);" /></td>	
+          <input name="pre_sugerido" type="text" maxlength="10" style="width: 120px;" class="input username" onkeydown="return tab(event,this)" onKeyPress="return decimal(event,this)"/></td>	
         </tr>
         <tr>
           <td>Cod.Barra: </td>

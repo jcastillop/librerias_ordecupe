@@ -33,6 +33,7 @@ class monedas
 				var_desc_mon,
 				case when int_est_mon=1 then 'Activo' else 'Inactivo' end int_est_mon
 				from T_monedas where int_est_mon<>0
+				order by int_cod_mon desc
 		
 		";	
 		
