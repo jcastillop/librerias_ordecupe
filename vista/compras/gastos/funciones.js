@@ -1,9 +1,5 @@
 $(document).ready(function(){
-alert("ola");
 
-var id_completo=$_GET("id");
-alert(id_completo);
-   		
 });			
 				
 			

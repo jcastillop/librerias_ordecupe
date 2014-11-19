@@ -1,19 +1,20 @@
 
             $(document).ready(function(){
               $("#trans_dat").css("display", "none");
-		          $("#trans_dat1").css("display", "none");   
+		      $("#trans_dat1").css("display", "none");   
                 //Iniciando el datepicker
-                $( "#datepicker" ).datepicker({dateFormat: 'dd-mm-yy'});
+              $( "#datepicker" ).datepicker({dateFormat: 'dd-mm-yy'});
                  //capturando los datos para la edicion
-                if(typeof $_GET("id") != 'undefined'){
+              if(typeof $_GET("id") != 'undefined'){
                   
                 var id_completo=$_GET("id");
                 var id = id_completo.substring(4, 12);
                 var serie = id_completo.substring(0, 3); 
+                //var sucursal=$_GET("sucursal");
                 var sucursal=$_GET("sucursal");
                 var empresa=1;
-               alert(id);
-               alert(suc);
+                alert(id);
+                alert(suc);
                     $.ajax({
                         type: "GET",
                         url: "guias_buscar.php",
