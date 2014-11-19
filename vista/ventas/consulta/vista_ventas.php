@@ -1,4 +1,5 @@
 
+
 <?php
 require_once("../../../conexiones/class_historico_ventas.php");
 ?>
@@ -185,6 +186,7 @@ $(document).ready(function() {
                         <th >Fecha Fact.</th>
                         <th>Estado</th>
                         <th >Días de Pago.</th>
+                        <th ></th>
 					</tr>
 				</thead>
 				<tbody align="center">
@@ -204,6 +206,7 @@ $(document).ready(function() {
                         <td style="color:red"><?php echo $reg[$i]["date_fecenv_fact_cab"];?></td>
 						<td style="color:red">Pendiente</td>
                         <td style="color:red"><?php echo $reg[$i]["int_dias_fact_cab"];?></td>
+                        <td style="color:red"><a href=" javascript:poptastic('reporte_historial.php?id=<?php echo $reg[$i]["pagina"];?>'); " ><img src='../../../img/images/pdf.png' width='15px' height='15px'></a></td>
 
 					</tr>
 				
@@ -220,6 +223,9 @@ $(document).ready(function() {
                         <td><?php echo $reg[$i]["date_fecenv_fact_cab"];?></td>
 						<td >Pagado</td>
                         <td><?php echo $reg[$i]["int_dias_fact_cab"];?></td>
+                           <td><?php echo $reg[$i]["int_dias_fact_cab"];?></td>
+                           <td><a href=" javascript:poptastic('<?php echo $reg[$i]["pagina"];?>'); " ><img src='../../../img/images/pdf.png' width='15px' height='15px'></a></td>
+                   
 
 					</tr>   
 					
