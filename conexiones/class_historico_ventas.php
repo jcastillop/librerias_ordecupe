@@ -30,7 +30,9 @@ class factura_cabecera
 		
 		$sk=mysql_query("set @a:=0;");
 		
-			$sql="select 
+			$sql="select id,var_cod_fact_cab,var_cod_ser,int_tip_doc_fact,int_cod_suc,var_nom_suc,int_cod_cli,var_rsoc_cli,int_cod_usu,
+var_nom_usu,int_tipven_fact_cab,int_dias_fact_cab,url,pag,date_fecenv_fact_cab,CONCAT(pag,url)pagina from (          
+ select 
 					@a11:=@a+1 as id,
 					f.var_cod_fact_cab,
 					f.var_cod_ser,
@@ -43,6 +45,11 @@ class factura_cabecera
 					u.var_nom_usu,
 					f.int_tipven_fact_cab,
 					f.int_dias_fact_cab,
+					CONCAT('?cod_cab=',f.var_cod_fact_cab,' && cod_ser= ',f.var_cod_ser
+					,' && cod_suc=',f.int_cod_suc,' && cod_emp=',f.int_cod_emp,'&& tipo_doc=',
+					f.int_tip_doc_fact)url,
+						case when f.int_tip_doc_fact=1 then 'reporte_historial_boleta.php' else 'reporte_historial_factura.php'
+					end pag,
 					date(f.date_fecenv_fact_cab) as date_fecenv_fact_cab
 					from T_factura_cabecera f
 					inner join T_serie s on s.var_cod_ser=f.var_cod_ser	
@@ -50,7 +57,7 @@ class factura_cabecera
 					inner join T_usuario u on u.int_cod_usu=f.int_cod_usu
 					inner join T_cliente c on c.int_cod_cli=f.int_cod_cli
 				order by var_cod_fact_cab desc
-		
+) as s
 		";	
 		
 		$res=mysql_query($sql,Conectar::con());
