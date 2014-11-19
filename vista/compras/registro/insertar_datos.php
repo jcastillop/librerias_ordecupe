@@ -5,12 +5,13 @@
 	$_cod_suc=$_POST['cod_suc'];
 	$_fec_rec=$_POST['fec_rec'];
 	$_desc=$_POST['desc'];
+	$_nom_file=$_POST['nom_file'];
 	$_ped_usu='JCASTILLO';
 	$fecha_actual =Fechas::mifechagmtactual(time(),-5);
 	$array = json_decode($_POST['compra_detalle']);
 	
 	$query_call_spcompcab = "CALL proc_insertar_comp_cab(".$_cod_suc.",".$_cod_emp.",'"
-	                                                                   .$_desc."','".$_fec_rec."','".$_ped_usu."',@n_Flag, @c_msg, @cod_generado)";
+	                                                                   .$_desc."','".$_fec_rec."','".$_ped_usu."','".$_nom_file."',@n_Flag, @c_msg, @cod_generado)";
 	mysql_query($query_call_spcompcab,Conectar::con());
 	
 	$array_flag_com_cab = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
