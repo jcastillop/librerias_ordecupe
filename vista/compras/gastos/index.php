@@ -53,40 +53,40 @@ header('Content-Type: text/html; charset=UTF-8');
     <body>	
     
     <form  id="form">
-    <div class="container" >
-            <h4 align="center" >Registro de compras</h4>
+    <div class="container" id="registro">
+            <h4 align="center" >Registro costos de transporte ____cod:<input name ="codigo_compra" type="text" id="codigo_compra" style="width:80px" /></h4>
                  
                 
-                     <label for="lblcodcomp"style="margin-left:100px" >Codigo compra</label>
-                     <input name ="codigo_compra" type="text" id="codigo_compra" class="input username" style="width:100px" />
+                     
+                     
+                     <input name ="codigo_sucursal" type="hidden" id="codigo_sucursal"/>
 
                      <label for="lbldesc"style="margin-left:100px" >Descripción</label>
                      <input name ="descripcion" type="text" id="descripcion" class="input username" style="width:100px" />
                      
                      <label for="lblcodcomp"style="margin-left:100px" >Monto</label>
-                     <input name ="monto" type="text" id="monto" class="input username" style="width:100px" />
+                     <input name ="monto" type="text" id="monto" class="input username" style="width:100px"  onkeypress="return tabular(event,this)" />
 			
                 </div>
 
             	
-			<div class="container4" style="height:115px; overflow: scroll;" >
+			<div align="center" class="container4" style="height:auto; overflow: scroll;" >
             <table id="grilla">
               <thead>
                     <tr>
                         <th style="width:50px;">Descripción</th>
                         <th style="width:50px;">Monto</th>
                     </tr>
-                </thead>
-                </thead>
+              </thead>
                 <tbody>
 
  
                 </tbody>
                 <tfoot>
                 	<tr>
-                        <td colspan="3"><strong>Cantidad:</strong> <span id="span_cantidad">0</span> productos.</td>
+                        <td colspan="2"><strong>Cantidad:</strong> <span id="span_cantidad">0</span> productos.</td>
                         <td><strong>Acción:</strong> <input id="submit" name="Submit" class="enviar" value="Enviar" type="submit"></td>
-                        <td><strong>Suma total:</strong> <span id="suma_total">0</span></td>
+                        
                     </tr>
                 </tfoot>
             </table>

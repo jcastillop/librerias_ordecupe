@@ -6,100 +6,159 @@
                   
                 var id_completo=$_GET("id");
 				var sucursal=$_GET("sucursal");
-				var empresa=1;
 				
-				alert(id_completo);
-				alert(sucursal);
-				alert(empresa);
-                //var id = id_completo.substring(6, 12);
+				
+               //var id = id_completo.substring(6, 12);
                 $("#codigo_compra").val(id_completo);
+                $("#codigo_sucursal").val(sucursal);
 				
                 //alert(id_completo);
 
        
                 };
                 //Iniciando las validaciones del formulario
-				$("#form").validate({
+                $("#form").validate({
                 //Especificando las reglas de validacion
                 
-        		rules: {
-                            codigo_compra: {
-                               required: true
-                            },
-                            descripcion: {
-                               required: true
-                            },
-                            monto: {
-                               required: true
-                            },                            
-                        
+                    rules: {
+                        codigo_compra: {
+                        required: true
+                        },
                     },
                 // Especificandolos mensaje
                     messages: {
                         codigo_compra: "*",
-                        fecha_registro: "*",
-                        descripcion: "*",
-                        monto: "*",                                       
-                       
                     },
+                    submitHandler: function(form) {
+                        //Variables Cabecera Pedido
+                        
+                    var cod_com=$("#codigo_compra").val();
+                    var cod_suc=$("#codigo_sucursal").val();
+                    var cod_emp=1;
+          
+                   
+                    var detalle = "[";
+                    for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
+                        
+                        detalle = detalle + 
+                            '{"descripcion":"' 
+                            + document.getElementById('grilla').rows[i].cells[0].childNodes[0].value + '", '
+                            + '"monto":'
+                            + document.getElementById('grilla').rows[i].cells[1].childNodes[0].value + "}";
+                           
+                        
+                            if (i==document.getElementById('grilla').rows.length-2){
+                            detalle = detalle + "]";
+                            }else{
+                            detalle = detalle + ','; 
+                            }       
+                    }
+                     
+                    if(detalle=="["){
+                       
+                        alert("Registre correctamente los campos as");
+                    } else {
+                                        //Datos Cabecera Pedido
+                        var dataString= 'cod_com='+cod_com+
+                                        '&cod_suc='+cod_suc+
+                                        '&cod_emp='+cod_emp+
+                                        '&detalle='+detalle;
+                        alert(dataString);                                      
+                        $.ajax({
+                          type: "POST",
+                          url: "insertar_datos.php",
+                          data: dataString,
+                          cache: false,
+                          
+                          success: function(result){
+                            alert(result);
+                                                      
+                            limpiarformulario("#form");
+                        
+                          },
+                          error: function(result){
+                            alert("error");
+                          }
+                        });
+                    }
                     
+                    return false;   
+                    }
                 });
-                                           
+                $("#monto").change(function() {
+                    cadena = "<tr>";
+                    cadena = cadena + "<td><input name='desc[]' class='input username' id='desc[]' type='text' value='"+ $("#descripcion").val() +"' size='15' OnFocus='this.blur()'/></td>";
+                    cadena = cadena + "<td><input name='monto[]' class='input username' id='nombre[]' type='text' value='"+ $("#monto").val() +"' size='30' OnFocus='this.blur()'/></td>";
+                    cadena = cadena + "<td><a class='elimina'><img src='delete.png' /></a></td>";
+                    $("#grilla tbody").append(cadena);
+                    $('#descripcion').val('');
+                    $('#monto').val('');
+                    $("#descripcion").focus();
+                    fn_dar_eliminar();
+                    fn_cantidad();
+              
+ 
+                });
+	                                           
                 
                 });
 				
-				submitHandler: function(form) {
-					
-					//variables gastos
-					var cod_emp=1;
-					var cod_comp= $("#codigo_compra").val();
-					var suc= $("#sucursal").val();
-                    var descrip = $("#descripcion").val();
-                    var monto = $("#monto").val();                   
-                    var gas_usu='JSILVA';
-					
-					var comp_gasto = "[";
-              
-                    
-                    //aqui me quedeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                    for (var i=1;i<document.getElementById('grilla').rows.length-2;i++){ 
-                        comp_gasto = comp_gasto + 
-                            '{"codigo_libro":' 
-                            + document.getElementById('grilla').rows[i].cells[0].childNodes[1].value + ", "
-                            + '"precio_libro":'
-                            + document.getElementById('grilla').rows[i].cells[2].childNodes[0].value + ", "                            
-                            + '"cantidad_libro":'
-                            + document.getElementById('grilla').rows[i].cells[3].childNodes[0].value + ", "
-                            + '"valor_impuesto":'
-                            + (document.getElementById('grilla').rows[i].cells[3].childNodes[0].value * document.getElementById('grilla').rows[i].cells[2].childNodes[0].value) * 0.18 + ", "
-                            + '"valor_descuento":'
-                            + (document.getElementById('grilla').rows[i].cells[3].childNodes[0].value * document.getElementById('grilla').rows[i].cells[2].childNodes[0].value) * document.getElementById('grilla').rows[i].cells[4].childNodes[0].value + ", "
-                            + '"porcentaje_impuesto":'
-                            + 18 + ", "
-                            + '"porcentaje_descuento":'
-                            + document.getElementById('grilla').rows[i].cells[4].childNodes[0].value + ", "
-                            + '"costo_total_libro":'
-                            + document.getElementById('grilla').rows[i].cells[4].childNodes[0].value + "}"
+			
+		          function fn_cantidad(){
+                cantidad = $("#grilla tbody").find("tr").length;
+                $("#span_cantidad").html(cantidad);
+               
+            };
+            
+            
+      
 
-                            if (i==document.getElementById('grilla').rows.length-3){
-                            pedido_detalle = pedido_detalle + "]";
-                            }else{
-                            pedido_detalle = pedido_detalle + ','; 
-                            }       
-                    }
-					
-                   
-                   
+               function fn_dar_eliminar(){
+                $("a.elimina").click(function(){
+                    id = $(this).parents("tr").find("td").eq(0).html();
                     
-                    var pedido_detalle = "[";
-					
-					
-					
-					
-					
-					
-					
-					}
+                  
+                        $(this).parents("tr").fadeOut("normal", function(){
+                            $(this).remove();
+                            fn_cantidad(); 
+                       
+                            /*
+                                aqui puedes enviar un conjunto de datos por ajax
+                                $.post("eliminar.php", {ide_usu: id})
+                            */
+                        })
+                    
+                });
+
+            };
+            function limpiarformulario(formulario){
+   /* Se encarga de leer todas las etiquetas input del formulario*/
+     $(formulario).find('input').each(function() {
+      switch(this.type) {
+         case 'password':
+         case 'text':
+         case 'hidden':
+              $(this).val('');
+              break;
+         case 'checkbox':
+         case 'radio':
+              this.checked = false;
+      }
+   });
+ 
+   /* Se encarga de leer todas las etiquetas select del formulario */
+   $(formulario).find('select').each(function() {
+       $("#"+this.id + " option[value='']").attr("selected",true);
+   });
+   /* Se encarga de leer todas las etiquetas textarea del formulario */
+   $(formulario).find('textarea').each(function(){
+      $(this).val('');
+   });
+      $('#grilla tbody').empty();
+                               fn_cantidad(); 
+                            fn_sumatotal();
+                            
+};
 				
          
 
