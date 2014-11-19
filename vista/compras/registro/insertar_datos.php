@@ -55,7 +55,7 @@
 		$array_mensaje_com_det = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
 		$codigo_flag_detalle = $array_flag_com_det["@n_Flag"];
 	    
-	    echo $query_call_spcompdet;	
+	    //echo $query_call_spcompdet;	
 		if ($codigo_flag_detalle==0) {
 		$contador=$contador+1; 
 		
@@ -63,20 +63,6 @@
 
 
 	}
+	//echo $query_call_spcompcab;
 	echo "Numero de registros insertados: ".$contador;
-
-		
-
-		
-		       
-       
-      
-     
-
-
-
-//metodo de busqueda de codigo titulos
-//metodo de busqueda de codigo proveedor
-//metodo busqueda codigo moneda
-//metodo busqueda tipo cambio (segun fecha)
 ?>

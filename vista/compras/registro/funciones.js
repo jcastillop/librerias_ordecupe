@@ -41,7 +41,7 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
         var cod_suc = $("#sucursal").val();
         var fec_rec = $("#fecha_recepcion").datepicker("option", "dateFormat", "yy-mm-dd ").val();
         var desc = $("#descripcion").val();
-        var nom_file = $("#input:file").val().split('\\').pop();
+        var nom_file = $("#file").val().split('\\').pop();
         var compra_detalle = "[";
                     
         for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
