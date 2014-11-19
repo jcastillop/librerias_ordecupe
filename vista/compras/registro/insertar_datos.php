@@ -63,8 +63,7 @@
 
 
 	}
-	//echo $query_call_spcompdet;
-	//echo "Numero de registros insertados: ".$contador;
+	echo "Numero de registros insertados: ".$contador;
 
 		
 
