@@ -3,7 +3,7 @@
 
 require_once("../../../conexiones/class_historico_ventas_pdf.php");
 require("fpdf/fpdf.php");
-$id_factura=$_GET['id'];
+//$id_factura=$_GET['id'];
 
 
 
@@ -254,42 +254,52 @@ $pdf->Ln(10);
 	
 $tra= new factura_cabecera();
 					$reg=$tra->get_factura_det(trim($_GET['cod_cab']),trim($_GET['cod_ser']),trim($_GET['cod_suc']),trim($_GET['cod_emp']),trim($_GET['tipo_doc']));
+					$suma=0;
 					for ($i=0;$i<count($reg);$i++)
 					{
+						$pre_total=$reg[$i]["precio"] * $reg[$i]["int_cant_fact_det"];
 						$pdf->SetTextColor(0,0,0);
-								$pdf->SetFontSize(8);
+						$pdf->SetFontSize(8);
 						
 						$pdf->Cell(25, 5,$reg[$i]["int_cant_fact_det"], 1,0, 'C');
 					
 						$pdf->Cell(95, 5,$reg[$i]["var_nom_tit"], 1,0, 'C');
 					
 						$pdf->Cell(35, 5,$reg[$i]["precio"], 1,0, 'C');
-						$pdf->Cell(35, 5,$reg[$i]["precio"], 1,1, 'C');
+						$pdf->Cell(35, 5,$pre_total, 1,1, 'C');
+						$suma=$suma+ $pre_total;
 					}
 
 
      
-$pdf->SetXY(140, 140);
+	$pdf->SetXY(140, 140);
 	$pdf->Cell(10, 8, 'VALOR DE VENTA: ', 0, 'C');
+	/*$suma=0;
+	for ($i = 0; $i <count($reg); $i++) {
+    	$suma=$suma+ ($reg[$i]["precio"] * $reg[$i]["int_cant_fact_det"]);
+		
+	}*/
+		$pdf->SetFontSize(9);
+		$pdf->SetXY(180, 140);
+		$pdf->Cell(10, 8,$suma, 0, 'C');
 	
-	$pdf->SetFontSize(9);
-	$pdf->SetXY(180, 140);
-	$pdf->Cell(10, 8,'0000000', 0, 'C');	
+		
 	
-	
-$pdf->SetXY(140, 145);
+	$igv=$suma*(0.18);
+	$pdf->SetXY(140, 145);
 	$pdf->Cell(10, 8, 'IGV. % ', 0, 'C');
 	
 	$pdf->SetFontSize(9);
 	$pdf->SetXY(180, 145);
-	$pdf->Cell(10, 8,'000', 0, 'C');		
-
-$pdf->SetXY(140, 150);
+	$pdf->Cell(10, 8,$igv, 0, 'C');		
+	
+	$total=$suma-$igv;
+	$pdf->SetXY(140, 150);
 	$pdf->Cell(10, 8, 'TOTAL: ', 0, 'C');
 	
 	$pdf->SetFontSize(9);
 	$pdf->SetXY(180, 150);
-	$pdf->Cell(10, 8,'0000000', 0, 'C');		 
+	$pdf->Cell(10, 8,$total, 0, 'C');		 
 
 $pdf->Output();
 ?>

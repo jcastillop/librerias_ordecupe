@@ -83,11 +83,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Eliminar Guía</title>
+<title>Anular Guía</title>
 </head>
 <script language="Javascript"> 
 function confirmar(){ 
-confirmar=confirm("¿ESTAS SEGURO QUE QUIERES ELIMINAR ESTA GUÍA?"); 
+confirmar=confirm("¿ESTA SEGURO QUE DESEA ANULAR ESTA GUÍA?"); 
 if (confirmar) 
 // si pulsamos en aceptar
 window.location.assign("eliminar_guia.php?dato=<?php echo $_GET['id']; ?>")
@@ -115,12 +115,12 @@ $tra->eliminar_guia($_GET["dato"]);
 </p>
 <p>&nbsp;</p>
 <p>&nbsp; </p>
-<h1 align="center" style="margin-top: -60px;">ELIMINAR GUÍA</h1>
+<h1 align="center" style="margin-top: -60px;">ANULAR GUÍA</h1>
 
 <div  align="center" >
 <fieldset  class="bordes">
  
- <a class="eliminar" href="javascript:confirmar()">ELIMINAR</a>
+ <a class="eliminar" href="javascript:confirmar()">ANULAR</a>
  
 </fieldset>
 </div>

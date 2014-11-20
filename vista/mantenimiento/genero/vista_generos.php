@@ -29,7 +29,13 @@ require_once("../../../conexiones/conexion.php");
 var newwindow;
 function poptastic(url)
 {
-	newwindow=window.open(url,'name','height=425,width=580,left=400');
+	newwindow=window.open(url,'name','height=290,width=590,left=400');
+	if (window.focus) {newwindow.focus()}
+}
+var newwindow;
+function poptastic(url)
+{
+	newwindow=window.open(url,'name','height=290,width=590,left=400');
 	if (window.focus) {newwindow.focus()}
 }
 var newwindow;
@@ -46,13 +52,7 @@ function elim(url)
     <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.js"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
-
-
-	
-
-    
-    
-    
+   
 	<script type="text/javascript" language="javascript" class="init">
 	
 		
@@ -71,57 +71,6 @@ function elim(url)
 		}
 	} );
 } );
-	
-	
-	
-	
-	
-	
-	
-	/*$(document).ready(function() {
-	
-	
-		
-		
-		
-		
-	// Setup - add a text input to each footer cell
-	$('#example  tfoot th').each( function () {
-		var title = $('#example thead th').eq( $(this).index() ).text();
-		$(this).html( '<input type="text" class="buscar" placeholder="Buscar '+title+'" />' );
-	} );
-
-	// DataTable
-	var table = $('#example').DataTable();
-
-	// Apply the search
-	table.columns().eq( 0 ).each( function ( colIdx ) {
-		$( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
-			table
-				.column( colIdx )
-				.search( this.value )
-				.draw();
-		} );
-	} );
-} );
-
-	
-	
-*/
-
-
-
-$(document).ready(function() {
-	
-	
-} );
-
-
-
-
-
-
-
 
 $(document).ready(function() {
 	var table = $('#example').DataTable();
@@ -136,76 +85,10 @@ $(document).ready(function() {
 } );
 
 
-
-
-
-/*
-$(document).ready(function() {
-	$('#example').dataTable();
-	
-	$('#example tbody').on('dblclick', 'tr', function () {
-		var name = $('td', this).eq(0).text();
-		alert( 'You clicked on '+name+'\'s row' );
-	} );
-} );
-*/
-
-
 $(document).ready( function () {
     var table = $('#example').DataTable();
     $.fn.dataTable.KeyTable( table );
 } );
-
-			
-
-
-
-/*
-para sumar en la grilla por json
-
-$(document).ready(function() {
-    $('#example').dataTable( {
-        "footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
- 
-            // Remove the formatting to get integer data for summation
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
- 
-            // Total over all pages
-            data = api.column( 4 ).data();
-            total = data.length ?
-                data.reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                } ) :
-                0;
- 
-            // Total over this page
-            data = api.column( 4, { page: 'current'} ).data();
-            pageTotal = data.length ?
-                data.reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                } ) :
-                0;
- 
-            // Update footer
-            $( api.column( 4 ).footer() ).html(
-                '$'+pageTotal +' ( $'+ total +' total)'
-            );
-        }
-    } );
-} );
-
-
-*/
-
-
-
-
 
 	</script>
 </head>

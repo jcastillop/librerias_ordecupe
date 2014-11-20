@@ -24,16 +24,16 @@ $tra=new tipocambio();
 if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 {
 	 
-    $tra->edit_tipocambio($_GET['id'],$_GET["var_fec_Tc"],$_GET["dec_val_tc"],$_GET["var_desc_tc"],$user
+    $tra->edit_tipocambio($_GET['id'],$_GET["var_fec_tc"],$_GET["dec_val_tc"],$_GET["var_desc_tc"],$user
 	);
 	exit;
 }
 
 
 $reg=$tra->get_tipocambio_por_id($_GET["id"] , $_GET["fecha"]);
-    $id=$reg[0]["int_cod_mon"];
+    	$id=$reg[0]["int_cod_mon"];
 		$fecha=$reg[0]["date_fecha_tipcam"];
-    $var_nom_mon=$reg[0]["var_nom_mon"];
+    	$var_nom_mon=$reg[0]["var_nom_mon"];
 		$dec_val_tc=$reg[0]["dec_val_tipcam"];
 		$var_desc_tc=$reg[0]["var_desc_tipcam"];
 		?>
@@ -65,12 +65,18 @@ www.amitjakhu.com
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
-  <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
+<script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 
 <!--Slider-in icons-->
 <script type="text/javascript">
+
 $(document).ready(function() {
+
+$('#date_fec_tc').datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: '-100:+0'});
+	
 	$(".username").focus(function() {
 		$(".user-icon").css("left","-48px");
 	});
@@ -85,6 +91,7 @@ $(document).ready(function() {
 		$(".pass-icon").css("left","0px");
 	});
 });
+
 function obtiene_http_request()
 {
 var req = false;
@@ -191,7 +198,7 @@ function validar(e) { // 1
       <table width="80%" border="1">
       	<tr>
           <td height="20">Moneda: </td>
-          <td><select name="int_cod_mon" id="int_cod_mon" type="text" maxlength="10" style="width: 400px;" class="input username" onKeyPress="return tab(event,this)" />
+          <td><select name="int_cod_mon" id="int_cod_mon" disabled="true" type="text" maxlength="10" style="width: 400px;" class="input username" onKeyPress="return tab(event,this)" />
             <option value="<?php echo $id ;?>" selected><?php echo $var_nom_mon;?></option>
 			    <?php
           $tra=new monedas();
@@ -210,11 +217,11 @@ function validar(e) { // 1
       </tr>
       <tr>
           <td height="20">Fecha: </td>
-          <td><input type="text" class="input username" style="width: 160px;"   name="var_fec_Tc" id="date_fec_tc" value="<?php echo $fecha; ?>"/></td>
+          <td><input type="text" class="input username"    style="width: 160px;" name="var_fec_tc" id="date_fec_tc" value="<?php echo $fecha; ?>" /></td>
 		  </tr>
 		 <tr>
           <td height="20">Valor: </td>
-          <td><input type="text" class="input username" style="width: 160px;"   name="dec_val_tc" id="dec_val_tc" value="<?php echo $dec_val_tc; ?>"/></td>
+          <td><input type="text" class="input username"  style="width: 160px;"   name="dec_val_tc" id="dec_val_tc" value="<?php echo $dec_val_tc; ?>"/></td>
 		</tr>
 		<tr>
           <td height="20">Descripción: </td>

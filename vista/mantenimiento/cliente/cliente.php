@@ -234,7 +234,7 @@ function formulario(f) {
            </tr>
         <tr>  
          <td>Distrito: </td>
-         <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" id="distrito" onKeyPress="return tab(event,this)"  onKeyPress="return validar(event)"/></td>
+         <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" id="distrito" onkeydown="return tab(event,this)"  onKeyPress="return validar(event)"/></td>
             </tr>
         <tr>
 		 <td>Direccion: </td>

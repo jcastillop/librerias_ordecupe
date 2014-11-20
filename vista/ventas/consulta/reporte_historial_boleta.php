@@ -275,31 +275,34 @@ $pdf->Ln(15);
 	
 $tra= new factura_cabecera();
 					$reg=$tra->get_factura_det(trim($_GET['cod_cab']),trim($_GET['cod_ser']),trim($_GET['cod_suc']),trim($_GET['cod_emp']),trim($_GET['tipo_doc']));
+					$suma=0;
 					for ($i=0;$i<count($reg);$i++)
 					{
-						
-						
+						$total=$reg[$i]["precio"] * $reg[$i]["int_cant_fact_det"];	
 						$pdf->SetTextColor(0,0,0);
-								$pdf->SetFontSize(8);
-						
-						$pdf->Cell(25, 5,$reg[$i]["int_cant_fact_det"], 1,0, 'C');
-					
-						$pdf->Cell(95, 5,$reg[$i]["var_nom_tit"], 1,0, 'C');
-					
+						$pdf->SetFontSize(8);						
+						$pdf->Cell(25, 5,$reg[$i]["int_cant_fact_det"], 1,0, 'C');					
+						$pdf->Cell(95, 5,$reg[$i]["var_nom_tit"], 1,0, 'C');					
 						$pdf->Cell(35, 5,$reg[$i]["precio"], 1,0, 'C');
-						$pdf->Cell(35, 5,$reg[$i]["precio"], 1,1, 'C');
+						$pdf->Cell(35, 5,$total, 1,1, 'C');
+						$suma=$suma+ $total;
 					}
 
 
      
 
 
-$pdf->SetXY(160, 100);
+	$pdf->SetXY(160, 100);
 	$pdf->Cell(10, 8, 'TOTAL: ', 0, 'C');
-	
-	$pdf->SetFontSize(9);
-	$pdf->SetXY(180, 100);
-	$pdf->Cell(10, 8,'0000000', 0, 'C');		 
+	/*$suma=0;
+	for ($i = 0; $i <count($reg); $i++) {
+    	$suma=$suma+ ($reg[$i]["precio"] * $reg[$i]["int_cant_fact_det"]);
+			
+	}*/
+		$pdf->SetFontSize(9);
+		$pdf->SetXY(180, 100);
+		$pdf->Cell(10, 8,$suma, 0, 'C');
+			 
 
 $pdf->Output();
 ?>

@@ -1,4 +1,3 @@
-
 <?php
 require_once("../../../conexiones/class_guia.php");
 ?>
@@ -36,7 +35,7 @@ header('Content-Type: text/html; charset=UTF-8');
 		var newwindow;
 		function impr(url)
 			{
-				newwindow=window.open(url,'name','height=200,width=500,left=400,padding=700');
+				newwindow=window.open(url,'name','height=210,width=500,left=400,padding=700');
 				if (window.focus) {newwindow.focus()}
 			}
 	</script>

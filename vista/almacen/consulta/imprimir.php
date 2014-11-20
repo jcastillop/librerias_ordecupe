@@ -83,7 +83,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Eliminar Guía</title>
+<title>Imprimir Guía</title>
 </head>
 <body>
 
@@ -92,13 +92,13 @@
 </p>
 <p>&nbsp;</p>
 <p>&nbsp; </p>
-<h1 align="center" style="margin-top: -60px;">¿Esta seguro que desea imprimir?</h1>
+<h1 align="center" style="margin-top: -60px;">¿ESTA SEGURO QUE DESEA IMPRIMIR ESTA GUÍA?</h1>
 
 <div  align="center" >
 <fieldset  class="bordes">
  
  <a class="imprimir" href="reporte_historial_1.php?id=<?php echo $_GET['id']; ?>">Si</a>
- <a class="imprimir" onclick="window.close();">No</a>
+ <a class="imprimir" onClick="window.close();">No</a>
  
 </fieldset>
 </div>

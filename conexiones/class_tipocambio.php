@@ -103,7 +103,7 @@ public function add_tipocambio($int_cod_mon,$var_fec_tc,$dec_val_tc,$var_desc_tc
 		"
 		
 			." where "
-			." int_cod_mon=$id and date_fecha_tipcam='$var_fec_tc' ";
+			." int_cod_mon=$id and date_fecha_tipcam='$var_fec_tc'";
 			
 			
 			
