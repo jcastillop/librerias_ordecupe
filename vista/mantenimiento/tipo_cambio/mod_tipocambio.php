@@ -24,7 +24,7 @@ $tra=new tipocambio();
 if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 {
 	 
-    $tra->edit_tipocambio($_GET['id'],$_GET["var_fec_Tc"],$_GET["dec_val_tc"],$_GET["var_desc_tc"],$user
+    $tra->edit_tipocambio($_GET['id'],$_GET["var_fec_tc"],$_GET["dec_val_tc"],$_GET["var_desc_tc"],$user
 	);
 	exit;
 }
