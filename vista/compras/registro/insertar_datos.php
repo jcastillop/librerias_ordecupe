@@ -12,6 +12,7 @@
 	
 	$query_call_spcompcab = "CALL proc_insertar_comp_cab(".$_cod_suc.",".$_cod_emp.",'"
 	                                                                   .$_desc."','".$_fec_rec."','".$_ped_usu."','".$_nom_file."',@n_Flag, @c_msg, @cod_generado)";
+	
 	mysql_query($query_call_spcompcab,Conectar::con());
 	
 	$array_flag_com_cab = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
@@ -19,8 +20,9 @@
 	$codigo_flag_cabecera = $array_flag_com_cab["@n_Flag"];
 	$codigo_gen_cabecera = $array_codgen_com_cab["@cod_generado"]; 
 		//Ejecucion del Procedimiento Insertar Cabecera
+	
 	$contador = 0; 
-
+	
 	for($i=0;$i<count($array);$i++){ 
 		$cod_comp_det=$i+1;
 		$cantidad = $array[$i]->cantidad_libro_detalle;
@@ -63,6 +65,7 @@
 
 
 	}
+	
 	//echo $query_call_spcompcab;
 	echo "Numero de registros insertados: ".$contador;
 ?>

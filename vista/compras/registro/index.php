@@ -162,9 +162,9 @@ header('Content-Type: text/html; charset=UTF-8');
                 </tbody>
                 <tfoot>
                 	<tr>
-                        <td colspan="3"><strong>Cantidad:</strong> <span id="span_cantidad">0</span> productos.</td>
-                        <td><strong>Acción:</strong> <input id="submit" name="Submit" class="enviar" value="Enviar" type="submit"></td>
-                        <td><strong>Suma total:</strong> <span id="suma_total">0</span></td>
+                        <td colspan="5"><strong>Cantidad:</strong> <span id="span_cantidad">0</span> productos.</td>
+                        <td colspan="5"><strong>Acción:</strong> <input id="submit" name="Submit" class="enviar" value="Enviar" type="submit"></td>
+                        <td colspan="6"><strong>Suma total:</strong> <span id="suma_total">0</span></td>
                     </tr>
                 </tfoot>
             </table>
