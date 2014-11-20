@@ -128,8 +128,8 @@ function validar(e) { // 1
 
 } 
 function formulario(f) {
-	if (f.var_nom_mon.value   == '') { alert ('El campo Nombre de Generos esta vacío, ingrese un dato porfavor!!');  
-	f.var_nom_mon.focus(); return false; }  
+	if (f.var_nom_gen.value   == '') { alert ('El campo Nombre de Generos esta vacío, ingrese un dato porfavor!!');  
+	f.var_nom_gen.focus(); return false; }  
 	
  return true; } 
 </script>
