@@ -85,6 +85,15 @@ $(document).ready(function() {
 		$(".pass-icon").css("left","0px");
 	});
 });
+
+function formulario(f) {
+  if (f.var_fec_tc.value   == '') { alert ('El campo Fecha esta vacío, ingrese un dato porfavor!!');  
+  f.var_fec_tc.focus(); return false; } 
+  if (f.dec_val_tc.value   == '') { alert ('El campo Nombre de Moneda esta vacío, ingrese un dato porfavor!!');  
+  f.dec_val_tc.focus(); return false; } 
+  
+  
+   return true; } 
 function obtiene_http_request()
 {
 var req = false;
@@ -174,7 +183,7 @@ function validar(e) { // 1
     <br />
 
 <!--LOGIN FORM-->
-<form name="form1" class="login-form" action="mod_tipocambio.php" method="get">
+<form name="form1" class="login-form" action="mod_tipocambio.php" method="get" onSubmit="return formulario(this)">
 
 	<!--HEADER-->
     <div class="header">
@@ -217,7 +226,7 @@ function validar(e) { // 1
           <td><input type="text" class="input username" style="width: 160px;"   name="dec_val_tc" id="dec_val_tc" value="<?php echo $dec_val_tc; ?>"/></td>
 		</tr>
 		<tr>
-          <td height="20">Descripci�n: </td>
+          <td height="20">Descripción: </td>
           <td><input type="text" class="input username" style="width: 160px;"   name="var_desc_tc" id="var_desc_tc" value="<?php echo $var_desc_tc; ?>" /></td>
 		</tr>
       </table>
