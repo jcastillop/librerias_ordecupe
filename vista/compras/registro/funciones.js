@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 //Iniciando el datepicker
 $.datepicker.setDefaults($.datepicker.regional["es"]);
     $( "#fecha_recepcion" ).datepicker({dateFormat: 'dd-mm-yy'});
@@ -136,6 +137,7 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
 
     //buscar registros cargados y mostrar una alerta
      $("input:file").change(function (){
+
        var fileName = $(this).val().split('\\').pop();
       
        
@@ -173,6 +175,7 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
    
         var formData = new FormData();
         formData.append('file', $('#file').get(0).files[0]);
+      
                   
                     $.ajax({
                         type: "POST",
@@ -321,7 +324,7 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
               this.checked = false;
       }
    });
- 
+    $('#file').attr({ value: '' });  
    /* Se encarga de leer todas las etiquetas select del formulario */
    $(formulario).find('select').each(function() {
        $("#"+this.id + " option[value='']").attr("selected",true);
