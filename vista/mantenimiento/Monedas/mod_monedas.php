@@ -85,7 +85,8 @@ $(document).ready(function() {
 function formulario(f) {
   if (f.var_nom_mon.value   == '') { alert ('El campo Nombre de Moneda esta vacío, ingrese un dato porfavor!!');  
   f.var_nom_mon.focus(); return false; } 
-  
+ return true; } 
+
 function obtiene_http_request()
 {
 var req = false;
