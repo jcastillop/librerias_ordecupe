@@ -218,7 +218,6 @@ function validar(e) { // 1
       <tr>
           <td height="20">Fecha: </td>
           <td><input type="text" class="input username"    style="width: 160px;" name="var_fec_tc" id="date_fec_tc" value="<?php echo $fecha; ?>" /></td>
-		  </tr>
 		 <tr>
           <td height="20">Valor: </td>
           <td><input type="text" class="input username"  style="width: 160px;"   name="dec_val_tc" id="dec_val_tc" value="<?php echo $dec_val_tc; ?>"/></td>

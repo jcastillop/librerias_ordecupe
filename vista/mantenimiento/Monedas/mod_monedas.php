@@ -81,6 +81,12 @@ $(document).ready(function() {
 		$(".pass-icon").css("left","0px");
 	});
 });
+
+function formulario(f) {
+  if (f.var_nom_mon.value   == '') { alert ('El campo Nombre de Moneda esta vacío, ingrese un dato porfavor!!');  
+  f.var_nom_mon.focus(); return false; } 
+ return true; } 
+
 function obtiene_http_request()
 {
 var req = false;
@@ -170,7 +176,7 @@ function validar(e) { // 1
     <br />
 
 <!--LOGIN FORM-->
-<form name="form1" class="login-form" action="mod_monedas.php" method="get">
+<form name="form1" class="login-form" action="mod_monedas.php" method="get" onSubmit="return formulario(this)">
 
 	<!--HEADER-->
     <div class="header">

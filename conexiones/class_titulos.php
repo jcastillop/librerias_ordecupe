@@ -61,7 +61,7 @@ class titulos
 	public function add_titulos($nom_tit,$autor_tit,$des_tit,$isbn_tit,$edic_tit,$numpag_tit,$edit_tit,$gen_tit,$pais_tit,$preven_def_tit,$preven_sug_tit,$est_tit,$cod_bar_tit,$usu_crea,$fec_crea,$usu_mod,$fec_mod)
 	{
 
-		$sql="CALL proc_insertar_titulo('".$nom_tit."','".$autor_tit."','".$des_tit."','".$isbn_tit."','".$edic_tit."',".$numpag_tit.",".$edit_tit.",".$gen_tit.",".$pais_tit.",".$preven_def_tit.",".$preven_sug_tit.",'".$cod_bar_tit."','".$usu_crea. "','".$fec_crea."',@n_Flag, @c_msg); ";
+		$sql="CALL proc_insertar_titulo('$nom_tit','$autor_tit','$des_tit','$isbn_tit','$edic_tit',$numpag_tit,$edit_tit,$gen_tit,$pais_tit,$preven_def_tit,$preven_sug_tit,'$cod_bar_tit','$usu_crea','$fec_crea',@n_Flag, @c_msg); ";
 		$res=mysql_query($sql,Conectar::con());
         echo "<script type='text/javascript'>
            		alert('SE INSERTO CORRECTAMENTE');

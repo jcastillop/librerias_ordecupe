@@ -60,6 +60,8 @@ $query_call_spfact = "CALL proc_insertar_fact_cab(".$_cod_suc.",".$_cod_emp.",".
                                                                        .$_con_ven.",'".$_ped_usu.
                                                                        "',@n_Flag3, @c_msg3, @cod_generado3,@cod_ser)";
 
+
+
 mysql_query($query_call_spfact,Conectar::con());
 
 $codigo_msg3 = "";
@@ -138,7 +140,7 @@ $var_guia_detalle=$var_guia_detalle.'(lpad("'.$var_cod_guia_det.'",6,"0"),'
    $var_fact_detalle="'";
    for($i=0;$i<count($array);$i++){ 
        $var_cod_fact_det=$i+1;
-       $int_tip_doc_fact=1;
+       //$int_tip_doc_fact=1;
 	   $codigo_libro=$array[$i]->codigo_libro;
        $cantidad_libro = $array[$i]->cantidad_libro;
        $precio_libro = number_format($array[$i]->precio_libro, 2, '.', '');
@@ -148,7 +150,7 @@ $var_guia_detalle=$var_guia_detalle.'(lpad("'.$var_cod_guia_det.'",6,"0"),'
        $porcentaje_descuento = number_format($array[$i]->porcentaje_descuento, 2, '.', '');
        $costo_total_libro = number_format($array[$i]->costo_total_libro, 2, '.', '');
 $var_fact_detalle=$var_fact_detalle.'(lpad("'.$var_cod_fact_det.'",6,"0"),'
-       										  .'"'.$codigo_gen3.'"'.", ".$int_tip_doc_fact.",".'"'.$_cod_ser.'"'.", ".$_cod_suc.", ".$_cod_emp.", ". 
+       										  .'"'.$codigo_gen3.'"'.", ".$_tipo_doc.",".'"'.$_cod_ser.'"'.", ".$_cod_suc.", ".$_cod_emp.", ". 
        	                                       $codigo_libro.", ".$cantidad_libro.", ".$precio_libro*$cantidad_libro.", ".$porcentaje_impuesto. ", ".
        	                                       $valor_impuesto. ", ".$porcentaje_descuento.",".$valor_descuento.", ".$costo_total_libro.
        	                                       ',"'.$_ped_usu.'","'.$fecha_hora_actual.'")';
@@ -173,5 +175,6 @@ $var_fact_detalle=$var_fact_detalle.'(lpad("'.$var_cod_fact_det.'",6,"0"),'
     $response["mensaje"]=$codigo_msg1;
     $response["codigo"]=$codigo_gen3;
     echo json_encode($response);
+    //echo $query_call_spfact;
 ?> 
 
