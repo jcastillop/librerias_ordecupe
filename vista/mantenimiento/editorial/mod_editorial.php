@@ -83,6 +83,13 @@ $(document).ready(function() {
 		$(".pass-icon").css("left","0px");
 	});
 });
+
+function formulario(f) {
+ 
+  if (f.nom_edit.value   == '') { alert ('El campo Nombre esta vacío, ingrese un dato porfavor!!');  
+  f.nom_edit.focus(); return false; } 
+  
+   return true; } 
 </script>
 
 </head>
@@ -99,7 +106,7 @@ $(document).ready(function() {
     <br />
 
 <!--LOGIN FORM-->
-<form name="login-form" class="login-form" action="mod_editorial.php" method="get">
+<form name="login-form" class="login-form" action="mod_editorial.php" method="get" onSubmit="return formulario(this)">
 
 	<!--HEADER-->
     <div class="header">
