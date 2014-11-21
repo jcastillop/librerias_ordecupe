@@ -104,6 +104,19 @@ class cliente
 		}
 			return $this->cliente;
 	}
+		public function get_combo_cliente_almacen()
+	{
+		$sql="select int_cod_cli, var_rsoc_cli from T_cliente where int_est_cli<>0 and int_iden_suc_cli=1 ORDER BY int_cod_cli";
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->cliente[]=$reg;
+		}
+			return $this->cliente;
+	}
+		
 		
 	
 		

@@ -1,21 +1,17 @@
 
-            $(document).ready(function(){
+$(document).ready(function(){
                
-                 //capturando los datos para la edicion
-                if(typeof $_GET("id") != 'undefined'){
+  //capturando los datos para la edicion
+  if(typeof $_GET("id") != 'undefined'){
                   
-                var id_completo=$_GET("id");
-				var sucursal=$_GET("sucursal");
+    var id_completo=$_GET("id");
+		var sucursal=$_GET("sucursal");
 				
+    //var id = id_completo.substring(6, 12);
+    $("#codigo_compra").val(id_completo);
+    $("#codigo_sucursal").val(sucursal);
 				
-               //var id = id_completo.substring(6, 12);
-                $("#codigo_compra").val(id_completo);
-                $("#codigo_sucursal").val(sucursal);
-				
-                //alert(id_completo);
-
-       
-                };
+  };
                 //Iniciando las validaciones del formulario
                 $("#form").validate({
                 //Especificando las reglas de validacion

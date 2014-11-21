@@ -200,7 +200,7 @@ $(document).ready(function() {
                         <td><?php echo $reg[$i]["var_nom_emp"];?></td>
                         <td><?php echo nombremes($reg[$i]["mes"]);?></td>
                         <td><?php echo $reg[$i]["año"];?></td>
-                        <td align='center'><a href=" javascript:window.parent.addTab('Transacciones','vista/compras/gastos/index.php?id=<?php echo $reg[$i]["var_cod_comp_cab"];?>&sucursal=<?php echo $reg[$i]["int_cod_suc"];?>'); " ><img src='images/img_gastos.jpg' width='15px' height='15px'></a></td>
+                        <td align='center'><a href=" javascript:window.parent.addTab('Costos Transporte','vista/compras/gastos/index.php?id=<?php echo $reg[$i]["var_cod_comp_cab"];?>&sucursal=<?php echo $reg[$i]["int_cod_suc"];?>'); " ><img src='images/img_gastos.jpg' width='15px' height='15px'></a></td>
 
 					</tr>
 				

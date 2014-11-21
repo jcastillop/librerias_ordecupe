@@ -70,7 +70,7 @@ require_once("../../../conexiones/class_cliente.php");
                     <option value="">-Seleccione-</option>
                         <?php
                             $tra=new cliente();
-                            $reg=$tra->get_combo_cliente();
+                            $reg=$tra->get_combo_cliente_almacen();
                                for ($i=0;$i<count($reg);$i++)
                                  {
                             ?>
