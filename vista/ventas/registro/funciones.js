@@ -191,6 +191,7 @@
                         
                         fn_dar_eliminar();
                         fn_cantidad(); 
+                        fn_sumatotal();
                         }
                         
                         },
@@ -214,6 +215,7 @@
                         $("#valor_ide").focus();
                         fn_dar_eliminar();
                         fn_cantidad(); 
+                        fn_sumatotal();
  
                 });
 
@@ -235,6 +237,7 @@
                     $(this).parents("tr").fadeOut("normal", function(){
                         $(this).remove();
                         fn_cantidad(); 
+                        fn_sumatotal();
 
                                                     /*
                                 aqui puedes enviar un conjunto de datos por ajax
@@ -245,6 +248,16 @@
                 });
 
             };
+
+            function fn_sumatotal(){
+                    var total=0;
+                    for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
+                    total= total + parseFloat(document.getElementById('grilla').rows[i].cells[5].childNodes[0].value);
+             
+                    }
+                    $("#suma_total").html(total); 
+            };          
+
              function limpiarformulario(formulario){
    /* Se encarga de leer todas las etiquetas input del formulario*/
             $(formulario).find('input').each(function() {
@@ -271,6 +284,7 @@
                 
                $('#grilla tbody').empty();
                 fn_cantidad(); 
+                fn_sumatotal()
                 
 
             }
@@ -300,6 +314,7 @@
             console.log(a_precio);
             console.log(a_descuento);
             console.log(a_cantidad);
+            fn_sumatotal();
             }
 
 

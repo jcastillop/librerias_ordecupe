@@ -212,11 +212,9 @@ $(document).ready(function () {
                 <tfoot>
                 	<tr>
                     	<td colspan="3"><strong>Cantidad:</strong> <span id="span_cantidad">0</span> productos.</td>
-                        <td colspan="2">&nbsp;</td>
+                        <td><strong>Suma total:</strong> <span id="suma_total">0</span></td>
+                        <td colspan="5" align="center"><input id="submit" name="Submit" class="enviar" value="GUARDAR DATOS" type="submit" /></td>
                     </tr>
-                	<tr>
-                	  <td colspan="5" align="center"><input id="submit" name="Submit" class="enviar" value="GUARDAR DATOS" type="submit" /></td>
-               	  </tr>
                 </tfoot>
             </table>
             </div>
