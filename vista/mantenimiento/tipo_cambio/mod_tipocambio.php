@@ -24,7 +24,7 @@ $tra=new tipocambio();
 if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 {
 	 
-    $tra->edit_tipocambio($_GET['id'],$_GET["var_fec_tc"],$_GET["dec_val_tc"],$_GET["var_desc_tc"],$user
+    $tra->edit_tipocambio($_GET['id'],$_GET["fecha"],$_GET["dec_val_tc"],$_GET["var_desc_tc"],$user
 	);
 	exit;
 }
@@ -198,7 +198,7 @@ function validar(e) { // 1
       <table width="80%" border="1">
       	<tr>
           <td height="20">Moneda: </td>
-          <td><select name="int_cod_mon" id="int_cod_mon" disabled="true" type="text" maxlength="10" style="width: 400px;" class="input username" onKeyPress="return tab(event,this)" />
+          <td><select name="int_cod_mon" id="int_cod_mon" disabled type="text" maxlength="10" style="width: 400px;" class="input username" onKeyPress="return tab(event,this)" />
             <option value="<?php echo $id ;?>" selected><?php echo $var_nom_mon;?></option>
 			    <?php
           $tra=new monedas();
@@ -217,10 +217,10 @@ function validar(e) { // 1
       </tr>
       <tr>
           <td height="20">Fecha: </td>
-          <td><input type="text" class="input username"    style="width: 160px;" name="var_fec_tc" id="date_fec_tc" value="<?php echo $fecha; ?>" /></td>
+          <td><input type="text" class="input username" disabled style="width: 160px;" name="var_fec_tc" id="date_fec_tc" value="<?php echo $fecha; ?>" /></td>
 		 <tr>
           <td height="20">Valor: </td>
-          <td><input type="text" class="input username"  style="width: 160px;"   name="dec_val_tc" id="dec_val_tc" value="<?php echo $dec_val_tc; ?>"/></td>
+          <td><input type="text" class="input username" style="width: 160px;"   name="dec_val_tc" id="dec_val_tc" value="<?php echo $dec_val_tc; ?>"/></td>
 		</tr>
 		<tr>
           <td height="20">Descripción: </td>
