@@ -92,6 +92,14 @@ $(document).ready(function() {
 		$(".pass-icon").css("left","0px");
 	});
 });
+
+function formulario(f) {
+ 
+  if (f.var_nom_suc.value   == '') { alert ('El campo Sucursal esta vacío, ingrese un dato porfavor!!');  
+  f.var_nom_suc.focus(); return false; } 
+  
+   return true; } 
+   
 function validar(e) { // 1
 
     tecla = (document.all) ? e.keyCode : e.which; // 2
@@ -121,7 +129,7 @@ function validar(e) { // 1
     <br />
 
 <!--LOGIN FORM-->
-<form name="login-form" class="login-form" action="mod_sucursales.php" method="get">
+<form name="login-form" class="login-form" action="mod_sucursales.php" method="get" onSubmit="return formulario(this)">
 
 	<!--HEADER-->
     <div class="header">
