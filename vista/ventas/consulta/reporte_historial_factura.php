@@ -3,7 +3,6 @@
 
 require_once("../../../conexiones/class_historico_ventas_pdf.php");
 require("fpdf/fpdf.php");
-//$id_factura=$_GET['id'];
 
 
 
@@ -254,52 +253,52 @@ $pdf->Ln(10);
 	
 $tra= new factura_cabecera();
 					$reg=$tra->get_factura_det(trim($_GET['cod_cab']),trim($_GET['cod_ser']),trim($_GET['cod_suc']),trim($_GET['cod_emp']),trim($_GET['tipo_doc']));
-					$suma=0;
+						$total_f=0;
+						$sub_total_f=0;
+						$total_igv=0;
 					for ($i=0;$i<count($reg);$i++)
 					{
-						$pre_total=$reg[$i]["precio"] * $reg[$i]["int_cant_fact_det"];
+							$igv=$reg[$i]["int_cant_fact_det"] * $reg[$i]["precio"] * (( $reg[$i]["dec_pimpt_fact_det"])/100) ;
+							$sub_total=$reg[$i]["int_cant_fact_det"] * $reg[$i]["precio"]  ;
+						
+						
+						$total_igv+=$igv;
+						$sub_total_f+=$sub_total;
+						
 						$pdf->SetTextColor(0,0,0);
-						$pdf->SetFontSize(8);
+								$pdf->SetFontSize(8);
 						
 						$pdf->Cell(25, 5,$reg[$i]["int_cant_fact_det"], 1,0, 'C');
 					
 						$pdf->Cell(95, 5,$reg[$i]["var_nom_tit"], 1,0, 'C');
 					
 						$pdf->Cell(35, 5,$reg[$i]["precio"], 1,0, 'C');
-						$pdf->Cell(35, 5,$pre_total, 1,1, 'C');
-						$suma=$suma+ $pre_total;
+						$pdf->Cell(35, 5,$sub_total+$igv, 1,1, 'C');
 					}
 
 
      
-	$pdf->SetXY(140, 140);
+$pdf->SetXY(140, 140);
 	$pdf->Cell(10, 8, 'VALOR DE VENTA: ', 0, 'C');
-	/*$suma=0;
-	for ($i = 0; $i <count($reg); $i++) {
-    	$suma=$suma+ ($reg[$i]["precio"] * $reg[$i]["int_cant_fact_det"]);
-		
-	}*/
-		$pdf->SetFontSize(9);
-		$pdf->SetXY(180, 140);
-		$pdf->Cell(10, 8,$suma, 0, 'C');
 	
-		
+	$pdf->SetFontSize(9);
+	$pdf->SetXY(180, 140);
+	$pdf->Cell(10, 8,$sub_total_f, 0, 'C');	
 	
-	$igv=$suma*(0.18);
-	$pdf->SetXY(140, 145);
+	
+$pdf->SetXY(140, 145);
 	$pdf->Cell(10, 8, 'IGV. % ', 0, 'C');
 	
 	$pdf->SetFontSize(9);
 	$pdf->SetXY(180, 145);
-	$pdf->Cell(10, 8,$igv, 0, 'C');		
-	
-	$total=$suma-$igv;
-	$pdf->SetXY(140, 150);
+	$pdf->Cell(10, 8,$total_igv, 0, 'C');		
+
+$pdf->SetXY(140, 150);
 	$pdf->Cell(10, 8, 'TOTAL: ', 0, 'C');
 	
 	$pdf->SetFontSize(9);
 	$pdf->SetXY(180, 150);
-	$pdf->Cell(10, 8,$total, 0, 'C');		 
+	$pdf->Cell(10, 8,$sub_total_f+$total_igv, 0, 'C');		 
 
 $pdf->Output();
 ?>
