@@ -112,7 +112,7 @@
                             + '"costo_total_libro":'
                             + document.getElementById('grilla').rows[i].cells[4].childNodes[0].value + "}"
 
-                            if (i==document.getElementById('grilla').rows.length-3){
+                            if (i==document.getElementById('grilla').rows.length-2){
                             pedido_detalle = pedido_detalle + "]";
                             }else{
                             pedido_detalle = pedido_detalle + ','; 
