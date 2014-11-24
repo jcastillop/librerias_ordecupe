@@ -4,7 +4,7 @@
             window.opener.document.getElementById('deHijo').innerHTML = "Este texto viene de la página hijo: "+data;        
 			
 			
-            /*this.window.close();*/
+            this.window.close();
 			opener.location.reload();
         }
 		

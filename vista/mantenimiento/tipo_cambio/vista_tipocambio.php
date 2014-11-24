@@ -109,7 +109,6 @@ $(document).ready( function () {
 			                        <th>Fecha tipo de cambio</th>
 			                        <th>Valor del Tipo de Cambio</th>
 									<th>Descripcion</th>
-									<th></th>
 				
 					</tr>
 				</thead>                   
@@ -124,14 +123,11 @@ for ($i=0;$i<count($reg);$i++)
 
 
 					<tr>
-                  <td align='center' ><a href=" javascript:poptastic('mod_tipocambio.php?id=<?php echo $reg[$i]["int_cod_mon"];?> & fecha=<?php echo $reg[$i]["date_fecha_tipcam"];?>') " ><img src='../../../img/images/edit.png' width='15px' height='15px' title='Actualizar'></a></td>
+                 		<td></td>
                       <td><?php echo $reg[$i]["var_nom_mon"];?></td>
 						<td><?php echo $reg[$i]["date_fecha_tipcam"];?></td>
                         			<td><?php echo $reg[$i]["dec_val_tipcam"];?></td>
 						  			<td><?php echo $reg[$i]["var_desc_tipcam"];?></td>
-						
-		
-                       <td align='center' ><a href=" javascript:elim('eliminar_tipocambio.php?id=<?php echo $reg[$i]["int_cod_mon"];?>&fecha=<?php echo $reg[$i]["date_fecha_tipcam"];?>'); " ><img src='../../../img/images/delete.png' width='15px' height='15px' title='Eliminar'></a></td>
 
 						
 					</tr>
