@@ -223,13 +223,23 @@
                 
             });
 				
-				
-				
-			
 			function fn_cantidad(){
 				cantidad = $("#grilla tbody").find("tr").length;
 				$("#span_cantidad").html(cantidad);
+
+                if(cantidad>27){
+                   notificacion();
+                   $("#valor_ide").prop('disabled', true);
+                   $("#valor_uno").prop('disabled', true);
+                   $("#valor_dos").prop('disabled', true);
+                   $("#valor_tres").prop('disabled', true);
+                }
 			};
+
+            function notificacion(){
+                alert("No se puede registrar mas Títulos"); 
+                return false;
+            }; 
 
 			function fn_dar_eliminar(){
                 $("a.elimina").click(function(){
