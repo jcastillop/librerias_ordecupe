@@ -9,7 +9,7 @@ $tra=new genero();
 
 $tra->add_generos(	$_POST["var_nom_gen"],
 					$_POST["var_des_gen"],
-					$_POST["int_est_gen"],					
+					$_POST["estado"],					
 					$user,
 					$fecha_actual,
 					$user,

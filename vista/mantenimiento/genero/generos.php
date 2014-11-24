@@ -154,7 +154,8 @@ function formulario(f) {
            </tr>
         <tr>
           <td height="20">Descripcion: </td>
-          <td><input type="text" class="input username" style="width: 160px;"   name="var_des_gen" id="var_des_gen" /><input name="estado" id="estado" type="hidden" value="1" class="input username" /></td>
+          <td><input type="text" class="input username" style="width: 160px;"   name="var_des_gen" id="var_des_gen" />
+          <input name="estado" id="estado" type="hidden" value="1" class="input username" /></td>
           </tr>
       </table>
     </div>
