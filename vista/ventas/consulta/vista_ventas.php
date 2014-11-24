@@ -169,7 +169,7 @@ $(document).ready(function() {
                         <td style="color:red"><?php echo $reg[$i]["date_fecenv_fact_cab"];?></td>
 						<td style="color:red">Pendiente</td>
                         <td style="color:red"><?php echo $reg[$i]["int_dias_fact_cab"];?></td>
-                        <td style="color:red"><a href=" javascript:poptastic('reporte_historial.php?id=<?php echo $reg[$i]["pagina"];?>'); " ><img src='../../../img/images/pdf.png' width='15px' height='15px'></a></td>
+                        <td style="color:red"><a href=" javascript:poptastic('<?php echo $reg[$i]["pagina"];?>'); " ><img src='../../../img/images/pdf.png' width='15px' height='15px'></a></td>
 
 					</tr>
 				
