@@ -18,7 +18,7 @@
 		$query_call_spcompgas = "CALL proc_insertar_comp_gas('".$_cod_com."',".$_cod_suc.","
 																.$_cod_emp.",'".$desc."',".$monto.",'".$_ped_usu."',@n_Flag, @c_msg)";
 																
-		echo $query_call_spcompgas;
+		
 		mysql_query($query_call_spcompgas,Conectar::con());
 	
 		$array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
