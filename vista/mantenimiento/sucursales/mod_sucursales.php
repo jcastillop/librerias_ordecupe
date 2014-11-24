@@ -25,7 +25,7 @@ if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 {
 	
 	$tra->edit_sucursal($_GET['id'],
-	$_GET["cod_emp"],
+	1,
 	$_GET["var_nom_suc"],
 	$_GET["descripcion"],
 	$_GET["estado"],
@@ -37,8 +37,6 @@ if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 
 
 $reg=$tra->get_sucursal_por_id($_GET["id"]);
-		$cod_emp=$reg[0]["int_cod_emp"];
-		$nom_emp=$reg[0]["var_nom_emp"];
 		$nom_suc=$reg[0]["var_nom_suc"];
 		$desc=$reg[0]["var_des_suc"];
 		$estados=$reg[0]["int_est_suc"];
@@ -66,14 +64,13 @@ www.amitjakhu.com
 
 <!--META-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Modificación Sucursales</title>
+<title>Edición de sucursal</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
  <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 <!--Slider-in icons-->
 <script type="text/javascript">
@@ -97,26 +94,15 @@ function formulario(f) {
  
   if (f.var_nom_suc.value   == '') { alert ('El campo Sucursal esta vacío, ingrese un dato porfavor!!');  
   f.var_nom_suc.focus(); return false; } 
+  if (f.dir.value   == '') { alert ('El campo Dirección esta vacío, ingrese un dato porfavor!!');  
+  f.dir.focus(); return false; } 
   
    return true; } 
-   
-function validar(e) { // 1
 
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-}
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -134,7 +120,7 @@ function validar(e) { // 1
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">SUCURSAL</h1>
+    <h1 align="center">EDICIÓN DE SUCURSAL</h1>
     
     <!--END TITLE-->
   
@@ -144,24 +130,6 @@ function validar(e) { // 1
 	<!--CONTENT-->
     <div class="content">
       <table width="80%" border="1">
-        <tr>
-          <td>Empresa: </td>
-          <td><select class="input username" style="width: 300px;"  name="cod_emp" id="cod_emp" onKeyPress="return tab(event,this)">
-          <option value="<?php echo $cod_emp;?>"><?php echo $nom_emp;?></option>
-          <?php		
-		   
-			$tra=new sucursal();
-			$reg=$tra->get_combo_sucursal_update($reg[0]["int_cod_emp"]);
-			for ($i=0;$i<count($reg);$i++)
-			{
-			?>
-			   <option value="<?php echo $reg[$i]["int_cod_emp"];?>"><?php echo $reg[$i]["var_nom_emp"];?></option>
-			
-			<?php
-			}
-			?>
-            </select></td>
-        </tr>
         <tr>
           <td>Sucursal: </td>
           <td><input name="var_nom_suc" type="text" maxlength="50" style="width: 250px;" class="input username" onKeyPress="return tab(event,this)" value="<?php echo $nom_suc;?>" /></td>
@@ -211,7 +179,7 @@ function validar(e) { // 1
     <div class="footer" >
     <input type="hidden" name="id" value="<?php echo $_GET["id"];?>">
     <input type="hidden" name="grabar" value="si" />
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="GUARDAR" class="button" /><!--END LOGIN BUTTON-->
+    <!--LOGIN BUTTON--><input type="submit" name="submit" value="EDITAR" class="button" /><!--END LOGIN BUTTON-->
     <!--REGISTER BUTTON--><input type="button" name="submit" value="CANCELAR" class="register"onClick="cerrarse()" /><!--END REGISTER BUTTON-->
     <input type="hidden" id="val1" value="" disabled="disabled"/> 
     </div>

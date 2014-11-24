@@ -26,15 +26,14 @@ header('Content-Type: text/html; charset=UTF-8');
 ?>
 
 
-<title>CLIENTE</title>
+<title>Agregar serie</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
- <script type="text/javascript" src="../../paquetes/js/validar.js"></script>
+<script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 
 <!--Slider-in icons-->
 <script type="text/javascript">
@@ -114,36 +113,12 @@ function from(id,ide,url){
 }
 
 
-function validar(e) { // 1
-
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-} 
-
 function formulario(f) {
-	if (f.txt_emp.value   == '--Seleccione--') 
-    { 
-      alert ('El campo Tipo de Persona esta vacío, ingrese un dato porfavor!!');  
-	   f.tip_per.focus(); return false; 
-   }  
-	if (f.rsoc.value   == '') { alert ('El campo Razon Social esta vacío, ingrese un dato porfavor!!');  
-	f.rsoc.focus(); return false; }  
-  if (f.ruc.value  != '' && f.ruc.value.length < 11) { alert ('El campo RUC tiene menos de 11 Digitos, Complete los digitos porfavor!!');
-  f.ruc.focus(); return false; }
-	if (f.distrito.value   == '') { alert ('El campo Distrito esta vacío, ingrese un dato porfavor!!');  
-	f.distrito.focus(); return false; }
-	if (f.telefono.value   == '') { alert ('El campo Teléfono esta vacío, ingrese un dato porfavor!!');  
-	f.telefono.focus(); return false; }
-  if (f.dni.value!='' && f.dni.value.length < 8) { alert ('El campo DNI tiene menos de 8 Digitos, Complete los digitos porfavor!!');
-  f.ruc.focus(); return false; }
+	
+	if (f.cb_suc.value   == '--Seleccione--') { alert ('El campo Sucursal esta vacío, ingrese un dato porfavor!!');  
+	f.cb_suc.focus(); return false; }   
+	if (f.txt_ser.value   == '') { alert ('El campo N° de serie esta vacío, ingrese un dato porfavor!!');  
+	f.txt_ser.focus(); return false; }
 	
  return true; } 
   
@@ -168,7 +143,7 @@ function formulario(f) {
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">CLIENTE</h1>
+    <h1 align="center">SERIE</h1>
     
     <!--END TITLE-->
   

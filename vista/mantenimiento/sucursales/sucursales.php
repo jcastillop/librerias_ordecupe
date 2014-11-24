@@ -30,14 +30,13 @@ www.amitjakhu.com
 
 <!--META-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>SUCURSALES</title>
+<title>Agregar sucursal</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
  <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 <!--Slider-in icons-->
 <script type="text/javascript">
@@ -116,34 +115,24 @@ function from(id,ide,url){
        miPeticion.send(null);
 
 }
-function validar(e) { // 1
-
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-} 
 function formulario(f) {
-	if (f.cod_emp.value   == '--Seleccione--') { alert ('El campo Empresa esta vacío, ingrese un dato porfavor!!');  
-	f.cod_emp.focus(); return false; }  
 	if (f.var_nom_suc.value   == '') { alert ('El campo Sucursal esta vacío, ingrese un dato porfavor!!');  
 	f.var_nom_suc.focus(); return false; } 
-	if (f.telf.value   == '') { alert ('El campo Teléfono esta vacío, ingrese un dato porfavor!!');  
-	f.telf.focus(); return false; }
-
+	if (f.pais.value   == '--Seleccione--') { alert ('El campo País esta vacío, ingrese un dato porfavor!!');  
+	f.pais.focus(); return false; }
+	if (f.departamento.value   == '--Seleccione--') { alert ('El campo 	Departamento esta vacío, ingrese un dato porfavor!!');  
+	f.departamento.focus(); return false; }
+	if (f.provincia.value   == '--Seleccione--') { alert ('El campo Provincia esta vacío, ingrese un dato porfavor!!');  
+	f.provincia.focus(); return false; }
+	if (f.direccion.value   == '') { alert ('El campo Dirección esta vacío, ingrese un dato porfavor!!');  
+	f.direccion.focus(); return false; } 
 	
  return true; } 
  
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -172,26 +161,6 @@ function formulario(f) {
     <div class="content">
       <table width="80%" border="1">
         <tr>
-          <td>Empresa: </td>
-          <td>
-          <select class="input username" style="width: 300px;" name="cod_emp" id="cod_emp" onKeyPress="return tab(event,this)">
-          <option>--Seleccione--</option>
-          <?php
-				$tra=new empresa();
-				$reg=$tra->get_combo_empresa();
-				for ($i=0;$i<count($reg);$i++)
-				{
-				?>
-				   <option value="<?php echo $reg[$i]["int_cod_emp"];?>"><?php echo $reg[$i]["var_nom_emp"];?></option>
-				
-				
-				<?php
-				}
-				?>
-            </select>
-          </td>
-        </tr>
-        <tr>
           <td>Sucursal: </td>
           <td><input name="var_nom_suc" type="text" maxlength="50" style="width: 250px;" class="input username" onKeyPress="return tab(event,this)" /></td>
         </tr>
@@ -203,7 +172,8 @@ function formulario(f) {
            <td>País: </td>
           <td>
           <select  name="pais" id="pais" style="width: 160px;" class="input username" onKeyPress="return tab(event,this)" onChange="from(document.form1.pais.value,'midiv','sucursal_dep.php')">
-          <option value="999">--Seleccione--</option>
+          <!--<option value="999">--Seleccione--</option>-->
+          <option>--Seleccione--</option>
           <?php
 			$tra=new pais();
 			$reg=$tra->get_combo_pais();

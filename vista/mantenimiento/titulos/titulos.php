@@ -33,7 +33,7 @@ www.amitjakhu.com
 
 <!--META-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Títulos</title>
+<title>TÍTULOS</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
@@ -60,23 +60,12 @@ $(document).ready(function() {
 	});
 });
 
-function validar(e) { // 1
-
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-} 
 
 function formulario(f) {
   if (f.titulo.value   == '') { alert ('El campo Título esta vacío, ingrese un dato porfavor!!');  
   f.titulo.focus(); return false; }   
+  if (f.autor.value   == '') { alert ('El campo Autor esta vacío, ingrese un dato porfavor!!');  
+  f.autor.focus(); return false; }   
   if (f.editorial.value   == '--Seleccione--') { alert ('El campo Editorial esta vacío, ingrese un dato porfavor!!');  
   f.editorial.focus(); return false; }
   if (f.genero.value   == '--Seleccione--') { alert ('El campo Género esta vacío, ingrese un dato porfavor!!');  
@@ -89,7 +78,7 @@ function formulario(f) {
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'"; } ?>>   
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'"; } ?>>   
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -123,7 +112,7 @@ function formulario(f) {
         </tr>
         <tr>
           <td height="20">Autor: </td>
-          <td><input name="autor" type="text" maxlength="50" style="width: 300px;" class="input username" onKeyPress="return tab(event,this)" /></td>	
+          <td><input name="autor" type="text" maxlength="50" style="width: 300px;" class="input username" onKeyDown="return tab(event,this)"  onKeyPress="return validar(event)" /></td>	
         </tr>
         <tr>
           <td height="20">Descripción: </td>
@@ -193,9 +182,9 @@ function formulario(f) {
         </tr>
         <tr>
           <td height="20">Precio Definido: </td>
-          <td><input name="pre_definido" type="text" maxlength="10" style="width: 120px;" class="input username" onkeydown="return tab(event,this)" onKeyPress="return decimal(event,this)" />
+          <td><input name="pre_definido" type="text" maxlength="10" style="width: 120px;" class="input username" onKeyDown="return tab(event,this)" onKeyPress="return decimal(event,this)" />
           Precio Sugerido: 
-          <input name="pre_sugerido" type="text" maxlength="10" style="width: 120px;" class="input username" onkeydown="return tab(event,this)" onKeyPress="return decimal(event,this)"/></td>	
+          <input name="pre_sugerido" type="text" maxlength="10" style="width: 120px;" class="input username" onKeyDown="return tab(event,this)" onKeyPress="return decimal(event,this)"/></td>	
         </tr>
         <tr>
           <td>Cod.Barra: </td>

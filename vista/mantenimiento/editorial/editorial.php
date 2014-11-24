@@ -30,7 +30,7 @@ www.amitjakhu.com
 
 <!--META-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Editorial</title>
+<title>Agregar editorial</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
@@ -55,19 +55,7 @@ $(document).ready(function() {
 		$(".pass-icon").css("left","0px");
 	});
 });
-function validar(e) { // 1
 
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-} 
 function formulario(f) {
 	if (f.nom_edit.value   == '') { alert ('El campo Nombre esta vacío, ingrese un dato porfavor!!');  
 	f.nom_edit.focus(); return false; } 
@@ -77,7 +65,7 @@ function formulario(f) {
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -95,7 +83,7 @@ function formulario(f) {
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">Editorial</h1>	
+    <h1 align="center">EDITORIAL</h1>	
     
     <!--END TITLE-->
   

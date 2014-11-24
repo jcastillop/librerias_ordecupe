@@ -29,17 +29,15 @@ www.amitjakhu.com
 
 <!--META-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>MONEDAS</title>
+<title>Agregar tipo de cambio</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
-
-
- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 
@@ -123,19 +121,6 @@ function from(id,ide,url){
 
 }
 
-function validar(e) { // 1
-
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-} 
 function formulario(f) {
 	if (f.var_nom_mon.value   == '') { alert ('El campo Nombre moneda esta vacío, ingrese un dato porfavor!!');  
 	f.var_nom_mon.focus(); return false; }  
@@ -144,7 +129,7 @@ function formulario(f) {
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -162,7 +147,7 @@ function formulario(f) {
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">Tipo de Cambio</h1>	
+    <h1 align="center">TIPO DE CAMBIO</h1>	
     
     <!--END TITLE-->
   

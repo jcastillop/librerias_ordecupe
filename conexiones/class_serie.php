@@ -71,6 +71,7 @@
 		$res=mysql_query($sql,Conectar::con());
 		echo "<script type='text/javascript'>
 		        alert('El registro ha sido modificado correctamente');
+				cerrar();
 		        window.location='mod_serie.php?ser_id=$cod_ser&suc_id=$cod_suc&emp_id=$cod_emp && load=1';
 		      </script>";	
 	}

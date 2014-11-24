@@ -71,7 +71,7 @@ class sucursal
 			return $this->sucursal;
 	}
 	
-	public function get_combo_sucursal_update($id_emp)
+	public function get_combo_sucursal_update($id_suc)
 	{
 		$sql="select int_cod_emp,var_nom_emp from T_empresa where int_est_suc<>0 and not int_cod_emp='$id_emp'  ORDER BY int_cod_emp";
 		
@@ -79,9 +79,9 @@ class sucursal
 		
 		while ($reg=mysql_fetch_assoc($res))
 		{
-			$this->usuario[]=$reg;
+			$this->sucursal[]=$reg;
 		}
-			return $this->usuario;
+			return $this->sucursal;
 	}
 
 	public function get_combo_sucursales($emp_id)
@@ -184,6 +184,7 @@ class sucursal
 		$res=mysql_query($sql,Conectar::con());
 		echo "<script type='text/javascript'>
 		alert('El registro ha sido modificado correctamente');
+		cerrar();
 		window.location='mod_sucursales.php?id=$id && load=1';
 		</script>
 		<SCRIPT LANGUAGE=javascript>

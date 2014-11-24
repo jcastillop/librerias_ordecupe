@@ -17,24 +17,25 @@ header('Content-Type: text/html; charset=UTF-8');
 
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 
-	<title>Sucursal</title>
+	<title>Sucursales</title>
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
-    	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
-        
-
+    <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
     
-    
-    
-	
-    
+  
 
     <script type="text/javascript">
 var newwindow;
 function poptastic(url)
 {
-	newwindow=window.open(url,'name','height=385,width=567,left=400');
+	newwindow=window.open(url,'name','height=363,width=567,left=400');
+	if (window.focus) {newwindow.focus()}
+}
+var newwindow;
+function modificar(url)
+{
+	newwindow=window.open(url,'name','height=353,width=567,left=400');
 	if (window.focus) {newwindow.focus()}
 }
 var newwindow;
@@ -52,11 +53,6 @@ function elim(url)
 	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
 
-
-	
-    
-    
-    
 	<script type="text/javascript" language="javascript" class="init">
 	
 	$(document).ready(function() {
@@ -89,77 +85,12 @@ $(document).ready(function() {
 } );
 
 
-
-
-
-/*
-$(document).ready(function() {
-	$('#example').dataTable();
-	
-	$('#example tbody').on('dblclick', 'tr', function () {
-		var name = $('td', this).eq(0).text();
-		alert( 'You clicked on '+name+'\'s row' );
-	} );
-} );
-*/
-
-
 $(document).ready( function () {
     var table = $('#example').DataTable();
     $.fn.dataTable.KeyTable( table );
 } );
 
 			
-
-
-
-/*
-para sumar en la grilla por json
-
-$(document).ready(function() {
-    $('#example').dataTable( {
-        "footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
- 
-            // Remove the formatting to get integer data for summation
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
- 
-            // Total over all pages
-            data = api.column( 4 ).data();
-            total = data.length ?
-                data.reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                } ) :
-                0;
- 
-            // Total over this page
-            data = api.column( 4, { page: 'current'} ).data();
-            pageTotal = data.length ?
-                data.reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                } ) :
-                0;
- 
-            // Update footer
-            $( api.column( 4 ).footer() ).html(
-                '$'+pageTotal +' ( $'+ total +' total)'
-            );
-        }
-    } );
-} );
-
-
-*/
-
-
-
-
-
 	</script>
 </head>
 
@@ -169,7 +100,7 @@ $(document).ready(function() {
     <div class="container_">
     
 		<section>
-			<h1>SUCURSAL<span></span></h1>
+			<h1>SUCURSALES<span></span></h1>
 
 			
             <div class="tablas"  align="center">
@@ -179,15 +110,12 @@ $(document).ready(function() {
 					<tr class="cabecera" >
 						
 						<th><a href="javascript:poptastic('sucursales.php');"><img src="../../../css/images/list-add.png" width="98" height="30"/></a></th>
-						<th>Empresa</th>
-                        <th>Nombre de Sucursal</th>
-                        <th>Descripción</th>
-                        <th>Estado</th>
-						<th>País</th>
+						<th>Nombre de Sucursal</th>
 						<th>Departamento</th>
 						 <th>Provincia</th>
                         <th>Dirección</th>                        
                         <th>Telefono</th>
+                        <th>Estado</th>
 						<th></th>
 				
 					</tr>
@@ -202,17 +130,14 @@ for ($i=0;$i<count($reg);$i++)
 
 
 					<tr>
-                  <td align='center' ><a href=" javascript:poptastic('mod_sucursales.php?id=<?php echo $reg[$i]["int_cod_suc"];?>'); " ><img src='../../../img/images/edit.png' width='15px' height='15px' title='Actualizar'></a></td>
+                  <td align='center' ><a href=" javascript:modificar('mod_sucursales.php?id=<?php echo $reg[$i]["int_cod_suc"];?>'); " ><img src='../../../img/images/edit.png' width='15px' height='15px' title='Actualizar'></a></td>
                       
-						<td><?php echo $reg[$i]["var_nom_emp"];?></td>
-						<td><?php echo $reg[$i]["var_nom_suc"];?></td>
-						<td><?php echo $reg[$i]["var_des_suc"];?></td>
-						<td><?php echo $reg[$i]["int_est_suc"];?></td>
-						<td><?php echo $reg[$i]["var_nom_pais"];?></td>
+						<td><?php echo $reg[$i]["var_nom_suc"];?></td>						
                         <td><?php echo $reg[$i]["var_nom_dept"];?></td>
                         <td><?php echo $reg[$i]["var_nom_provi"];?></td>
 						<td><?php echo $reg[$i]["var_dir_suc"];?></td>                        
                         <td><?php echo $reg[$i]["var_telf_suc"];?></td>
+                        <td><?php echo $reg[$i]["int_est_suc"];?></td>
 						
 		
                        <td align='center' ><a href=" javascript:elim('eliminar_sucursales.php?id=<?php echo $reg[$i]["int_cod_suc"];?>'); " ><img src='../../../img/images/delete.png' width='15px' height='15px' title='Eliminar'></a></td>

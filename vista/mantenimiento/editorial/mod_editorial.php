@@ -58,14 +58,13 @@ www.amitjakhu.com
 <?php
 header('Content-Type: text/html; charset=UTF-8'); 
 ?>
-<title>Modificación Editorial</title>
+<title>Edicion de editorial</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
 <!--Slider-in icons-->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -93,7 +92,7 @@ function formulario(f) {
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -111,7 +110,7 @@ function formulario(f) {
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">Editorial</h1>
+    <h1 align="center">EDICIÓN DE EDITORIAL</h1>
     
     <!--END TITLE-->
   
@@ -157,7 +156,7 @@ function formulario(f) {
     <div class="footer" >
     <input type="hidden" name="id" value="<?php echo $_GET["id"];?>">
     <input type="hidden" name="grabar" value="si" />
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="GUARDAR" class="button" /><!--END LOGIN BUTTON-->
+    <!--LOGIN BUTTON--><input type="submit" name="submit" value="EDITAR" class="button" /><!--END LOGIN BUTTON-->
     <!--REGISTER BUTTON--><input type="button" name="submit" value="CANCELAR" class="register"onClick="cerrarse()" /><!--END REGISTER BUTTON-->
     <input type="hidden" id="val1" value="" disabled="disabled"/> 
     </div>

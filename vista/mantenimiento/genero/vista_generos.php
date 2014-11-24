@@ -29,13 +29,13 @@ require_once("../../../conexiones/conexion.php");
 var newwindow;
 function poptastic(url)
 {
-	newwindow=window.open(url,'name','height=290,width=590,left=400');
+	newwindow=window.open(url,'name','height=263,width=585,left=400');
 	if (window.focus) {newwindow.focus()}
 }
 var newwindow;
-function poptastic(url)
+function modificar(url)
 {
-	newwindow=window.open(url,'name','height=290,width=590,left=400');
+	newwindow=window.open(url,'name','height=285,width=600,left=400');
 	if (window.focus) {newwindow.focus()}
 }
 var newwindow;
@@ -99,7 +99,7 @@ $(document).ready( function () {
     <div class="container_">
     
 		<section>
-			<h1>GENEROS<span></span></h1>
+			<h1>GÉNEROS<span></span></h1>
 
 			
             <div class="tablas"  align="center">
@@ -127,7 +127,7 @@ for ($i=0;$i<count($reg);$i++)
 
 
 					<tr>
-                  <td align='center' ><a href=" javascript:poptastic('mod_generos.php?id=<?php echo $reg[$i]["int_cod_gen"];?>'); " ><img src='../../../img/images/edit.png' width='15px' height='15px' title='Actualizar'></a></td>
+                  <td align='center' ><a href=" javascript:modificar('mod_generos.php?id=<?php echo $reg[$i]["int_cod_gen"];?>'); " ><img src='../../../img/images/edit.png' width='15px' height='15px' title='Actualizar'></a></td>
                       
 						<td><?php echo $reg[$i]["var_nom_gen"];?></td>
                         			<td><?php echo $reg[$i]["var_des_gen"];?></td>

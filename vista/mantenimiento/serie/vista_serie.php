@@ -16,46 +16,35 @@ header('Content-Type: text/html; charset=UTF-8');
 	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 
-	<title>CLIENTES</title>
+	<title>Series</title>
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
-    	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
+    <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
         
 
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
-    
-    
-    
-	
-    
 
     <script type="text/javascript">
-var newwindow;
-function poptastic(url)
-{
-	newwindow=window.open(url,'name','height=490,width=580,left=400');
-	if (window.focus) {newwindow.focus()}
-}
-var newwindow;
-function elim(url)
-{
-	newwindow=window.open(url,'name','height=200,width=400,left=400,padding=700');
-	if (window.focus) {newwindow.focus()}
-}
-</script>
+		var newwindow;
+		function poptastic(url)
+		{
+			newwindow=window.open(url,'name','height=265,width=330,left=400');
+			if (window.focus) {newwindow.focus()}
+		}
+		var newwindow;
+		function elim(url)
+		{
+			newwindow=window.open(url,'name','height=200,width=400,left=400,padding=700');
+			if (window.focus) {newwindow.focus()}
+		}
+	</script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.js"></script>
     
 	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.dataTables.js"></script>
     <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/dataTables.tableTools.js"></script>
     <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.j"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
-	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
-
-
-	
-
-    
-    
+	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script> 
     
 	<script type="text/javascript" language="javascript" class="init">
 	
@@ -77,22 +66,6 @@ function elim(url)
 	} );
 } );
 
-	
-	
-
-
-$(document).ready(function() {
-	
-	
-} );
-
-
-
-
-
-
-
-
 $(document).ready(function() {
 	var table = $('#example').DataTable();
 
@@ -106,79 +79,10 @@ $(document).ready(function() {
 } );
 
 
-
-
-
-/*
-$(document).ready(function() {
-	$('#example').dataTable();
-	
-	$('#example tbody').on('dblclick', 'tr', function () {
-		var name = $('td', this).eq(0).text();
-		alert( 'You clicked on '+name+'\'s row' );
-	} );
-} );
-*/
-
-
 $(document).ready( function () {
     var table = $('#example').DataTable();
     $.fn.dataTable.KeyTable( table );
 } );
-
-			
-
-
-
-/*
-para sumar en la grilla por json
-
-$(document).ready(function() {
-    $('#example').dataTable( {
-        "footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
- 
-            // Remove the formatting to get integer data for summation
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
- 
-            // Total over all pages
-            data = api.column( 4 ).data();
-            total = data.length ?
-                data.reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                } ) :
-                0;
- 
-            // Total over this page
-            data = api.column( 4, { page: 'current'} ).data();
-            pageTotal = data.length ?
-                data.reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                } ) :
-                0;
- 
-            // Update footer
-            $( api.column( 4 ).footer() ).html(
-                '$'+pageTotal +' ( $'+ total +' total)'
-            );
-        }
-    } );
-} );
-
-
-*/
-
-
-
-
-
-
-
 
 	</script>
 </head>

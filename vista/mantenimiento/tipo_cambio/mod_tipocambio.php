@@ -58,7 +58,7 @@ www.amitjakhu.com
 
 <!--META-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>TIPO DE CAMBIO</title>
+<title>Edición de tipo de cambio</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
@@ -151,24 +151,11 @@ function from(id,ide,url){
        miPeticion.send(null);
 
 }
-function validar(e) { // 1
-
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-}
  
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -186,7 +173,7 @@ function validar(e) { // 1
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">TIPO DE CAMBIO</h1>
+    <h1 align="center">EDICIÓN DE TIPO DE CAMBIO</h1>
     
     <!--END TITLE-->
   
@@ -235,7 +222,7 @@ function validar(e) { // 1
     <input type="hidden" name="id" value="<?php echo $_GET["id"];?>">
     <input type="hidden" name="fecha" value="<?php echo $_GET["fecha"]?>">
     <input type="hidden" name="grabar" value="si" />
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="GUARDAR" class="button" /><!--END LOGIN BUTTON-->
+    <!--LOGIN BUTTON--><input type="submit" name="submit" value="EDITAR" class="button" /><!--END LOGIN BUTTON-->
     <!--REGISTER BUTTON--><input type="button" name="submit" value="CANCELAR" class="register"onClick="cerrarse()" /><!--END REGISTER BUTTON-->
     <input type="hidden" id="val1" value="" disabled="disabled"/> 
     </div>

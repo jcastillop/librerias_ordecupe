@@ -81,15 +81,14 @@ www.amitjakhu.com
 <?php
 header('Content-Type: text/html; charset=UTF-8'); 
 ?>
-<title>Modificación Titulo</title>
+<title>Edición de Título</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="js/validar.js"></script>
-  <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
+<script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 <!--Slider-in icons-->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -107,23 +106,24 @@ $(document).ready(function() {
 		$(".pass-icon").css("left","0px");
 	});
 });
-function validar(e) { // 1
+function formulario(f) {
+  if (f.titulo.value   == '') { alert ('El campo Título esta vacío, ingrese un dato porfavor!!');  
+  f.titulo.focus(); return false; }   
+  if (f.autor.value   == '') { alert ('El campo Autor esta vacío, ingrese un dato porfavor!!');  
+  f.autor.focus(); return false; }   
+  if (f.editorial.value   == '--Seleccione--') { alert ('El campo Editorial esta vacío, ingrese un dato porfavor!!');  
+  f.editorial.focus(); return false; }
+  if (f.genero.value   == '--Seleccione--') { alert ('El campo Género esta vacío, ingrese un dato porfavor!!');  
+  f.genero.focus(); return false; } 
+  if (f.pais.value   == '--Seleccione--') { alert ('El campo País esta vacío, ingrese un dato porfavor!!');  
+  f.pais.focus(); return false; } 
+  
+ return true; } 
 
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-}
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -136,12 +136,12 @@ function validar(e) { // 1
     <br />
 
 <!--LOGIN FORM-->
-<form name="login-form" class="login-form" action="mod_titulos.php" method="get">
+<form name="login-form" class="login-form" action="mod_titulos.php" method="get" onSubmit="return formulario(this)">
 
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">TÍTULOS</h1>
+    <h1 align="center">EDICIÓN DE TÍTULO</h1>
     
     <!--END TITLE-->
   
@@ -167,11 +167,11 @@ function validar(e) { // 1
           <td height="20">ISBN: </td>
           <td><input name="isbn" type="text" style="width: 200px;" maxlength="50"  class="input username" id="isbn" onKeyPress="return tab(event,this)"  value="<?php echo $isbn_tit;?>" />
           Edición: 
-          <input name="edicion" type="text" style="width: 160px;" maxlength="50"  class="input username" id="edicion" onkeyUp="return ValNumero(this);"  value="<?php echo $edic_tit;?>" /> </td>
+          <input name="edicion" type="text" style="width: 160px;" maxlength="50"  class="input username" id="edicion" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);"  value="<?php echo $edic_tit;?>" /> </td>
         </tr>
         <tr>
           <td height="20">N° Página: </td>
-          <td><input name="n_pagina" type="text" maxlength="5" style="width: 160px;"  class="input username" id="n_pagina" onkeyUp="return ValNumero(this);"  value="<?php echo $num_pag;?>" /> 
+          <td><input name="n_pagina" type="text" maxlength="5" style="width: 160px;"  class="input username" id="n_pagina" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);"  value="<?php echo $num_pag;?>" /> 
           Editorial:
           <select class="input username" style="width: 200px;"   name="editorial" id="editorial" onKeyPress="return tab(event,this)">
           <option value="<?php echo $cod_edit;?>" selected><?php echo $nom_edit;?></option>
@@ -213,7 +213,7 @@ function validar(e) { // 1
 			?>   
             </select>
             Pais: 
-          <select class="input username" style="width: 160px;"   name="pais" id="pais" onChange="from(document.form1.pais.value,'mai','mod_dep.php')">
+          <select class="input username" style="width: 160px;" name="pais" id="pais" onKeyPress="return tab(event,this)" onChange="from(document.form1.pais.value,'mai','mod_dep.php')">
           <option value="<?php echo $cod_pais;?>" selected><?php echo $nom_pais;?></option>
           <?php	
 		  		  
@@ -232,9 +232,9 @@ function validar(e) { // 1
         </tr>        
         <tr>
           <td height="20">Precio Definido: </td>
-          <td><input name="pre_definido" type="text" maxlength="10" style="width: 120px;"  class="input username" id="pre_definido" onkeyUp="return decimal(this);"  value="<?php echo $preven_def_tit;?>" />
+          <td><input name="pre_definido" type="text" maxlength="10" style="width: 120px;"  class="input username" id="pre_definido" onKeyPress="return tab(event,this)" onkeyUp="return decimal(this);"  value="<?php echo $preven_def_tit;?>" />
           Precio Sugerido:
-          <input name="pre_sugerido" type="text" maxlength="10" style="width: 120px;"  class="input username" id="pre_sugerido" onkeyUp="return decimal(this);"  value="<?php echo $preven_sug_tit;?>" /> </td>
+          <input name="pre_sugerido" type="text" maxlength="10" style="width: 120px;"  class="input username" id="pre_sugerido" onKeyPress="return tab(event,this)" onkeyUp="return decimal(this);"  value="<?php echo $preven_sug_tit;?>" /> </td>
         </tr>
         <tr>
           <td>Estado: </td>
@@ -254,7 +254,7 @@ function validar(e) { // 1
 			?>
           </select>
           Cod.Barra: 
-          <input name="cod_barra" type="text" maxlength="80" style="width: 160px;"  class="input username" id="cod_barra" onKeyPress="return tab(event,this)"  value="<?php echo $cod_barra_tit;?>" /> </td>
+          <input name="cod_barra" type="text" maxlength="80" style="width: 160px;"  class="input username" id="cod_barra" value="<?php echo $cod_barra_tit;?>" /> </td>
         </tr>
       </table>
     </div>
@@ -264,7 +264,7 @@ function validar(e) { // 1
     <div class="footer" >
     <input type="hidden" name="id" value="<?php echo $_GET["id"];?>">
     <input type="hidden" name="grabar" value="si" />
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="GUARDAR" class="button" /><!--END LOGIN BUTTON-->
+    <!--LOGIN BUTTON--><input type="submit" name="submit" value="EDITAR" class="button" /><!--END LOGIN BUTTON-->
     <!--REGISTER BUTTON--><input type="button" name="submit" value="CANCELAR" class="register"onClick="cerrarse()" /><!--END REGISTER BUTTON-->
     <input type="hidden" id="val1" value="" disabled="disabled"/> 
     </div>

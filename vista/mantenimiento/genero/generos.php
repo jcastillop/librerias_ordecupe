@@ -27,16 +27,14 @@ www.amitjakhu.com
 
 <!--META-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>GENEROS</title>
+<title>Agregar género</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
- <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
-
- <script type="text/javascript" src="js/validar.js"></script>
+<script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 <!--Slider-in icons-->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -114,19 +112,6 @@ function from(id,ide,url){
 
 }
 
-function validar(e) { // 1
-
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-
-    if (tecla==8) return true; // 3
-
-    patron =/[A-Za-z\s]/; // 4
-
-    te = String.fromCharCode(tecla); // 5
-
-    return patron.test(te); // 6
-
-} 
 function formulario(f) {
 	if (f.var_nom_gen.value   == '') { alert ('El campo Nombre de Generos esta vacío, ingrese un dato porfavor!!');  
 	f.var_nom_gen.focus(); return false; }  
@@ -135,7 +120,7 @@ function formulario(f) {
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -153,7 +138,7 @@ function formulario(f) {
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">GENEROS</h1>	
+    <h1 align="center">GÉNERO</h1>	
     
     <!--END TITLE-->
   
@@ -169,12 +154,7 @@ function formulario(f) {
            </tr>
         <tr>
           <td height="20">Descripcion: </td>
-          <td><input type="text" class="input username" style="width: 160px;"   name="var_des_gen" id="var_des_gen" /></td>
-		      Estado:
-          <select class="input username" style="width: 155px;" name="int_est_gen" id="int_est_gen"  >
-              <option selected='selected' value='1'>Activo</option>
-              <option  value='0'>Inactivo</option>
-          </select>
+          <td><input type="text" class="input username" style="width: 160px;"   name="var_des_gen" id="var_des_gen" /><input name="estado" id="estado" type="hidden" value="1" class="input username" /></td>
           </tr>
       </table>
     </div>
