@@ -151,7 +151,7 @@ function formulario(f) {
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -234,7 +234,7 @@ function formulario(f) {
            </tr>
         <tr>  
          <td>Distrito: </td>
-         <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" id="distrito" onkeydown="return tab(event,this)"  onKeyPress="return validar(event)"/></td>
+         <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" id="distrito" onKeyDown="return tab(event,this)"  onKeyPress="return validar(event)"/></td>
             </tr>
         <tr>
 		 <td>Direccion: </td>

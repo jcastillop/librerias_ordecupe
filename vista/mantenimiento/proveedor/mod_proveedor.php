@@ -39,6 +39,7 @@ if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 							$_GET["celular"],				
 							$_GET["telefono"],				
 							$_GET["fax"],
+							$_GET["contacto"],
 							$user);
 	exit;
 }
@@ -60,6 +61,7 @@ $reg=$tra->get_proveedor_por_id($_GET["id"]);
 		$telef_prov=$reg[0]["var_telef_prov"];
 		$cel_prov=$reg[0]["var_cel_prov"];
 		$fax_prov=$reg[0]["var_fax_prov"];
+		$cont_prov=$reg[0]["var_cont_prov"];
 ?>
 
 
@@ -83,7 +85,7 @@ www.amitjakhu.com
 
 <!--META-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>PROVEEDOR</title>
+<title>Edición de proveedor</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
@@ -175,16 +177,17 @@ function formulario(f) {
 		 alert ('El campo RUC tiene menos de 11 Digitos, Complete los digitos porfavor!!');
   		f.nro_doc.focus(); return false; 
 		}
+	if (f.distrito.value   == '') { alert ('El campo Distrito esta vacío, ingrese un dato porfavor!!');  
+	f.distrito.focus(); return false; }
 	if (f.direccion.value   == '') { alert ('El campo Dirección  esta vacío, ingrese un dato porfavor!!');  
 	f.direccion.focus(); return false; }
-	if (f.telefono.value   == '') { alert ('El campo Teléfono esta vacío, ingrese un dato porfavor!!');  
-	f.telefono.focus(); return false; }
-	
+	if (f.contacto.value   == '') { alert ('El campo Contacto  esta vacío, ingrese un dato porfavor!!');  
+	f.contacto.focus(); return false; }	
  return true; }  
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -202,7 +205,7 @@ function formulario(f) {
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">PROVEEDORES</h1>
+    <h1 align="center">EDICIÓN DE PROVEEDOR</h1>
     
     <!--END TITLE-->
   
@@ -233,12 +236,12 @@ function formulario(f) {
 			?>   
           </select>
           RUC: 
-          <input name="nro_doc" type="text" maxlength="11" style="width: 180px;" class="input username" onkeyUp="return ValNumero(this);" value="<?php echo $nrodoc_prov;?>" /></td>
+          <input name="nro_doc" type="text" maxlength="11" style="width: 180px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" value="<?php echo $nrodoc_prov;?>" /></td>
         </tr>
         <tr>
           <td>Pais: </td>
           <td>
-          <select class="input username"  name="pais" style="width: 160px;" id="pais" onChange="from(document.form1.pais.value,'mai','mod_dep.php')">
+          <select class="input username"  name="pais" style="width: 160px;" id="pais" onKeyPress="return tab(event,this)" onChange="from(document.form1.pais.value,'mai','mod_dep.php')">
           <option value="<?php echo $cod_pais;?>" selected><?php echo $nom_pais;?></option>
           <?php		  
 			$tra=new pais();
@@ -296,7 +299,7 @@ function formulario(f) {
         </tr>
         <tr>
           <td>Distrito: </td>
-          <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" onKeyPress="return validar(event,this)" value="<?php echo $dist_prov;?>" /></td>
+          <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" onkeydown="return tab(event,this)" onKeyPress="return validar(event,this)" value="<?php echo $dist_prov;?>" /></td>
            </tr>
         <tr>
           <td>Direccion: </td>
@@ -304,13 +307,13 @@ function formulario(f) {
            </tr>
         <tr>
           <td>Telefono: </td>
-          <td><input name="telefono" type="text" maxlength="15" style="width: 150px;" class="input username"onkeyUp="return ValNumero(this);" value="<?php echo $telef_prov;?>" />
+          <td><input name="telefono" type="text" maxlength="15" style="width: 150px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" value="<?php echo $telef_prov;?>" />
           Celular: 
-          <input name="celular" type="text" maxlength="15" style="width: 150px;" class="input username" onkeyUp="return ValNumero(this);" value="<?php echo $cel_prov;?>" /></td>
+          <input name="celular" type="text" maxlength="15" style="width: 150px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" value="<?php echo $cel_prov;?>" /></td>
           </tr>
         <tr>
           <td>Fax: </td>
-          <td><input name="fax" type="text" maxlength="15" style="width: 160px;" class="input username" onkeyUp="return ValNumero(this);"  value="<?php echo $fax_prov;?>" />
+          <td><input name="fax" type="text" maxlength="15" style="width: 160px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);"  value="<?php echo $fax_prov;?>" />
           Estado:
           <select class="input username" style="width: 155px;" name="estado" id="estado" onKeyPress="return tab(event,this)" >
             <?php 
@@ -330,6 +333,10 @@ function formulario(f) {
             
           </select></td>
         </tr>
+        <tr>
+          <td>Contacto: </td>
+          <td><input name="contacto" type="text" maxlength="50" style="width: 250px;" class="input username" value="<?php echo $cont_prov;?>" />
+          </tr>
       </table>
     </div>
     <!--END CONTENT-->
@@ -338,7 +345,7 @@ function formulario(f) {
     <div class="footer" >
     <input type="hidden" name="id" value="<?php echo $_GET["id"];?>">
     <input type="hidden" name="grabar" value="si" />
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="GUARDAR" class="button" /><!--END LOGIN BUTTON-->
+    <!--LOGIN BUTTON--><input type="submit" name="submit" value="EDITAR" class="button" /><!--END LOGIN BUTTON-->
     <!--REGISTER BUTTON--><input type="button" name="submit" value="CANCELAR" class="register"onClick="cerrarse()" /><!--END REGISTER BUTTON-->
     <input type="hidden" id="val1" value="" disabled="disabled"/> 
     </div>

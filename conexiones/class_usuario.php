@@ -169,6 +169,7 @@ class usuario
 		$res=mysql_query($sql,Conectar::con());
 		echo "<script type='text/javascript'>
 		alert('El registro ha sido modificado correctamente');
+		cerrar();
 		window.location='mod_usuario.php?id=$id && load=1';
 		</script>
 		<SCRIPT LANGUAGE=javascript>

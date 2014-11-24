@@ -16,7 +16,7 @@ header('Content-Type: text/html; charset=UTF-8');
 	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 
-	<title>PROVEEDOR</title>
+	<title>PROVEEDORES</title>
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
     	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
         
@@ -75,56 +75,6 @@ function elim(url)
 	} );
 } );
 	
-	
-	
-	
-	
-	
-	
-	/*$(document).ready(function() {
-	
-	
-		
-		
-		
-		
-	// Setup - add a text input to each footer cell
-	$('#example  tfoot th').each( function () {
-		var title = $('#example thead th').eq( $(this).index() ).text();
-		$(this).html( '<input type="text" class="buscar" placeholder="Buscar '+title+'" />' );
-	} );
-
-	// DataTable
-	var table = $('#example').DataTable();
-
-	// Apply the search
-	table.columns().eq( 0 ).each( function ( colIdx ) {
-		$( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
-			table
-				.column( colIdx )
-				.search( this.value )
-				.draw();
-		} );
-	} );
-} );
-
-	
-	
-*/
-
-
-
-$(document).ready(function() {
-	
-	
-} );
-
-
-
-
-
-
-
 
 $(document).ready(function() {
 	var table = $('#example').DataTable();
@@ -139,76 +89,12 @@ $(document).ready(function() {
 } );
 
 
-
-
-
-/*
-$(document).ready(function() {
-	$('#example').dataTable();
-	
-	$('#example tbody').on('dblclick', 'tr', function () {
-		var name = $('td', this).eq(0).text();
-		alert( 'You clicked on '+name+'\'s row' );
-	} );
-} );
-*/
-
-
 $(document).ready( function () {
     var table = $('#example').DataTable();
     $.fn.dataTable.KeyTable( table );
 } );
 
 			
-
-
-
-/*
-para sumar en la grilla por json
-
-$(document).ready(function() {
-    $('#example').dataTable( {
-        "footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
- 
-            // Remove the formatting to get integer data for summation
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
- 
-            // Total over all pages
-            data = api.column( 4 ).data();
-            total = data.length ?
-                data.reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                } ) :
-                0;
- 
-            // Total over this page
-            data = api.column( 4, { page: 'current'} ).data();
-            pageTotal = data.length ?
-                data.reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                } ) :
-                0;
- 
-            // Update footer
-            $( api.column( 4 ).footer() ).html(
-                '$'+pageTotal +' ( $'+ total +' total)'
-            );
-        }
-    } );
-} );
-
-
-*/
-
-
-
-
 
 	</script>
 </head>
@@ -231,13 +117,9 @@ $(document).ready(function() {
 						<th><a href="javascript:poptastic('proveedor.php');"><img src="../../../css/images/list-add.png" width="98" height="30" /></a></th>
 									<th>Código</th>
                                     <th>Razón Social</th>
-			                        <th>RUC</th>
-			                        <th>Direccion</th>
-			                        <th>Departamento</th>
-			                        <th>Provincia</th>
-			                        <th>Distrito</th>                      
+			                        <th>RUC</th>                     
 			                        <th>Telefono</th>
-			                        <th>Celular</th>
+			                        <th>Contacto</th>
 						<th></th>
 				
 					</tr>
@@ -258,12 +140,8 @@ for ($i=0;$i<count($reg);$i++)
 									<td><?php echo $reg[$i]["int_cod_prov"];?></td>
                                     <td><?php echo $reg[$i]["var_rsoc_prov"];?></td>
                         			<td><?php echo $reg[$i]["int_nrodoc_prov"];?></td>
-									<td><?php echo $reg[$i]["var_dir_prov"];?></td>
-                        			<td><?php echo $reg[$i]["var_nom_dept"];?></td> 
-                        			<td><?php echo $reg[$i]["var_nom_provi"];?></td>
-                                    <td><?php echo $reg[$i]["var_dist_prov"];?></td>
                                     <td><?php echo $reg[$i]["var_telef_prov"];?></td>
-                        			<td><?php echo $reg[$i]["var_cel_prov"];?></td>
+                        			<td><?php echo $reg[$i]["var_cont_prov"];?></td>
 						
 		
                        <td align='center' ><a href=" javascript:elim('eliminar_proveedor.php?id=<?php echo $reg[$i]["int_cod_prov"];?>'); " ><img src='../../../img/images/delete.png' width='15px' height='15px' title='Eliminar'></a></td>

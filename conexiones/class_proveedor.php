@@ -37,7 +37,8 @@ class proveedor
 		pr.var_nom_provi,
 		p.var_dist_prov,
 		p.var_cel_prov,		
-		p.var_telef_prov
+		p.var_telef_prov,
+		p.var_cont_prov
 		from T_proveedor p
 		inner join T_departamentos d on d.int_cod_dept=p.int_cod_dept
 		inner join T_provincias pr on pr.int_cod_provi=p.int_cod_provi		
@@ -83,7 +84,7 @@ class proveedor
 	*/
 	
 		
-	public function add_proveedor($rsocial_prov,$nrodoc_prov,$tip_prov,$est_prov,$dir_prov,$pais_prov,$dep_prov,$provi_prov,$dist_prov,$cel_prov,$tel_prov,$fax_prov,$usu_crea,$fec_crea,$usu_mod,$fec_mod)
+	public function add_proveedor($rsocial_prov,$nrodoc_prov,$tip_prov,$est_prov,$dir_prov,$pais_prov,$dep_prov,$provi_prov,$dist_prov,$cel_prov,$tel_prov,$fax_prov,$cont_prov,$usu_crea,$fec_crea,$usu_mod,$fec_mod)
 	{
 		$sql="insert into T_proveedor values 
 				(null,
@@ -99,6 +100,7 @@ class proveedor
 				'$cel_prov',
 				'$tel_prov',
 				'$fax_prov',
+				'$cont_prov',
 				'$usu_crea',
 				'$fec_crea',
 				'$usu_mod',
@@ -129,7 +131,8 @@ class proveedor
 		p.var_dist_prov,
 		p.var_cel_prov,		
 		p.var_telef_prov,		
-		p.var_fax_prov	
+		p.var_fax_prov,	
+		p.var_cont_prov
 		from T_proveedor p
 		inner join T_pais pa on pa.int_cod_pais=p.int_cod_pais
 		inner join T_departamentos d on d.int_cod_dept=p.int_cod_dept
@@ -142,7 +145,7 @@ class proveedor
 		}
 			return $this->proveedor;
 	}
-	public function edit_proveedor($idd,$rsocial_prov,$nrodoc_prov,$tip_prov,$est_prov,$dir_prov,$pais_prov,$dep_prov,$provi_prov,$dist_prov,$cel_prov,$tel_prov,$fax_prov,$usu_mod)
+	public function edit_proveedor($idd,$rsocial_prov,$nrodoc_prov,$tip_prov,$est_prov,$dir_prov,$pais_prov,$dep_prov,$provi_prov,$dist_prov,$cel_prov,$tel_prov,$fax_prov,$cont_prov,$usu_mod)
 	{
 		//$sql="update proveedor set nombre_proveedor='$nom',texto='$texto' where id=$id";
 	
@@ -162,6 +165,7 @@ class proveedor
 		var_cel_prov='$cel_prov',
 		var_telef_prov='$tel_prov',
 		var_fax_prov='$fax_prov',
+		var_cont_prov='$cont_prov',
 		var_usumod_prov='$usu_mod',
 		date_fecmod_prov=now()
 		
@@ -175,6 +179,7 @@ class proveedor
 		$res=mysql_query($sql,Conectar::con());
 		echo "<script type='text/javascript'>
 		alert('El registro ha sido modificado correctamente');
+		cerrar();
 		window.location='mod_proveedor.php?id=$idd && load=1';
 		</script>
 		<SCRIPT LANGUAGE=javascript>

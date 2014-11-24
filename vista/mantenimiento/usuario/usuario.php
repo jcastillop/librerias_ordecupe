@@ -83,7 +83,7 @@ function formulario(f) {
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?> >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?> >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -142,11 +142,11 @@ function formulario(f) {
            </tr>
         <tr>
           <td>Nombres Completos: </td>
-          <td><input name="nombres_usu" type="text" maxlength="50" class="input username" id="nombres_usu" style="width: 200px;" onkeydown="return tab(event,this)"  onKeyPress="return validar(event)" /></td>
+          <td><input name="nombres_usu" type="text" maxlength="50" class="input username" id="nombres_usu" style="width: 200px;" onKeyDown="return tab(event,this)"  onKeyPress="return validar(event)" /></td>
         </tr>
         <tr>
           <td>Apellido Paterno: </td>
-          <td><input name="ap_pat" type="text" maxlength="50" class="input username" style="width: 200px;" onkeydown="return tab(event,this)" onKeyPress="return validar(event)" /></td>
+          <td><input name="ap_pat" type="text" maxlength="50" class="input username" style="width: 200px;" onKeyDown="return tab(event,this)" onKeyPress="return validar(event)" /></td>
           </tr>
         <tr>
           <td>Apellido Materno :</td>

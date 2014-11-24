@@ -61,7 +61,7 @@ www.amitjakhu.com
 
 <!--META-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>USUARIO</title>
+<title>Edición de usuario</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
@@ -102,7 +102,7 @@ function formulario(f) {
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -120,7 +120,7 @@ function formulario(f) {
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">USUARIOS</h1>
+    <h1 align="center">EDICIÓN DE USUARIO</h1>
     
     <!--END TITLE-->
   
@@ -202,7 +202,7 @@ function formulario(f) {
     <div class="footer" >
     <input type="hidden" name="id" value="<?php echo $_GET["id"];?>">
     <input type="hidden" name="grabar" value="si" />
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="GUARDAR" class="button" /><!--END LOGIN BUTTON-->
+    <!--LOGIN BUTTON--><input type="submit" name="submit" value="EDITAR" class="button" /><!--END LOGIN BUTTON-->
     <!--REGISTER BUTTON--><input type="button" name="submit" value="CANCELAR" class="register"onClick="cerrarse()" /><!--END REGISTER BUTTON-->
     <input type="hidden" id="val1" value="" disabled="disabled"/> 
     </div>

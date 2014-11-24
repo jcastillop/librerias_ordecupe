@@ -199,14 +199,9 @@ $(document).ready(function() {
 					<tr class="cabecera" >						
 						<th><a href="javascript:poptastic('cliente.php');"><img src="../../../css/images/list-add.png" width="80" height="30" /></th>        
                         <th>R Social</th>                  
-                        <th>Ruc</th>                       
-                        <th>Depart</th>
-                        <th>Prov</th>
-                        <th>Dist</th>
-                        <th>Direc</th>
-                        <th>Ref. Domic</th>
-                        <th>Tel</th>
-                        <th>Mail</th>
+                        <th>Ruc</th> 
+                        <th>Dirección</th>
+                        <th>D.N.I</th>
                         <th>Estado</th>
                         <th></th>
                      </tr>
@@ -224,13 +219,8 @@ for ($i=0;$i<count($reg);$i++)
 			    <td><?php echo $reg[$i]["var_rsoc_cli"];?></td>
                             
                             <td><?php echo $reg[$i]["var_ruc_cli"];?></td>
-                            <td><?php echo $reg[$i]["var_nom_dept"];?></td>                        
-                            <td><?php echo $reg[$i]["var_nom_provi"];?></td>
-                            <td><?php echo $reg[$i]["var_dist_cli"];?></td>
-                            <td><?php echo $reg[$i]["var_dir_cli"];?></td>
-                            <td><?php echo $reg[$i]["var_refdom_cli"];?></td>
-                            <td><?php echo $reg[$i]["var_telf_cli"];?></td>
-			    <td><?php echo $reg[$i]["var_cor_cli"];?></td>
+                            <td><?php echo $reg[$i]["var_dir_cli"]."-".$reg[$i]["var_dist_cli"];?></td>
+                            <td><?php echo $reg[$i]["var_dni_cli"];?></td>
                             <td><?php echo $reg[$i]["int_est_cli"];?></td>
 		
                        <td align='center' ><a href=" javascript:elim('eliminar_cliente.php?id=<?php echo $reg[$i]["int_cod_cli"];?>'); " ><img src='../../../img/images/delete.png' width='15px' height='15px' title='Eliminar'></a></td>

@@ -39,7 +39,7 @@ class cliente
 				pr.var_nom_provi,
 				c.var_dist_cli,
 				c.var_telf_cli,
-				c.var_cor_cli
+				c.var_dni_cli
 				from T_cliente c
 				inner join T_departamentos d on d.int_cod_dept=c.int_cod_dept
 				inner join T_provincias pr on pr.int_cod_provi=c.int_cod_provi
@@ -218,6 +218,7 @@ class cliente
 		$res=mysql_query($sql,Conectar::con());
 		echo "<script type='text/javascript'>
 		alert('El registro ha sido modificado correctamente');
+		cerrar();
 		window.location='mod_cliente.php?id=$id && load=1';
 		</script>
 		 

@@ -4,7 +4,7 @@
             window.opener.document.getElementById('deHijo').innerHTML = "Este texto viene de la página hijo: "+data;        
 			
 			
-            /*this.window.close();*/
+            this.window.close();
 			opener.location.reload();
         }
 		
@@ -87,7 +87,7 @@
 </head>
 <script language="Javascript"> 
 function confirmar(){ 
-confirmar=confirm("¿ESTAS SEGURO QUE QUIERES ELIMINAR ESTE CLIENTE?"); 
+confirmar=confirm("¿ESTAS SEGURO QUE QUIERES ELIMINAR ESTE PROVEEDOR?"); 
 if (confirmar) 
 // si pulsamos en aceptar
 window.location.assign("eliminar_proveedor.php?dato=<?php echo $_GET['id']; ?>")

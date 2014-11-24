@@ -125,16 +125,17 @@ function formulario(f) {
 		 alert ('El campo RUC tiene menos de 11 Digitos, Complete los digitos porfavor!!');
   		f.nro_doc.focus(); return false; 
 		}
+	if (f.distrito.value   == '') { alert ('El campo Distrito esta vacío, ingrese un dato porfavor!!');  
+	f.distrito.focus(); return false; }
 	if (f.direccion.value   == '') { alert ('El campo Dirección  esta vacío, ingrese un dato porfavor!!');  
 	f.direccion.focus(); return false; }
-	if (f.telefono.value   == '') { alert ('El campo Teléfono esta vacío, ingrese un dato porfavor!!');  
-	f.telefono.focus(); return false; }
-	
+	if (f.contacto.value   == '') { alert ('El campo Contacto  esta vacío, ingrese un dato porfavor!!');  
+	f.contacto.focus(); return false; }	
  return true; } 
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -152,7 +153,7 @@ function formulario(f) {
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">PROVEEDORES</h1>	
+    <h1 align="center">PROVEEDOR</h1>	
     
     <!--END TITLE-->
   
@@ -212,7 +213,7 @@ function formulario(f) {
         </tr>
         <tr>
           <td>Distrito: </td>
-          <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" onKeyPress="return tab(event,this)" onKeyPress="return validar(event)" /></td>
+          <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" onKeyDown="return tab(event,this)" onKeyPress="return validar(event)" /></td>
            </tr>
         <tr>
           <td>Dirección: </td>
@@ -226,7 +227,11 @@ function formulario(f) {
            </tr>
         <tr>
           <td>Fax: </td>
-          <td><input name="fax" type="text" maxlength="15" style="width: 160px;" class="input username" onkeyUp="return ValNumero(this);" />
+          <td><input name="fax" type="text" maxlength="15" style="width: 150px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" /></td>
+        </tr>
+        <tr>
+        <td>Contacto:</td>
+        <td><input name="contacto" type="text" maxlength="50" style="width: 250px;" class="input username" />
           <input name="estado" id="estado" type="hidden" value="1" class="input username" /></td>
         </tr>
       </table>

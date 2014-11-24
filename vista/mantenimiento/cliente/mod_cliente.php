@@ -77,7 +77,7 @@ www.amitjakhu.com
 <?php
 header('Content-Type: text/html; charset=UTF-8'); 
 ?>
-<title>Modificacion Cliente</title>
+<title>Edición Cliente</title>
 
 <!--STYLESHEETS-->
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
@@ -191,7 +191,7 @@ function formulario(f) {
 </script>
 
 </head>
-<body <?php if (isset($_GET['load'])){ echo "onload='cerrar();'";  } ?>   >
+<body <?php if (isset($_GET['load'])){ echo "onload='cerrarse();'";  } ?>   >
 
 <!--WRAPPER-->
 <div id="wrapper">
@@ -209,7 +209,7 @@ function formulario(f) {
 	<!--HEADER-->
     <div class="header">
     <!--TITLE-->
-    <h1 align="center">CLIENTE</h1>
+    <h1 align="center">EDICIÓN DE CLIENTE</h1>
     
     <!--END TITLE-->
   
@@ -375,7 +375,7 @@ function formulario(f) {
     <!--FOOTER-->
     <div class="footer" >
  
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="GUARDAR" class="button" /><!--END LOGIN BUTTON-->
+    <!--LOGIN BUTTON--><input type="submit" name="submit" value="EDITAR" class="button" /><!--END LOGIN BUTTON-->
     <!--REGISTER BUTTON--><input type="button" name="submit" value="CANCELAR" class="register"onClick="cerrarse()" /><!--END REGISTER BUTTON-->
        <input type="hidden" name="id" value="<?php echo $_GET["id"];?>">
     <input type="hidden" name="grabar" value="si" />
