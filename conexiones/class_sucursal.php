@@ -73,7 +73,7 @@ class sucursal
 	
 	public function get_combo_sucursal_update($id_suc)
 	{
-		$sql="select int_cod_emp,var_nom_emp from T_empresa where int_est_suc<>0 and not int_cod_emp='$id_emp'  ORDER BY int_cod_emp";
+		$sql="select int_cod_emp,var_nom_emp from T_empresa where int_est_emp=1 and not int_cod_emp='$id_emp'  ORDER BY int_cod_emp";
 		
 		$res=mysql_query($sql,Conectar::con());
 		
@@ -99,7 +99,7 @@ class sucursal
 	
 	public function get_combo_sucursal()
 	{
-		$sql="select int_cod_suc, var_nom_suc from T_sucursal where int_est_suc<>0 ORDER BY int_cod_suc";
+		$sql="select int_cod_suc, var_nom_suc from T_sucursal where int_est_suc=1 ORDER BY int_cod_suc";
 		
 		$res=mysql_query($sql,Conectar::con());
 		

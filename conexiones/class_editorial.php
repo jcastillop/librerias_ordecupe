@@ -48,7 +48,7 @@ class editorial
 	
 	public function get_combo_editorial()
 	{
-		$sql="select * from T_editoriales where int_est_edit<>0 ORDER BY int_cod_edit";
+		$sql="select * from T_editoriales where int_est_edit=1 ORDER BY int_cod_edit";
 		
 		$res=mysql_query($sql,Conectar::con());
 		
@@ -61,7 +61,7 @@ class editorial
 	
 	public function get_combo_editorial_update($id_editorial)
 	{
-		$sql="select * from T_editoriales where int_est_edit<>0 and not int_cod_edit='$id_editorial'  ORDER BY int_cod_edit";
+		$sql="select * from T_editoriales where int_est_edit=1 and not int_cod_edit='$id_editorial'  ORDER BY int_cod_edit";
 		
 		$res=mysql_query($sql,Conectar::con());
 		

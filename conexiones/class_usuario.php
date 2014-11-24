@@ -27,7 +27,7 @@ class usuario
 
    public function get_combo_usuario()
 	{
-		$sql="select int_cod_usu, CONCAT(var_nom_usu , ' ' , var_appat_usu, ' ',var_apmat_usu) as nombre from T_usuario t where t.int_est_usu<>0";
+		$sql="select int_cod_usu, CONCAT(var_nom_usu , ' ' , var_appat_usu, ' ',var_apmat_usu) as nombre from T_usuario t where t.int_est_usu=1";
 		
 		$res=mysql_query($sql,Conectar::con());
 		
