@@ -93,7 +93,7 @@
               
                     
                     
-                    for (var i=1;i<document.getElementById('grilla').rows.length-2;i++){ 
+                    for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
                         pedido_detalle = pedido_detalle + 
                             '{"codigo_libro":' 
                             + document.getElementById('grilla').rows[i].cells[0].childNodes[1].value + ", "
