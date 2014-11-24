@@ -34,6 +34,7 @@ class editorial
 				var_desc_edit,
 				case when int_est_edit=1 then 'Activo' else 'Inactivo' end int_est_edit
 				from T_editoriales where int_est_edit<>0
+				Order by int_cod_edit desc
 		
 		";	
 		
