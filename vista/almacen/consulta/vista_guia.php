@@ -200,8 +200,8 @@ $(document).ready(function() {
                         <td><?php echo $reg[$i]["date_fecenv_guia_cab"];?></td>
 						<td><?php echo $reg[$i]["date_fecadd_guia_cab"];?></td>
                         <td><?php echo $reg[$i]["int_est_impr_guia_cab"];?></td>
-						<td align='center'><a href=" javascript:poptastic('reporte_historial.php?id=<?php echo $reg[$i]["var_cod_guia_cab"];?>'); " ><img src='../../../img/images/pdf.png' width='15px' height='15px'></a></td>
-						<td align='center'><a href=" javascript:impr('imprimir.php?id=<?php echo $reg[$i]["var_cod_guia_cab"];?>'); " ><img src='../../../img/images/impre.gif' width='15px' height='15px'></a></td>
+						<td align='center'><a href=" javascript:poptastic('reporte_historial.php?id=<?php echo $reg[$i]["var_cod_guia_cab"];?>&ser=<?php echo $reg[$i]["var_cod_ser"];?>&suc=<?php echo $reg[$i]["int_cod_suc"];?>&emp=<?php echo $reg[$i]["int_cod_emp"];?>'); " ><img src='../../../img/images/pdf.png' width='15px' height='15px'></a></td>
+						<td align='center'><a href=" javascript:impr('imprimir.php?id=<?php echo $reg[$i]["var_cod_guia_cab"];?>&ser=<?php echo $reg[$i]["var_cod_ser"];?>&suc=<?php echo $reg[$i]["int_cod_suc"];?>&emp=<?php echo $reg[$i]["int_cod_emp"];?>'); " ><img src='../../../img/images/impre.gif' width='15px' height='15px'></a></td>
 						<td align='center' ><a href=" javascript:elim('eliminar_guia.php?id=<?php echo $reg[$i]["var_cod_guia_cab"];?>'); " ><img src='../../../img/images/close_delete.png' width='15px' height='15px'></a></td>
 					
 					</tr>

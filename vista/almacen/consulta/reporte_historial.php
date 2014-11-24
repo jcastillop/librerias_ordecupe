@@ -116,7 +116,7 @@ function PutLink($URL, $txt)
 
 $tra=new guia_cabecera();
 
-$reg=$tra->get_guia_por_id($_GET['id']);
+$reg=$tra->get_guia_por_id($_GET['id'],$_GET['ser'],$_GET['suc'],$_GET['emp']);
 
 
 	
@@ -338,7 +338,7 @@ $pdf->Ln(10);
 						
 	
 $tra= new guia_cabecera();
-					$reg=$tra->get_guia_detalle_por_id($_GET['id']);
+					$reg=$tra->get_guia_detalle_por_id($_GET['id'],$_GET['ser'],$_GET['suc'],$_GET['emp']);
 					for ($i=0;$i<count($reg);$i++)
 					{
 						$pdf->SetTextColor(0,0,0);

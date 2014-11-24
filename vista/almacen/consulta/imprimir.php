@@ -97,7 +97,7 @@
 <div  align="center" >
 <fieldset  class="bordes">
  
- <a class="imprimir" href="reporte_historial_1.php?id=<?php echo $_GET['id']; ?>">Si</a>
+ <a class="imprimir" href="reporte_historial_1.php?id=<?php echo $_GET['id']; ?>&ser=<?php echo $_GET['ser']; ?>&suc=<?php echo $_GET['suc']; ?>&emp=<?php echo $_GET['emp']; ?>">Si</a>
  <a class="imprimir" onClick="window.close();">No</a>
  
 </fieldset>

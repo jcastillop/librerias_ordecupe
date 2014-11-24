@@ -34,6 +34,7 @@ class guia_cabecera
 			   	g.var_cod_guia_cab,
 				g.var_cod_ser,
 				g.int_cod_suc,
+				g.int_cod_emp,
 				c.int_cod_cli,
 				c.var_rsoc_cli,
 				g.int_cod_usu,

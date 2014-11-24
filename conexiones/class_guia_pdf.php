@@ -14,7 +14,7 @@ class guia_cabecera
 			$this->guia_cabecera=array();
 		}
 
-	public function get_guia_por_id($id)
+	public function get_guia_por_id($id,$ser,$suc,$emp)
 	{
 		$sql="select 
 			 	g.var_cod_guia_cab,
@@ -59,7 +59,7 @@ class guia_cabecera
 				inner join T_pedido_cabecera p on p.var_cod_pedi_cab=g.var_cod_pedi_cab
 				inner join T_tipo_movimiento m on m.int_cod_mov=g.int_cod_mov
 				inner join T_usuario u on u.int_cod_usu=g.int_cod_usu
-				where g.var_cod_guia_cab='$id'";				
+				where g.var_cod_guia_cab='$id' and g.var_cod_ser='$ser' and g.int_cod_suc=$suc and g.int_cod_emp=$emp";				
 		 
 		$res=mysql_query($sql,Conectar::con());
 		while ($reg=mysql_fetch_assoc($res))
@@ -73,10 +73,10 @@ class guia_cabecera
 	
 	
 	
-	public function get_guia_detalle_por_id($id)
+	public function get_guia_detalle_por_id($id,$ser,$suc,$emp)
 	{
 		$sql="select d.var_cod_guia_det, d.int_cod_tit,t.var_nom_tit,d.int_cant_guia_det,d.dec_pvent_guia_det,d.dec_vtotal_guia_det  from T_guia_detalle d
-INNER JOIN T_titulos t on  t.int_cod_tit=d.int_cod_tit where d.var_cod_guia_cab='$id'";		
+INNER JOIN T_titulos t on  t.int_cod_tit=d.int_cod_tit where d.var_cod_guia_cab='$id' and d.var_cod_ser='$ser' and d.int_cod_suc=$suc and d.int_cod_emp=$emp";		
 		 
 		$res=mysql_query($sql,Conectar::con());
 		while ($reg=mysql_fetch_assoc($res))

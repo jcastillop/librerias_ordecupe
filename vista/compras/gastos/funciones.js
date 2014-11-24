@@ -81,6 +81,7 @@ $(document).ready(function(){
                     return false;   
                     }
                 });
+
                 $("#monto").change(function() {
                     cadena = "<tr>";
                     cadena = cadena + "<td><input name='desc[]' class='input username' id='desc[]' type='text' value='"+ $("#descripcion").val() +"' size='15' OnFocus='this.blur()'/></td>";

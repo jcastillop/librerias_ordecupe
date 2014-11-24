@@ -234,9 +234,12 @@ $(document).ready(function(){
                         si es 0 es debido a que es un registro nuevo, en caso sea 1
                         es un registro existente que se editó
                         */
+                        
+                        /*
                         if(res.tipo==0){
                             Abrir_ventana('../consulta/reporte_historial_1.php?id='+res.codigo);
                         };
+                        */
                              
                         limpiarformulario("#form");
                         $("#condiciones").val("Transacción");   
