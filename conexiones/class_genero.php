@@ -33,6 +33,7 @@ class genero
 				var_des_gen,
 				case when int_est_gen=1 then 'Activo' else 'Inactivo' end int_est_gen
 				from T_generos where int_est_gen<>0
+				order by int_cod_gen desc
 		
 		";	
 		
