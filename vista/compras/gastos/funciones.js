@@ -4,28 +4,78 @@ $(document).ready(function(){
   //capturando los datos para la edicion
   if(typeof $_GET("id") != 'undefined'){
                   
-    var id_completo=$_GET("id");
+    var codigo=$_GET("id");
 		var sucursal=$_GET("sucursal");
-				
-    //var id = id_completo.substring(6, 12);
-    $("#codigo_compra").val(id_completo);
+    var empresa=1;
+
+    $("#codigo_compra").val(codigo);
+
     $("#codigo_sucursal").val(sucursal);
-				
+
+
+
+
+    $.ajax({
+      type: "GET",
+      url: "gastos_buscar.php",
+      //concatenamos los parametros que usaremos para buscar los registros
+      data: "cod=" + codigo + "&suc=" + sucursal+ "&emp=" + empresa,
+      success: function(datos){
+        //decodificando el JSON proveniente de guias_buscar.php                        
+        var jsonData = JSON.parse(datos);
+        cadena_precio_mercaderia="<tr>";
+        cadena_precio_mercaderia= cadena_precio_mercaderia + "<td><input name='desc[]' class='input username' type='text' value='FOB(Precio Mercaderia)' size='15' OnFocus='this.blur()'/></td>";
+        cadena_precio_mercaderia= cadena_precio_mercaderia + "<td><input name='monto[]' class='input username' type='text' value='"+ jsonData[0].total +"' size='30' OnFocus='this.blur()'/></td>";
+        cadena_precio_mercaderia= cadena_precio_mercaderia + "</tr>";
+
+        $("#grilla tbody").append(cadena_precio_mercaderia);
+                        for(i=0;i<jsonData.length;i++){
+                //cargando en un array en una cadena con el formato de la tabla detalle        
+                    cadena = "<tr>";
+                    cadena = cadena + "<td><input name='desc[]' class='input username' type='text' value='"+ jsonData[i].var_des_comp_gas +"' size='15' OnFocus='this.blur()'/></td>";
+                    cadena = cadena + "<td><input name='monto[]' class='input username' type='text' value='"+ jsonData[i].dec_val_comp_gas +"' size='30' OnFocus='this.blur()'/></td>";
+                    cadena = cadena + "<td><a class='elimina'><img src='delete.png' /></a></td>";
+                    cadena= cadena + "</tr>";
+                    //agregando la cadena a la grilla
+                    $("#grilla tbody").append(cadena);
+
+
+                };
+                $("#fecha_compra").val(jsonData[0].date_fec_rec_comp_cab);
+                $("#descripcion_compra").val(jsonData[0].var_desc_comp_cab);
+                $("#fob_compra").html(jsonData[0].total);
+                                    //estableciendo el foco 
+                    $("#descripcion").focus();
+                    //funcion eliminar permite activar la opcionde borrar los registros
+                    fn_dar_eliminar();
+                    //halla la cantidad de registros cargados a la grilla
+                    fn_cantidad();
+                    //realiza la suma total correspondiente al valor de los productos
+                    fn_sumatotal();
+
+
+      },
+
+      error: function(datos) {
+        alert("Data not found");
+      }
+
+    });
   };
-                //Iniciando las validaciones del formulario
-                $("#form").validate({
-                //Especificando las reglas de validacion
-                
-                    rules: {
-                        codigo_compra: {
-                        required: true
-                        },
-                    },
-                // Especificandolos mensaje
-                    messages: {
-                        codigo_compra: "*",
-                    },
-                    submitHandler: function(form) {
+  //Iniciando las validaciones del formulario
+  $("#form").validate({
+  //Especificando las reglas de validacion
+               
+    rules: {
+      codigo_compra: {
+      required: true
+      },
+    },
+    // Especificandolos mensaje
+    messages: {
+      codigo_compra: "*",
+    },
+    submitHandler: function(form) {
                         //Variables Cabecera Pedido
                         
                     var cod_com=$("#codigo_compra").val();
@@ -84,6 +134,7 @@ $(document).ready(function(){
 
                 $("#monto").change(function() {
                     cadena = "<tr>";
+                    
                     cadena = cadena + "<td><input name='desc[]' class='input username' id='desc[]' type='text' value='"+ $("#descripcion").val() +"' size='15' OnFocus='this.blur()'/></td>";
                     cadena = cadena + "<td><input name='monto[]' class='input username' id='nombre[]' type='text' value='"+ $("#monto").val() +"' size='30' OnFocus='this.blur()'/></td>";
                     cadena = cadena + "<td><a class='elimina'><img src='delete.png' /></a></td>";
@@ -93,7 +144,7 @@ $(document).ready(function(){
                     $("#descripcion").focus();
                     fn_dar_eliminar();
                     fn_cantidad();
-              
+                    fn_sumatotal();
  
                 });
 	                                           
@@ -106,6 +157,24 @@ $(document).ready(function(){
                 $("#span_cantidad").html(cantidad);
                
             };
+            function fn_sumatotal(){
+                    
+    var total=0;
+    for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
+                    
+        total= total + parseFloat(document.getElementById('grilla').rows[i].cells[1].childNodes[0].value);
+             
+    }
+    $("#suma_total").html(total); 
+    $("#total_compra").html(total);
+    var fob=parseFloat($("#fob_compra").html());
+    if(total>0){
+      var fac=total/fob;
+      $("#factor").html(fac); 
+      
+    }
+
+};  
             
             
       
@@ -118,7 +187,7 @@ $(document).ready(function(){
                         $(this).parents("tr").fadeOut("normal", function(){
                             $(this).remove();
                             fn_cantidad(); 
-                       
+                            fn_sumatotal();
                             /*
                                 aqui puedes enviar un conjunto de datos por ajax
                                 $.post("eliminar.php", {ide_usu: id})

@@ -53,21 +53,42 @@ header('Content-Type: text/html; charset=UTF-8');
     <body>	
     
     <form  id="form">
-    <div class="container" id="registro">
-            <h4 align="center" >Registro costos de transporte ____cod:<input name ="codigo_compra" type="text" id="codigo_compra" style="width:80px" /></h4>
-                 
-                
+        <div class="container2" id="calculos">
+            <h4 align="center" >Costo porque</h4>
+                <label for="lblcod"style="margin-left:50px" >Codigo compra</label>
+                <input name ="codigo_compra" type="text" id="codigo_compra" style="width:80px" />
+
+                <input name ="codigo_sucursal" type="hidden" id="codigo_sucursal"/>
+
+                <label for="lblfec"style="margin-left:50px" >Fecha compra</label>
+                <input name ="fecha_compra" type="text" id="fecha_compra" style="width:100px" />
+
+                <label for="lbldesc"style="margin-left:50px" >Descripción de compra</label>
+                <input name ="descripcion_compra" type="text" id="descripcion_compra" class="input username" style="width:200px" />
                      
+                <label for="lblfactor"style="margin-left:380px" >Factor = GASTO TOTAL / FOB =</label>
+                <span id="total_compra">0</span>
+                
+                /
+                
+                <span id="fob_compra">0</span>
+                =
+                <span id="factor">0</span>
+        </div>
+        <div class="container3" id="registro">
+            <h4 align="center" >Registro costos de transporte</h4>
+                 
+                                    
                      
                      <input name ="codigo_sucursal" type="hidden" id="codigo_sucursal"/>
 
-                     <label for="lbldesc"style="margin-left:100px" >Descripción</label>
+                     <label for="lbldesc"style="margin-left:250px" >Descripción</label>
                      <input name ="descripcion" type="text" id="descripcion" class="input username" style="width:100px" />
                      
                      <label for="lblcodcomp"style="margin-left:100px" >Monto</label>
                      <input name ="monto" type="text" id="monto" class="input username" style="width:100px"  onkeypress="return tabular(event,this)" />
 			
-                </div>
+        </div>
 
             	
 			<div align="center" class="container4" style="height:auto; overflow: scroll;" >
@@ -84,9 +105,9 @@ header('Content-Type: text/html; charset=UTF-8');
                 </tbody>
                 <tfoot>
                 	<tr>
-                        <td colspan="2"><strong>Cantidad:</strong> <span id="span_cantidad">0</span> productos.</td>
+                        <td><strong>Cantidad:</strong> <span id="span_cantidad">0</span> productos.</td>
                         <td><strong>Acción:</strong> <input id="submit" name="Submit" class="enviar" value="Enviar" type="submit"></td>
-                        
+                        <td><strong>Suma total:</strong> <span id="suma_total">0</span></td>
                     </tr>
                 </tfoot>
             </table>
