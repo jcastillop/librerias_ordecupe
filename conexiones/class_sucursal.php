@@ -114,9 +114,9 @@ class sucursal
 	{
 		$sql="CALL proc_insertar_sucursal(".$cod_emp.",'".$nom_suc."','".$des_suc."',".$est_suc.",".$pais_suc.",".$dept_suc.",".$prov_suc.",'".$dir_suc."','".$telf_suc."','".$usu_crea."','".$fec_crea."',@n_Flag, @c_msg); ";
 		$res=mysql_query($sql,Conectar::con());
-		$sql="insert into T_cliente (var_rsoc_cli, int_est_cli, int_iden_suc_cli, int_tipper_cli, var_dir_cli, int_cod_pais, int_cod_dept, 
+		$sql="insert into T_cliente (var_rsoc_cli, int_est_cli, int_iden_suc_cli, int_tipper_cli,var_ruc_cli,var_dir_cli, int_cod_pais, int_cod_dept, 
               	                       int_cod_provi, var_usuadd_cli, date_fecadd_cli)
-                               values ('$nom_suc','1','1','1','$dir_suc','$pais_suc','$dept_suc','$prov_suc','$usu_crea','$fec_crea');";
+                               values ('$nom_suc','1','1','1','20100488699','$dir_suc','$pais_suc','$dept_suc','$prov_suc','$usu_crea','$fec_crea');";
 		$res=mysql_query($sql,Conectar::con());
 		echo "<script type='text/javascript'>
 		alert('SE INSERTO CORRECTAMENTE $cod_emp');
