@@ -69,7 +69,7 @@
 						ruc: {
                             required: "*",
                             maxlength: "Máximo 11 caracteres"
-                        },
+                        },						
                         vendedor: "*"
                        
                        
@@ -258,7 +258,7 @@
                 });
 
             };
-
+	   
             function fn_sumatotal(){
                     var total=0;
                     for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
