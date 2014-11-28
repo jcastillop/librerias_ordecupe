@@ -62,18 +62,25 @@
 
 	public function edit_serie($cod_suc, $cod_emp, $cod_ser, $est_ser, $usumod_ser, $fecmod_ser)
 	{
-		$sql="update T_serie t set t.int_est_ser='$est_ser',
-		                           t.var_usumod_ser='$usumod_ser',
-		                           t.date_fecmod_ser='$fecmod_ser' 
-		                     where t.int_cod_suc='$cod_suc' and
-		                           t.int_cod_emp='$cod_emp' and
-		                           t.var_cod_ser='$cod_ser'";
+		$sql="CALL proc_modificar_serie($cod_suc.,$cod_emp,'$cod_ser',$est_ser,'$usumod_ser','$fecmod_ser',@n_Flag, @c_msg); ";
 		$res=mysql_query($sql,Conectar::con());
-		echo "<script type='text/javascript'>
-		        alert('El registro ha sido modificado correctamente');
-				cerrar();
-		        window.location='mod_serie.php?ser_id=$cod_ser&suc_id=$cod_suc&emp_id=$cod_emp && load=1';
-		      </script>";	
+		$array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
+        $array_msg = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
+        $codigo_flag = $array_flag["@n_Flag"];
+        $codigo_msg = $array_msg["@c_msg"];
+
+        if ($codigo_flag==0){
+		    echo "<script type='text/javascript'>
+		           alert('".$codigo_msg."');
+				   cerrar();
+		           window.location='mod_serie.php?ser_id=$cod_ser&suc_id=$cod_suc&emp_id=$cod_emp && load=1';
+		          </script>";	
+        } 
+        else{
+            echo "<script type='text/javascript'>
+		          alert('".$codigo_msg."');
+		         </script>";	
+        }
 	}
 
 	public function eliminar_serie($cod_suc, $cod_emp, $cod_ser)
