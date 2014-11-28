@@ -145,7 +145,7 @@ $(document).ready(function () {
                         <input name ="fecha_registro" type="text" id="datepicker" class="fecha"  />
                         <label for="lblcond" style="margin-left:235px">Condicion:</label>
                         <label name="lbl_ventas" id="lbl_ventas" style="width:80px;margin-left:40px"><input name="ventas" type="checkbox" style="width:80px;" onclick="javascript:validaCondicion(this.checked)" id="ventas"/>Venta a Plazo: </label>
-                        <input name="condiciones" class="condiciones" id="condiciones" value="0" disabled type="text" id="condiciones">   
+                        <input name="condiciones" class="condiciones" style="width:40px;" id="condiciones" value="0" disabled type="text" id="condiciones">días   
                   <br><label for="lblcli" style="margin-left:68px"> Cliente:</label>
                     <input name="cliente" class="cliente"  type="text" id="cliente"  onKeyDown ="detectar_tecla (event);validar_ruc();" onkeyup="validar_ruc();validar_ruc_2();" onfocus="validar_datos()"  />
                    
