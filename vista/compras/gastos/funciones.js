@@ -169,7 +169,7 @@ $(document).ready(function(){
     $("#total_compra").html(total);
     var fob=parseFloat($("#fob_compra").html());
     if(total>0){
-      var fac=total/fob;
+      var fac=parseFloat(Math.round(total/fob * 100) / 100).toFixed(2);
       $("#factor").html(fac); 
       
     }
