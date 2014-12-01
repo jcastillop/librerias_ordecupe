@@ -91,7 +91,13 @@
                     
                     var pedido_detalle = "[";
               
-                    
+                    if($("#afecto").is(':checked')) {
+		             	var igv=0.18;
+						var igv_t=18;
+		               } else {
+			             var igv=0;
+						 var igv_t=0;
+		               }
                     
                     for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
                         pedido_detalle = pedido_detalle + 
@@ -102,11 +108,11 @@
                             + '"cantidad_libro":'
                             + document.getElementById('grilla').rows[i].cells[3].childNodes[0].value + ", "
                             + '"valor_impuesto":'
-                            + (document.getElementById('grilla').rows[i].cells[3].childNodes[0].value * document.getElementById('grilla').rows[i].cells[2].childNodes[0].value) * 0.18 + ", "
+                            + (document.getElementById('grilla').rows[i].cells[3].childNodes[0].value * document.getElementById('grilla').rows[i].cells[2].childNodes[0].value) * igv + ", "
                             + '"valor_descuento":'
                             + (document.getElementById('grilla').rows[i].cells[3].childNodes[0].value * document.getElementById('grilla').rows[i].cells[2].childNodes[0].value) * document.getElementById('grilla').rows[i].cells[4].childNodes[0].value + ", "
                             + '"porcentaje_impuesto":'
-                            + 18 + ", "
+                            + igv_t + ", "
                             + '"porcentaje_descuento":'
                             + document.getElementById('grilla').rows[i].cells[4].childNodes[0].value + ", "
                             + '"costo_total_libro":'
