@@ -5,8 +5,7 @@ require_once("../../../conexiones/conexion.php");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-		<head>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>VENTAS</title>
         <script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.j"></script>
@@ -17,76 +16,77 @@ require_once("../../../conexiones/conexion.php");
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
      
- 		<link href="../../../css/estilo.css" rel="stylesheet" type="text/css" />
+  <link href="../../../css/estilo.css" rel="stylesheet" type="text/css" />
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
         
         <script type='text/javascript' src="busquedas/js/jquery.autocomplete.js"></script>
-		<link rel="stylesheet" type="text/css" href="busquedas/js/jquery.autocomplete.css" />
-        <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
+<link rel="stylesheet" type="text/css" href="busquedas/js/jquery.autocomplete.css" />
         
-		 <script type="text/javascript">
+ <script type="text/javascript">
+
+ function validaCondicion(b_valida)
+ {
+    document.forms['contact-form'].condiciones.disabled=!b_valida;
+    if(!b_valida){
+      document.forms['contact-form'].condiciones.value=0;
+    }
+    else{
+      document.forms['contact-form'].condiciones.value='';
+    } 
+
+ }
+ 
+ 
+
+$().ready(function() {
+	$("#cliente").autocomplete("busquedas/autoCompleteMain.php", {
+		width: 260,
+		matchContains: true,
+		//mustMatch: true,
+		//minChars: 0,
+		//multiple: true,
+		//highlight: false,
+		//multipleSeparator: ",",
+		selectFirst: false
+	});
+	
+	$("#cliente").result(function(event, data, formatted) {
+		$("#clienteID").val(data[1]);
+		$("#ruc").val(data[2]);
+		$("#direccion").val(data[3]);
+		$("#distrito").val(data[4]);
+	
+	});
+});
+
+
+
+$(document).ready(function () {
+ 
+         var inputs = $(':input').keypress(function (e) {
+             if (e.which == 13) {
+                 e.preventDefault();
+                 var nextInput = inputs.get(inputs.index(this) + 1);
+                 if (nextInput) {
+                     nextInput.focus();
+                 }
+             }
+         });
+ 
+              });
+			  
+			  
+
+
+       
+        </script>
         
-			 function validaCondicion(b_valida)
-			 {
-				document.forms['contact-form'].condiciones.disabled=!b_valida;
-				if(!b_valida){
-				  document.forms['contact-form'].condiciones.value=0;
-				}
-				else{
-				  document.forms['contact-form'].condiciones.value='';
-				} 
-			
-			 }
         
-			 $().ready(function() {
-				$("#cliente").autocomplete("busquedas/autoCompleteMain.php", {
-					width: 260,
-					matchContains: true,
-					//mustMatch: true,
-					//minChars: 0,
-					//multiple: true,
-					//highlight: false,
-					//multipleSeparator: ",",
-					selectFirst: false
-				});
-            
-				$("#cliente").result(function(event, data, formatted) {
-					$("#clienteID").val(data[1]);
-					$("#ruc").val(data[2]);
-					$("#direccion").val(data[3]);
-					$("#distrito").val(data[4]);
-				
-					});
-				});
-			
-        
-        
-        		$(document).ready(function () {
-         
-                 var inputs = $(':input').keypress(function (e) {
-                     if (e.which == 13) {
-                         e.preventDefault();
-                         var nextInput = inputs.get(inputs.index(this) + 1);
-                         if (nextInput) {
-                             nextInput.focus();
-                         }
-                     }
-                 });
-         
-                      });
-                      
-                      
-        
-        
-               
-                </script>
-            
-            
-        </head>
+    </head>
+
     
-        
-        
-    <script>
+    
+<script>
     function tabular(e,obj) {
         tecla=(document.all) ? e.keyCode : e.which;
         if(tecla!=13) return;
@@ -98,9 +98,9 @@ require_once("../../../conexiones/conexion.php");
             }
         frm.elements[i+1].focus();
         return false;
-    	};
+    };
 
-	</script> 
+</script> 
     
 <body>	
             <form name="form"  id="contact-form" class="login-form">
@@ -145,9 +145,15 @@ require_once("../../../conexiones/conexion.php");
                     </select><br>
                         <label for="lblfec" style="margin-left:75px">Fecha:</label>
                         <input name ="fecha_registro" type="text" id="datepicker" class="fecha"  />
-                        <label for="lblcond" style="margin-left:235px">Condicion:</label>
-                        <label name="lbl_ventas" id="lbl_ventas" style="width:80px;margin-left:40px"><input name="ventas" type="checkbox" style="width:80px;" onclick="javascript:validaCondicion(this.checked)" id="ventas"/>Venta a Plazo: </label>
-                        <input name="condiciones" class="condiciones" style="width:40px;" id="condiciones" value="0" disabled type="text" id="condiciones">días   
+                        <label name="lbl_afecto" id="lbl_afecto" style="width:80px;margin-left:10px">V. Afecto(IGV): </label>
+                        <input name="afecto" type="checkbox" style="width:80px;"  id="afecto" value="0" />
+                        
+                        
+     <label for="lblcond" style="margin-left:50px">Condicion:</label>
+                        
+                        
+     <label name="lbl_ventas" id="lbl_ventas" style="width:80px;margin-left:10px"><input name="ventas" type="checkbox" style="width:80px;" onclick="javascript:validaCondicion(this.checked)" id="ventas"/>Venta a Plazo: </label>
+                        <input name="condiciones" class="condiciones" id="condiciones" value="0" disabled type="text" />
                   <br><label for="lblcli" style="margin-left:68px"> Cliente:</label>
                     <input name="cliente" class="cliente"  type="text" id="cliente"  onKeyDown ="detectar_tecla (event);validar_ruc();" onkeyup="validar_ruc();validar_ruc_2();" onfocus="validar_datos()"  />
                    
@@ -156,8 +162,11 @@ require_once("../../../conexiones/conexion.php");
                 <label for="lbldir">Direccion:</label>
                       <input name="direccion" class="input username"  type="text" id="direccion"  />
                  <label for="lbldis">   Distrito:</label>
-                    <input name="distrito" class="input username"  type="text" id="distrito" onKeyPress="return validar(event)" ></input>
+                    <input name="distrito" class="input username"  type="text" id="distrito" />
                     
+            
+            <input name="checkbox_comprobar" id="checkbox_comprobar" type="button" value="Comprobar" />  
+
             <br />
              </div>
             
@@ -170,10 +179,10 @@ require_once("../../../conexiones/conexion.php");
 
                     <tbody>
                         <tr>
-                            <td> <label for="lblcod" style="width:180px">Código</label></td>
+                            <td> <label for="lblcod" style="width:180px">CÃ³digo</label></td>
                             <td><input name="valor_ide" class="input username" style="width:100px" type="text" id="valor_ide" size="10" onkeypress="return tabular(event,this)"/></td>
        
-                            <td><label for="lbldesc" style="width:180px">Descripción</label></td>
+                            <td><label for="lbldesc" style="width:180px">DescripciÃ³n</label></td>
                             <td><input name="valor_uno" class="input username"style="width:300px" type="text" id="valor_uno" size="50" class="required"/></td>
                    
                             <td><label for="lbldesc" style="width:180px">Precio</label></td>
