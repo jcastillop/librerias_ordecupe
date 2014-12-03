@@ -32,8 +32,9 @@ $_trans_ruc=$_POST['trans_ruc'];
 $_trans_dir=$_POST['trans_dir'];
 $fecha_hora_actual =Fechas::mifechagmt(time(),-5);
 
+$array = json_decode($_POST['pedido_detalle']);
+$response = array ("codigo" => "", "mensaje" => "", "tipo" => 0);
 
- $response = array ("codigo" => "", "mensaje" => "", "tipo" => 0);
 
 if($_codigo_guia_cabecera!=''){
   //Procedimiento almacenado para editar cabecera de guia y pedido
@@ -53,10 +54,10 @@ if($_codigo_guia_cabecera!=''){
 
 
   mysql_query($query_call_spcab_edit_ped,Conectar::con());
-  $array_flag_editar = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
-  $array_mensaje_editar = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
-  $codigo_edicion_pedido = $array_flag_editar["@n_Flag"];
-  $mensaje_edicion_pedido = $array_mensaje_editar["@c_msg"]; 
+  $array_flag_editar_pedido_cabecera = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
+  $array_mensaje_editar_pedido_cabecera = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
+  $flag_edicion_pedido_cabecera = $array_flag_editar_pedido_cabecera["@n_Flag"];
+  $mensaje_edicion_pedido_cabecera = $array_mensaje_editar_pedido_cabecera["@c_msg"]; 
   
   
 
@@ -67,16 +68,111 @@ $query_call_spcab_edit_gui = "CALL proc_modificar_guia_cab('".$_codigo_guia_cabe
                                                                        .$_tran_mn."','".$_tran_c."','".$_tran_l."','".$_trans_rs."','".$_trans_ruc."','".$_trans_dir."','"
                                                                        .$_fec_pedido."','".$_ped_usu."',@n_Flag, @c_msg)";
 mysql_query($query_call_spcab_edit_gui,Conectar::con());
-$array_mensaje_editar_guia = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
-$mensaje_edicion_guia_cabecera = $array_mensaje_editar_guia["@c_msg"]; 
-$response["mensaje"]=$mensaje_edicion_guia_cabecera;  
+$array_flag_editar_guia_cabecera = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
+$array_mensaje_editar_guia_cabecera = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
+$flag_edicion_guia_cabecera = $array_flag_editar_guia_cabecera["@n_Flag"];
+$mensaje_edicion_guia_cabecera = $array_mensaje_editar_guia_cabecera["@c_msg"]; 
+
+//procedimiento editar pedido detalle
+if ($flag_edicion_pedido_cabecera==0) {
+
+   $cant=utilitarios::get_cant_det_ped($_cod_suc,$_cod_emp,$_codigo_pedido_cabecera);
+
+  
+   $var_edicion_ped_detalle="'";
+   
+   for($i=0;$i<count($array);$i++){ 
+       
+    $var_cod_ped_det=$cant+$i+1;
+    $codigo_libro=$array[$i]->codigo_libro;
+    $cantidad_libro = $array[$i]->cantidad_libro;
+    $valor_impuesto = number_format($array[$i]->valor_impuesto, 2, '.', '');
+    $valor_descuento = number_format($array[$i]->valor_descuento, 2, '.', '');
+    $porcentaje_impuesto = number_format($array[$i]->porcentaje_impuesto, 2, '.', '');
+    $porcentaje_descuento = number_format($array[$i]->porcentaje_descuento, 2, '.', '');
+    $costo_total_libro = $array[$i]->costo_total_libro;
+    
+    
+   $var_edicion_ped_detalle=$var_edicion_ped_detalle.'(lpad("'.$var_cod_ped_det.'",6,"0"),'
+                            .'"'.$_codigo_pedido_cabecera.'"'.", ".$_cod_suc.", ".$_cod_emp.", ". 
+                                               $codigo_libro.", ".$cantidad_libro.", ".$porcentaje_impuesto.", ".$valor_impuesto. ", ".
+                                               $costo_total_libro. ", ".$porcentaje_descuento.",".$valor_descuento.", ".$costo_total_libro.
+                                               ',"'.$_ped_usu.'","'.$fecha_hora_actual.'")';
+
+       if ($i==count($array)-1){
+          $var_edicion_ped_detalle = $var_edicion_ped_detalle . "'";
+       }else{
+          $var_edicion_ped_detalle = $var_edicion_ped_detalle . ','; 
+       }   
+      
+   }
+ 
+   $query_call_sp_editar_ped_det = "CALL proc_modificar_pedi_det('".$_codigo_pedido_cabecera."',".$_cod_suc.",".$_cod_emp.",".$var_edicion_ped_detalle.", @n_Flag, @c_msg)";
+   //Ejecucion del Procedimiento Insertar edicion Detalle
+
+   mysql_query($query_call_sp_editar_ped_det,Conectar::con());
+   $array_flag_editar_pedido_detalle = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
+   $flag_editar_pedido_detalle = $array_flag_editar_pedido_detalle["@n_Flag"];
+   $array_mensaje_editar_pedido_detalle = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
+   $mensaje_editar_guia_detalle = $array_mensaje_editar_pedido_detalle["@c_msg"];
+   $response["mensaje"]=$flag_editar_pedido_detalle; 
+
+ }
+//procedimiento editar guia detalle
+
+
+if ($flag_edicion_pedido_cabecera==0) {
+
+   $cant=utilitarios::get_cant_det_guia($_cod_suc,$_cod_emp,$_codigo_guia_cabecera);
+
+  
+   $var_edicion_guia_detalle="'";
+   
+   for($i=0;$i<count($array);$i++){ 
+
+       $var_cod_guia_det=$cant+$i+1;
+       $codigo_libro=$array[$i]->codigo_libro;
+       $precio_libro=number_format($array[$i]->precio_libro, 2, '.', '');
+       $cantidad_libro = $array[$i]->cantidad_libro;
+       $valor_impuesto = number_format($array[$i]->valor_impuesto, 2, '.', '');
+       $valor_descuento = number_format($array[$i]->valor_descuento, 2, '.', '');
+       $porcentaje_impuesto = number_format($array[$i]->porcentaje_impuesto, 2, '.', '');
+       $porcentaje_descuento = number_format($array[$i]->porcentaje_descuento, 2, '.', '');
+       $costo_total_libro = number_format($array[$i]->costo_total_libro, 2, '.', '');
+
+$var_edicion_guia_detalle=$var_edicion_guia_detalle.'(lpad("'.$var_cod_guia_det.'",6,"0"),'
+                            .'"'.$_codigo_guia_cabecera.'"'.", ".'"'.$_codigo_serie.'"'.", ".$_cod_suc.", ".$_cod_emp.", ". 
+                                               $codigo_libro.", ".$cantidad_libro.", ".$precio_libro.", ".$porcentaje_impuesto.", ".$valor_impuesto. ", ".
+                                               $costo_total_libro. ", ".$porcentaje_descuento.",".$valor_descuento.", ".$costo_total_libro.
+                                               ',"'.$_ped_usu.'","'.$fecha_hora_actual.'")';
+
+       if ($i==count($array)-1){
+          $var_edicion_guia_detalle = $var_edicion_guia_detalle . "'";
+       }else{
+          $var_edicion_guia_detalle = $var_edicion_guia_detalle . ','; 
+       }  
+       
+   }
+
+   $query_call_sp_editar_guia_det = "CALL proc_modificar_guia_det('".$_codigo_guia_cabecera."',".$_cod_suc.",".$_cod_emp.",'".$_ped_usu."',".$var_edicion_guia_detalle.", @n_Flag, @c_msg)";
+   //Ejecucion del Procedimiento Insertar Detalle
+
+   mysql_query($query_call_sp_editar_guia_det,Conectar::con());
+   $array_flag_editar_guia_detalle = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
+   $flag_editar_guia_detalle = $array_flag_editar_guia_detalle["@n_Flag"];
+   $array_mensaje_editar_guia_detalle = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
+   $mensaje_editar_guia_detalle = $array_mensaje_editar_guia_detalle["@c_msg"];
+
+   $response["mensaje"]=$mensaje_editar_guia_detalle; 
+
+ }
 
 
 
 }else{
 //insertar nueva data
 
-  $array = json_decode($_POST['pedido_detalle']);
+  
 //creando query del PA insertar pedido cabecera
 
 $query_call_spcabped = "CALL proc_insertar_pedi_cab(".$_cod_emp.",".$_cod_suc.","
@@ -176,9 +272,6 @@ $var_guia_detalle=$var_guia_detalle.'(lpad("'.$var_cod_guia_det.'",6,"0"),'
 
 
 };
-
-
-
    
     echo json_encode($response);
 

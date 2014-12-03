@@ -96,6 +96,32 @@ function misolofechagmt($fecha_timestamp,$gmt=0)
     return $fecha_hora;
 }
 }
+class utilitarios
+{
+	private $utilitarios;
+
+	public function __construct(){
+		$this->utilitarios=0;
+	}
+
+	public function get_cant_det_ped($cod_suc,$cod_emp,$cod_cab)
+	{
+		$sql="select cast(max(d.var_cod_pedi_det) AS UNSIGNED) as cantidad from T_pedido_detalle d where d.int_cod_suc=$cod_suc and d.int_cod_emp=$cod_emp and d.var_cod_pedi_cab='$cod_cab';";
+				$res=mysql_query($sql,Conectar::con());
+				$reg=mysql_fetch_array($res);
+				$utilitarios = $reg["cantidad"];
+		return $utilitarios;
+	}
+	
+	public function get_cant_det_guia($cod_suc,$cod_emp,$cod_cab)
+	{
+		$sql="select cast(max(d.var_cod_guia_det) AS UNSIGNED) as cantidad from T_guia_detalle d where d.int_cod_suc=$cod_suc and d.int_cod_emp=$cod_emp and d.var_cod_guia_cab='$cod_cab';";
+				$res=mysql_query($sql,Conectar::con());
+				$reg=mysql_fetch_array($res);
+				$utilitarios = $reg["cantidad"];
+		return $utilitarios;
+	}	
+}
 
 ?>
 

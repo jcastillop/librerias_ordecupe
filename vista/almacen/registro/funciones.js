@@ -28,11 +28,13 @@ $(document).ready(function(){
         //capturamos el codigo de empresa la cual debe venir de las variables de sesion
         var empresa=1;
         //inicializamos el ajax que permitirá ubicar los registros correspondientes                
+        
         $.ajax({
             type: "GET",
             url: "guias_buscar.php",
             //concatenamos los parametros que usaremos para buscar los registros
             data: "id=" + id + "&serie=" + serie+ "&sucursal=" + sucursal + "&empresa=" + empresa,
+
             success: function(datos){
                 //decodificando el JSON proveniente de guias_buscar.php                        
                 var jsonData = JSON.parse(datos);
@@ -61,6 +63,7 @@ $(document).ready(function(){
                 //cargando la data correspondiente a la cabecera del producto        
                 $('#sucursal option[value="'+jsonData[0].int_cod_suc+'"]').attr('selected', 'selected');
                 $('#cliente option[value="'+jsonData[0].int_cod_cli+'"]').attr('selected', 'selected');
+                $("#sucursal").prop('disabled', true);
                 $('#vendedor option[value="'+jsonData[0].int_cod_usu+'"]').attr('selected', 'selected');
                 //Estableiendo la fecha en el formato adecuado
                 $("#datepicker").val(jsonData[0].date_fecenv_guia_cab);
