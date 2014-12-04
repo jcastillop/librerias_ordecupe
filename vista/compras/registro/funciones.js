@@ -137,7 +137,7 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
 
     //buscar registros cargados y mostrar una alerta
      $("input:file").change(function (){
-
+   
        var fileName = $(this).val().split('\\').pop();
       
        
