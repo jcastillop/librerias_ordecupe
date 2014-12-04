@@ -282,8 +282,24 @@ $(document).ready(function(){
             $("#trans_dat1").css("display", "none");
         }
     });
+
+    $("#valor_uno").autocomplete({
+        source:'autocompletar_titulos.php',
+        minLength:1,
+        focus: function( event, ui ) {
+           $( "#valor_uno" ).val(ui.item.label);
+            return false;
+        },
+        select: function( event, ui ) {
+            $("#valor_uno" ).val( ui.item.label );
+            $("#valor_ide").val(ui.item.id);
+            $("#valor_ide").focus();
+            return false;
+        }
+    });
+
     //Busqueda de titulos segun el codgo de barra proporcionado en el evneto change
-    $("#valor_ide").change(function() {
+    $("#valor_ide").focusout(function() {
                     
         $.ajax({
             type: "GET",
@@ -489,4 +505,3 @@ function $_GET(param){
     x++;
     }
 };
-

@@ -22,7 +22,7 @@ require_once("../../../conexiones/class_cliente.php");
         <script type="text/javascript" src="../../../paquetes/alertas/lib/alertify.js"></script>
 	<link rel="stylesheet" href="../../../paquetes/alertas/themes/alertify.core.css" />
 	<link rel="stylesheet" href="../../../paquetes/alertas/themes/alertify.default.css" />
-
+    
     </head>
 <script>
     function tabular(e,obj) {
@@ -149,11 +149,7 @@ require_once("../../../conexiones/class_cliente.php");
                         </tr>
                        
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            
-                        </tr>
-                    </tfoot>
+
                 </table>
             </div>    </div>
 				<div class="container4">

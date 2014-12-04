@@ -19,6 +19,23 @@ class titulos
 		}
 			return $this->titulo;
 	}
+	public function get_titulo_like($q)
+	{
+		$sql="select * from T_titulos where var_nom_tit like '%q%'";
+			
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+				$this->titulo[]=array(
+				'id' => $reg['int_cod_tit'],
+				'label' => $reg['var_nom_tit'],
+				'value' => $reg['var_nom_tit']
+				);
+			
+		}
+			return $this->titulo;
+	}
 	}
 class clientes
 {

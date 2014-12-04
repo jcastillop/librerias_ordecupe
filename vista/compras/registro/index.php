@@ -92,7 +92,7 @@ header('Content-Type: text/html; charset=UTF-8');
                             <label for="lblcod" >Código Barras</label><input name="cod_bar_tit" type="text" id="cod_bar_tit" onkeypress="return tabular(event,this)"/>
        
                             <label for="lbled"style="margin-left:10px" >Edición</label>
-                            <input name="edic_tit" type="text" id="edic_tit"style="width:100px"onkeypress="return tabular(event,this">
+                            <input name="edic_tit" type="text" id="edic_tit"style="width:100px"onkeypress="return tabular(event,this" onkeypress="return tabular(event,this)">
                    
                            <label for="lbltit" style="margin-left:38px" > Titulo</label><input name="tit_tit" type="text" id="tit_tit" onkeypress="return tabular(event,this)"/>
 

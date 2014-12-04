@@ -155,5 +155,22 @@ class titulos
 		window.location='eliminar_titulos.php?eliminado=1';
 		</script>";
 	}
+			public function get_titulo_like($q)
+	{
+		$sql="select * from T_titulos where var_nom_tit like '%q%'";
+			
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+				$this->titulos[]=array(
+				'id' => $reg['int_cod_tit'],
+				'label' => $reg['var_nom_tit'],
+				'value' => $reg['var_nom_tit']
+				);
+			
+		}
+			return $this->titulos;
+	}
 }
 ?>

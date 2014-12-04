@@ -1,8 +1,8 @@
 <?php
 	require_once("conexion.php");
 	$term=$_GET["term"];
-	$clie=new clientes();
-	$results=$clie->get_cliente_por_nombre($term);
+	$titu=new titulos();
+	$results=$titu->get_titulo_like($term);
 	echo json_encode($results);	
 
 ?>		
