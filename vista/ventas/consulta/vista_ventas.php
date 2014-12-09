@@ -5,6 +5,7 @@ require_once("../../../conexiones/class_historico_ventas.php");
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
 <?php
 header('Content-Type: text/html; charset=UTF-8'); 
 ?>
@@ -19,7 +20,9 @@ header('Content-Type: text/html; charset=UTF-8');
     <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">     
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css"> 
+	<script language="javascript" type="text/javascript" src="funciones_vista.js"></script>
     <script type="text/javascript">
+    
 		var newwindow;
 		function poptastic(url)
 			{
@@ -33,12 +36,8 @@ header('Content-Type: text/html; charset=UTF-8');
 			if (window.focus) {newwindow.focus()}
 		}
 		</script>
-	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.js"></script>    
-	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/dataTables.tableTools.js"></script>
-    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.j"></script>
-	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
-	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
+<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>    
+	<script type="text/javascript" language="javascript" src="http://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
  
 	<script type="text/javascript" language="javascript" class="init">
 	
