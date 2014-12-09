@@ -20,9 +20,10 @@ class provincia
 			return $this->provincia;
 	}
 	
-	public function get_combo_provincias_update($id_provincias)
+	public function get_combo_provincias_update($int_cod_pais,$int_cod_dept,$id_provincias)
 	{
-		$sql="select * from T_provincias where not int_cod_provi='$id_provincias'  ORDER BY int_cod_provi";
+		//$sql="select * from T_provincias where not int_cod_provi='$id_provincias'  ORDER BY int_cod_provi";
+		$sql="select * from T_provincias where int_cod_pais=".$int_cod_pais." and int_cod_dept=".$int_cod_dept." and not int_cod_provi=".$id_provincias."  ORDER BY int_cod_provi" ;
 		
 		$res=mysql_query($sql,Conectar::con());
 		

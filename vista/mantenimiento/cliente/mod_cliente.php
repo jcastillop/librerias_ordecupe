@@ -310,7 +310,7 @@ function formulario(f) {
           <?php		
 		  	  
 			$tra=new departamento();
-			$reg=$tra->get_combo_departamentos_update($cod_dept);
+			$reg=$tra->get_combo_departamentos_update($cod_pais,$cod_dept);
 			for ($i=0;$i<count($reg);$i++)
 			{
 			?>
@@ -330,7 +330,7 @@ function formulario(f) {
           <option value="<?php echo $cod_provi;?>" selected><?php echo $nom_provi;?></option>
           <?php			  
 			$tra=new provincia();
-			$reg=$tra->get_combo_provincias_update($cod_provi);
+			$reg=$tra->get_combo_provincias_update($cod_pais,$cod_dept,$cod_provi);
 			for ($i=0;$i<count($reg);$i++)
 			{
 			?>

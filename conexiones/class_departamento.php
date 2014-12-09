@@ -21,9 +21,10 @@ class departamento
 			return $this->departamento;
 	}
 	
-	public function get_combo_departamentos_update($id_departamentos)
+	public function get_combo_departamentos_update($int_cod_pais,$id_departamentos)
 	{
-		$sql="select * from T_departamentos where not int_cod_dept='$id_departamentos'  ORDER BY int_cod_dept";
+		//$sql="select * from T_departamentos where not int_cod_dept='$id_departamentos'  ORDER BY int_cod_dept";
+		$sql="select * from T_departamentos where int_cod_pais=".$int_cod_pais." and not int_cod_dept=".$id_departamentos." ORDER BY int_cod_dept";
 		
 		$res=mysql_query($sql,Conectar::con());
 		

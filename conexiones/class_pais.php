@@ -19,7 +19,8 @@ class pais
 	
 	public function get_combo_pais_update($id_pais)
 	{
-		$sql="select int_cod_pais, var_nom_pais from T_pais ORDER BY int_cod_pais";
+		//$sql="select int_cod_pais, var_nom_pais from T_pais ORDER BY int_cod_pais";
+		$sql="select int_cod_pais, var_nom_pais from T_pais where not int_cod_pais=".$id_pais." ORDER BY int_cod_pais";
 		
 		$res=mysql_query($sql,Conectar::con());
 		

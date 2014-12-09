@@ -1,13 +1,13 @@
 <?php
-require_once("../../../conexiones/class_cliente.php");
-
+require_once("../../../conexiones/class_departamento.php");
+require_once("../../../conexiones/conexion.php");
 	?>
 
           <select  name="departamento" style="width: 200px;"id="departamento" class="input username" onchange="from(document.form1.departamento.value,'mei','cliente_prov.php')">
-          <option value="0">Seleccione</option>
+          <option>--Seleccione--</option>
 	<?php
-			$tra=new cliente();
-			$reg=$tra->get_combo_departamentos($_GET['id']);
+			$tra=new departamento();
+			$reg=$tra->get_combo_departamentos_update($_GET['id']);
 			for ($i=0;$i<count($reg);$i++)
 			{
 			?>
