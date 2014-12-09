@@ -120,6 +120,7 @@ $(document).ready( function () {
 			                        <th>RUC</th>                     
 			                        <th>Telefono</th>
 			                        <th>Contacto</th>
+                                    <th>Estado</th>
 						<th></th>
 				
 					</tr>
@@ -142,6 +143,7 @@ for ($i=0;$i<count($reg);$i++)
                         			<td><?php echo $reg[$i]["int_nrodoc_prov"];?></td>
                                     <td><?php echo $reg[$i]["var_telef_prov"];?></td>
                         			<td><?php echo $reg[$i]["var_cont_prov"];?></td>
+                                    <td><?php echo $reg[$i]["int_est_prov"];?></td>
 						
 		
                        <td align='center' ><a href=" javascript:elim('eliminar_proveedor.php?id=<?php echo $reg[$i]["int_cod_prov"];?>'); " ><img src='../../../img/images/delete.png' width='15px' height='15px' title='Eliminar'></a></td>
