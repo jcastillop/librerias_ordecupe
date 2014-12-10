@@ -9,18 +9,16 @@ require_once("../../../conexiones/conexion.php");
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>VENTAS</title>
         <script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.j"></script>
-        <script type="text/javascript" src="busquedas/js/jquery-1.4.2.js"></script>
         <script language="javascript" type="text/javascript" src="funciones.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
-     
-  <link href="../../../css/estilo.css" rel="stylesheet" type="text/css" />
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+        <link href="../../../css/estilo.css" rel="stylesheet" type="text/css" />
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>        
         
+        <script type="text/javascript" src="busquedas/js/jquery-1.4.2.js"></script>         
         <script type='text/javascript' src="busquedas/js/jquery.autocomplete.js"></script>
-<link rel="stylesheet" type="text/css" href="busquedas/js/jquery.autocomplete.css" />
+		<link rel="stylesheet" type="text/css" href="busquedas/js/jquery.autocomplete.css" />
         
  <script type="text/javascript">
 
