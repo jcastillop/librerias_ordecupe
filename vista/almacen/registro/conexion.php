@@ -21,7 +21,7 @@ class titulos
 	}
 	public function get_titulo_like($q)
 	{
-		$sql="select * from T_titulos where var_nom_tit like '%$q%'";
+		$sql="select * from T_titulos where int_est_tit=1 and var_nom_tit like '%$q%'";
 			
 		$res=mysql_query($sql,Conectar::con());
 		
