@@ -37,7 +37,7 @@ class cliente
 				inner join T_pais p on p.int_cod_pais=c.int_cod_pais
 				inner join T_departamentos d on d.int_cod_dept=c.int_cod_dept
 				inner join T_provincias pr on pr.int_cod_provi=c.int_cod_provi
-				where int_est_cli<>0 and int_iden_suc_cli=0 and c.var_rsoc_cli like '%$q%'
+				where int_est_cli=1 and int_iden_suc_cli=0 and c.var_rsoc_cli like '%$q%'
 				order by int_cod_cli desc
 				";
 		

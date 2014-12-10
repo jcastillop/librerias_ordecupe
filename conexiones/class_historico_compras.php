@@ -35,7 +35,7 @@ class ordcomp_cabecera
 				inner join T_proveedor p on od.int_cod_prov=p.int_cod_prov 
 				inner join T_sucursal s on s.int_cod_suc=od.int_cod_suc  
 				inner join T_empresa e on e.int_cod_emp=od.int_cod_emp 
-				where o.var_cod_comp_cab=od.var_cod_comp_cab 
+				where int_est_comp_cab=1 AND o.var_cod_comp_cab=od.var_cod_comp_cab 
 				and o.int_cod_emp=od.int_cod_emp 
 				and o.int_cod_suc=od.int_cod_suc
 				group by CONCAT(o.var_cod_comp_cab, '_', p.var_rsoc_prov) 

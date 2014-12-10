@@ -56,6 +56,7 @@ var_nom_usu,int_tipven_fact_cab,int_dias_fact_cab,url,pag,date_fecenv_fact_cab,C
 					inner join T_sucursal z on z.int_cod_suc=f.int_cod_suc
 					inner join T_usuario u on u.int_cod_usu=f.int_cod_usu
 					inner join T_cliente c on c.int_cod_cli=f.int_cod_cli
+					where int_est_fact_cabecera<>0
 				order by var_cod_fact_cab desc
 ) as s
 		";	

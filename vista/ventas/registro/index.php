@@ -179,10 +179,10 @@ $(document).ready(function () {
 
                     <tbody>
                         <tr>
-                            <td> <label for="lblcod" style="width:180px">CÃ³digo</label></td>
+                            <td> <label for="lblcod" style="width:180px">Código</label></td>
                             <td><input name="valor_ide" class="input username" style="width:100px" type="text" id="valor_ide" size="10" onkeypress="return tabular(event,this)"/></td>
        
-                            <td><label for="lbldesc" style="width:180px">DescripciÃ³n</label></td>
+                            <td><label for="lbldesc" style="width:180px">Descripción</label></td>
                             <td><input name="valor_uno" class="input username"style="width:300px" type="text" id="valor_uno" size="50" class="required"/></td>
                    
                             <td><label for="lbldesc" style="width:180px">Precio</label></td>
