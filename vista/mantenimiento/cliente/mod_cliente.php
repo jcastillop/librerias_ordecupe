@@ -164,26 +164,63 @@ function from(id,ide,url){
 }
 
 function formulario(f) {
-	if (f.rsoc.value   == '') { 
-		alert ('El campo Razon Social esta vacío, ingrese un dato porfavor!!');  
-		f.rsoc.focus(); return false; } 
-		 
- 	if (f.ruc.value  != '' && f.ruc.value.length < 11) {
-		 alert ('El campo RUC tiene menos de 11 Digitos, Complete los digitos porfavor!!');
-  		f.ruc.focus(); return false; 
+	if (f.tip_per.value   == '--Seleccione--') 
+    { 
+      alert ('El campo Tipo de Persona esta vacío, ingrese un dato porfavor!!');  
+	   f.tip_per.focus(); return false; 
+  	 }  
+	 
+	 if(f.tip_per.value==1)
+	 {
+		if (f.rsoc.value   == '') 
+		{ 
+			alert ('El campo Razon Social esta vacío, ingrese un dato porfavor!!');  
+			f.rsoc.focus(); return false; 
 		}
-
-	if (f.dist.value   == '') { 
-		alert ('El campo Distrito esta vacío, ingrese un dato porfavor!!');  
-		f.dist.focus(); return false; }
-	
-	if (f.dni.value!='' && f.dni.value.length < 8) { 
-		 alert ('El campo DNI tiene menos de 8 Digitos, Complete los digitos porfavor!!');
- 		 f.dni.focus(); return false; }
-	
-	if (f.tel.value   == '') { 
-		alert ('El campo Teléfono esta vacío, ingrese un dato porfavor!!');  
-		f.tel.focus(); return false; }
+	   	if (f.dni.value=='' || f.dni.value.length < 8) { 
+		 	alert ('El campo DNI esta vacio o tiene menos de 8 Digitos, Complete el campo correctamente!!');
+ 		 	f.dni.focus(); return false; }
+	   }	
+	   
+	   
+	      
+	   else if(f.tip_per.value==2)
+	   {
+		   if (f.rsoc.value   == '') 
+		   { 
+		   	   alert ('El campo Razon Social esta vacío, ingrese un dato porfavor!!');  
+		   	   f.rsoc.focus(); return false; } 
+		   if (f.ruc.value  == '' || f.ruc.value.length < 11)
+		    {
+		       alert ('El campo RUC esta vacio o tiene menos de 11 Digitos, Complete el campo correctamente!!');
+  		       f.ruc.focus(); return false; 
+			}
+			if (f.pais.value   == '--Seleccione--') 
+			{ 
+			   alert ('El campo Pais esta vacío, ingrese un dato porfavor!!');  
+			   f.pais.focus(); return false; 
+			}
+			if (f.departamento.value   == '--Seleccione--') 
+			{ 
+			   alert ('El campo Departamento esta vacío, ingrese un dato porfavor!!');  
+			   f.departamento.focus(); return false; 
+			}
+			if (f.provincia.value   == '--Seleccione--') 
+			{ 
+			   alert ('El campo Provincia esta vacío, ingrese un dato porfavor!!');  
+			   f.provincia.focus(); return false; 
+			}
+			if (f.distrito.value   == '') 
+			{ 
+			   alert ('El campo Distrito esta vacío, ingrese un dato porfavor!!');  
+			   f.distrito.focus(); return false; 
+			}
+			if (f.direccion.value   == '') 
+			{ 
+			   alert ('El campo Dirección esta vacío, ingrese un dato porfavor!!');  
+			   f.direccion.focus(); return false; 
+			}
+		 }
   
 	
  return true; } 
