@@ -28,6 +28,9 @@ header('Content-Type: text/html; charset=UTF-8');
         <link href="../../../css/estilo.css" rel="stylesheet" type="text/css" />
     
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+        
+        <script type='text/javascript' src="busquedas/js/jquery.autocomplete.js"></script>
+		<link rel="stylesheet" type="text/css" href="busquedas/js/jquery.autocomplete.css" />
           <style type="text/css">
     .label {width:100px;text-align:right;float:left;padding-right:10px;font-weight:bold;}
     #register-form label.error, .output {color:#FF0000;font-weight:bold;}
@@ -47,6 +50,34 @@ header('Content-Type: text/html; charset=UTF-8');
         frm.elements[i+1].focus();
         return false;
     };
+	
+	$().ready(function() {
+	$("#tit_tit").autocomplete("busquedas/autoCompleteMainTitulo.php", {
+		width: 260,
+		matchContains: true,
+		//mustMatch: true,
+		//minChars: 0,
+		//multiple: true,
+		//highlight: false,
+		//multipleSeparator: ",",
+		selectFirst: false
+	});
+	
+	$("#tit_tit").result(function(event, data, formatted) {
+		$("#cod_bar_tit").val(data[1]);
+		$("#edic_tit").val(data[2]);
+		$("#aut_tit").val(data[3]);
+		$("#isbn_tit").val(data[4]);
+		$("#nro_tit").val(data[5]);
+		$("#edi_tit").val(data[6]);
+		$("#gen_tit").val(data[7]);
+		$("#pai_tit").val(data[8]);
+		$("#desc_tit").val(data[9]);
+		$("#prov_tit").focus(10);
+		
+	
+	});
+});
 
 </script> 
     

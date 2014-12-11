@@ -74,7 +74,7 @@ $().ready(function() {
 	$("#valor_uno").result(function(event, data, formatted) {
 		$("#valor_ide").val(data[1]);
 		$("#valor_dos").val(data[2]);
-		$("#valor_tres").focus();
+		$("#valor_tres").focus(3);
 		
 	
 	});
