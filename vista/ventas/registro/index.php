@@ -59,6 +59,27 @@ $().ready(function() {
 	});
 });
 
+$().ready(function() {
+	$("#valor_uno").autocomplete("busquedas/autoCompleteMainDescripcion.php", {
+		width: 260,
+		matchContains: true,
+		//mustMatch: true,
+		//minChars: 0,
+		//multiple: true,
+		//highlight: false,
+		//multipleSeparator: ",",
+		selectFirst: false
+	});
+	
+	$("#valor_uno").result(function(event, data, formatted) {
+		$("#valor_ide").val(data[1]);
+		$("#valor_dos").val(data[2]);
+		$("#valor_tres").focus();
+		
+	
+	});
+});
+
 
 
 $(document).ready(function () {
