@@ -86,7 +86,7 @@ class sucursal
 
 	public function get_combo_sucursales($emp_id)
 	{
-		$sql="select int_cod_suc,var_nom_suc from T_sucursal where int_est_suc<>0 and int_cod_emp='$emp_id' ORDER BY int_cod_suc";
+		$sql="select int_cod_suc,var_nom_suc from T_sucursal where int_est_suc=1 and int_cod_emp=1 ORDER BY int_cod_suc";
 		
 		$res=mysql_query($sql,Conectar::con());
 		
