@@ -50,7 +50,7 @@ class stock
 	}
 	
 	public function generar_stock($cod_emp,$cod_suc,$usuario){
-		$sql="CALL proc_generar_serie($cod_emp,$cod_suc,'$usuario',@n_Flag, @c_msg); ";
+		 $sql="CALL proc_generar_stock(".$cod_emp.",".$cod_suc.",'".$usuario."',@n_Flag, @c_msg); ";
 		$res=mysql_query($sql,Conectar::con());
 		$array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
         $array_msg = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));

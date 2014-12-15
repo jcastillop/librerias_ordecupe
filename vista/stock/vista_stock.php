@@ -25,13 +25,7 @@ header('Content-Type: text/html; charset=UTF-8');
 		var newwindow;
 		function poptastic(url)
 		{
-			newwindow=window.open(url,'name','height=400,width=623,left=400');
-			if (window.focus) {newwindow.focus()}
-		}
-		var newwindow;
-		function elim(url)
-		{
-			newwindow=window.open(url,'name','height=200,width=400,left=400,padding=700');
+			newwindow=window.open(url,'name','height=238,width=380,left=400');
 			if (window.focus) {newwindow.focus()}
 		}
 	</script>

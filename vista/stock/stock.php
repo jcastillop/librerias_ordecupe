@@ -74,7 +74,7 @@ $(document).ready(function() {
     <br />
 
 <!--LOGIN FORM-->
-<form name="login-form" class="login-form" action="ingresar_titulos.php" method="post">
+<form name="login-form" class="login-form" action="ingresar_stock.php" method="post">
 
 	<!--HEADER-->
     <div class="header">
