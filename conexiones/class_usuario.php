@@ -113,13 +113,54 @@ class usuario
 				'$usu_mod',
 				'$fec_mod')	
 		";
-		$res=mysql_query($sql,Conectar::con());
+		
+		
+		$res=mysql_query($sql,Conectar::con() );
+		
+		
+		
+		if($res){  $_POST['id']=mysql_insert_id();
+		
+		
+		}
+         else
+        {echo "error: ".mysql_error(),"</br>";
+		//echo "codigo_error:".mysql_errno();
+		}
+		
+		
+		
+	}
+	
+	public function add_permisos($id,$empresa)
+	{
+		 $sql="
+		insert into T_permisos (int_cod_emp,int_cod_usu,var_usuadd_per,date_fecadd_per,var_usumod_per,date_fecmod_per) values ($empresa,$id,'admin',now(),'admin',now())
+
+		";
+		
+		
+		$res=mysql_query($sql,Conectar::con() );
+		
+		
+		
+		if($res){  $_POST['id']=mysql_insert_id();
+		
 		echo "<script type='text/javascript'>
 		alert('SE INSERTO CORRECTAMENTE');
 		cerrar();
 		window.location='usuario.php?load=1';
 		</script>";
+		}
+         else
+        {echo "error: ".mysql_error(),"</br>";
+		//echo "codigo_error:".mysql_errno();
+		}
+		
+		
+		
 	}
+	
 	public function get_usuario_por_id($id)
 	{
 		$sql="select
@@ -167,16 +208,7 @@ class usuario
 			
 			
 		$res=mysql_query($sql,Conectar::con());
-		echo "<script type='text/javascript'>
-		alert('El registro ha sido modificado correctamente');
-		cerrar();
-		window.location='mod_usuario.php?id=$id && load=1';
-		</script>
-		<SCRIPT LANGUAGE=javascript>
-  
-</SCRIPT> 
 		
-		";	
 		
 	}
 	public function eliminar_usuario($id)
@@ -188,5 +220,27 @@ class usuario
 		window.location='eliminar_usuario.php?eliminado=1';
 		</script>";
 	}
+	
+	
+	
+	public function insertar_cabecera($id_cliente,$deuda_ant,$fecha_deuda,$fec_crea,$total_av,$total_neto,$total_precio_c,$total_precio_v,$total_importe,$total_haber,$sub_total,$total,$usu_crea,$mod_usu)
+	{
+		$sql="
+			
+			INSERT INTO flete_cab (id_flete, id_cliente, deuda_ant, fec_deuda, fec_flete, to_av, to_neto, to_precio_c, to_precio_v, to_importe, haber, sub_total, dsct, total_final, fec_crea_usu, usu_crea, fec_mod_usu, usu_mod) VALUES (NULL, $id_cliente, '$deuda_ant', '$fecha_deuda',STR_TO_DATE('$fec_crea','%d-%m-%Y') , '$total_av', '$total_neto', '$total_precio_c', '$total_precio_v', '$total_importe', '$total_haber', '$sub_total', 0, '$total', now(), '$usu_crea', now(), '$mod_usu');
+			
+				
+					";
+		$res=mysql_query($sql,Conectar::con() );
+		
+		
+		
+		if($res){  $_POST['id']=mysql_insert_id();}
+         else
+        {echo "error: ".mysql_error(),"</br>";
+		//echo "codigo_error:".mysql_errno();
+		}
+	}
+	
 }
 ?>
