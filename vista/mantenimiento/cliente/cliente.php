@@ -38,10 +38,41 @@ header('Content-Type: text/html; charset=UTF-8');
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 
 <!--Slider-in icons-->
 <script type="text/javascript">
+$(document).ready(function(){
+	// Parametros para e combo1
+
+
+   $("#pais").change(function () {
+   		$("#pais option:selected").each(function () {
+			//alert($(this).val());
+				elegido=$(this).val();			
+				$.post("combo1.php", { elegido: elegido, }, function(data){
+				$("#departamento").html(data);
+				
+			});			
+        });
+   })
+   
+     
+   
+   
+	// Parametros para el combo2
+	$("#departamento").change(function () {
+   		$("#departamento option:selected").each(function () {
+			//alert($(this).val());
+				elegido2=$("#pais").val();
+				elegido3=$("#departamento").val();
+				$.post("combo2.php", { elegido2:elegido2, elegido3:elegido3  }, function(data){
+				$("#provincia").html(data); 
+			});			
+        });
+   })
+});
 $(document).ready(function() {
 	$(".username").focus(function() {
 		$(".user-icon").css("left","-48px");
@@ -231,7 +262,7 @@ function formulario(f) {
         <tr>
          <td>País: </td>
           <td>
-          <select  name="pais" id="pais" class="input username" style="width: 160px;" onKeyPress="return tab(event,this)" onChange="from(document.form1.pais.value,'midiv','cliente_dep.php')">
+          <select  name="pais" id="pais" class="input username" style="width: 200px;" onKeyPress="return tab(event,this)">
           <!--<option value="999">--Seleccione--</option>-->
           <option>--Seleccione--</option>
           <?php
@@ -252,19 +283,17 @@ function formulario(f) {
         <tr>	  
        <td>Departamento:</td>
           <td>
-          <div id='midiv'><select style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
-          <!--<option value="99999">--Seleccione--</option>-->
-          <option>--Seleccione--</option>
-         </select></div>
+          <select name="departamento" style="width: 200px;" id="departamento" class="input username">	
+            <option>--Seleccione--</option>
+            </select>
           </td>
            </tr>
         <tr>
         <td>Provincia: </td>
           <td>
-          <div id="madiv"><select  style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
-          <!--<option value="999">--Seleccione--</option>-->
-          <option>--Seleccione--</option>
-          </select></div>
+          <select name="provincia" style="width: 200px;" id="provincia" class="input username">
+            <option>--Seleccione--</option>	
+            </select>
           </td>		
            </tr>
         <tr>  

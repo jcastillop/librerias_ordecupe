@@ -154,7 +154,7 @@ class sucursal
 		}
 			return $this->sucursal;
 	}
-	public function edit_sucursal($id,$cod_emp,$var_nom_suc,$descripcion,$estado,$dir,$telf,$usu_mod)
+	public function edit_sucursal($id,$cod_emp,$var_nom_suc,$descripcion,$pais,$departamento,$provincia,$estado,$dir,$telf,$usu_mod)
 	{
 		//$sql="update usuario set nombre_persona='$nom',texto='$texto' where id=$id";
 	
@@ -167,6 +167,9 @@ class sucursal
 			int_cod_emp='$cod_emp',
 			var_nom_suc='$var_nom_suc',
 			var_des_suc='$descripcion',
+			int_cod_pais='$pais',
+			int_cod_dept='$departamento',
+			int_cod_provi='$provincia',
 			int_est_suc='$estado',
 			var_dir_suc='$dir',
 			var_telf_suc='$telf',

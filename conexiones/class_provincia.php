@@ -19,6 +19,18 @@ class provincia
 		}
 			return $this->provincia;
 	}
+	public function get_combo_provincia($int_cod_pais,$int_cod_dept)
+	{
+		$sql="select int_cod_provi, var_nom_provi from T_provincias  where int_cod_pais=".$int_cod_pais." and int_cod_dept=".$int_cod_dept;
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->provincia[]=$reg;
+		}
+			return $this->provincia;
+	}
 	
 	public function get_combo_provincias_update($int_cod_pais,$int_cod_dept,$id_provincias)
 	{

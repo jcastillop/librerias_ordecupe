@@ -3,7 +3,7 @@ require_once("../../../conexiones/class_provincia.php");
 require_once("../../../conexiones/conexion.php");
 	?>
 
-          <select  name="provincia" style="width: 200px;"id="provincia" class="input username">
+          <select  name="provincia" style="width: 200px;" id="provincia" class="input username">
           <option>--Seleccione--</option>
 	<?php
 			$tra=new provincia();

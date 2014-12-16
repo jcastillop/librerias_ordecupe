@@ -12,6 +12,9 @@ window.close()
  $fecha_actual= date("Y-m-d");
 require_once("../../../conexiones/class_sucursal.php");
 require_once("../../../conexiones/class_empresa.php");
+require_once("../../../conexiones/class_pais.php");
+require_once("../../../conexiones/class_departamento.php");
+require_once("../../../conexiones/class_provincia.php");
 require_once("../../../conexiones/conexion.php");
 ?>
   
@@ -28,6 +31,9 @@ if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 	1,
 	$_GET["var_nom_suc"],
 	$_GET["descripcion"],
+	$_GET["pais"],
+	$_GET["departamento"],
+	$_GET["provincia"],
 	$_GET["estado"],
 	$_GET["dir"],
 	$_GET["telf"],
@@ -39,6 +45,12 @@ if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 $reg=$tra->get_sucursal_por_id($_GET["id"]);
 		$nom_suc=$reg[0]["var_nom_suc"];
 		$desc=$reg[0]["var_des_suc"];
+		$cod_pais=$reg[0]["int_cod_pais"];
+		$nom_pais=$reg[0]["var_nom_pais"];
+		$cod_dept=$reg[0]["int_cod_dept"];
+		$nom_dept=$reg[0]["var_nom_dept"];
+		$cod_provi=$reg[0]["int_cod_provi"];
+		$nom_provi=$reg[0]["var_nom_provi"];
 		$estados=$reg[0]["int_est_suc"];
 		$dir_suc=$reg[0]["var_dir_suc"];
 		$telf=$reg[0]["var_telf_suc"];
@@ -137,7 +149,67 @@ function formulario(f) {
         <tr>
           <td>Descripción: </td>
           <td><input name="descripcion" type="text" maxlength="100" style="width: 420px;" class="input username" id="nombres_usu" onKeyPress="return tab(event,this)" value="<?php echo $desc;?>" /></td>
-        </tr> <tr>
+        </tr> 
+        <tr>
+          <td>Pais: </td>
+          <td>
+          <select class="input username"  name="pais" style="width: 160px;" id="pais" onKeyPress="return tab(event,this)" onChange="from(document.form1.pais.value,'mai','mod_dep.php')">
+          <option value="<?php echo $cod_pais;?>" selected><?php echo $nom_pais;?></option>
+          <?php		  
+			$tra=new pais();
+			$reg=$tra->get_combo_pais_update($cod_pais);
+			for ($i=0;$i<count($reg);$i++)
+			{
+			?>
+			   <option value="<?php echo $reg[$i]["int_cod_pais"];?>"><?php echo  $reg[$i]["var_nom_pais"];?></option>
+			
+			<?php
+			}
+			?>   
+            </select>
+          </td>
+           </tr>
+        <tr>
+          <td>Departamento: </td>
+          <td>
+          <div id="mai">
+          <select class="input username" style="width: 200px;"  name="departamento" id="departamento" onKeyPress="return tab(event,this)">
+          <option value="<?php echo $cod_dept;?>" selected><?php echo $nom_dept;?></option>
+          <?php	  
+			$tra=new departamento();
+			$reg=$tra->get_combo_departamentos_update($cod_dept);
+			for ($i=0;$i<count($reg);$i++)
+			{
+			?>
+			   <option value="<?php echo $reg[$i]["int_cod_dept"];?>"><?php echo  $reg[$i]["var_nom_dept"];?></option>
+			
+			<?php
+			}
+			?>   
+            </select></div>
+          </td>
+           </tr>
+        <tr>
+          <td>Provincia: </td>
+          <td>
+          <div id="mei">
+          <select class="input username" style="width: 200px;"  name="provincia" id="provincia" onKeyPress="return tab(event,this)">
+          <option value="<?php echo $cod_provi;?>" selected><?php echo $nom_provi;?></option>
+          <?php			  
+			$tra=new provincia();
+			$reg=$tra->get_combo_provincias_update($cod_provi);
+			for ($i=0;$i<count($reg);$i++)
+			{
+			?>
+			   <option value="<?php echo $reg[$i]["int_cod_provi"];?>"><?php echo  $reg[$i]["var_nom_provi"];?></option>
+			
+			<?php
+			}
+			?>   
+            </select></div>
+          </td>
+        </tr>
+        <tr>
           <td>Estado: </td>
           <td><select class="input username" style="width: 160px;"  name="estado" id="estado" onKeyPress="return tab(event,this)" >
             <?php 
