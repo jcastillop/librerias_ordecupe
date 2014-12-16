@@ -333,12 +333,13 @@ $(document).ready(function(){
     });
     // permite agregar de manera individual un titulo completando los campos
     $("#valor_tres").change(function() {
+		var total=$("#valor_dos").val() * $("#valor_tres").val();
         cadena = "<tr>";
         cadena = cadena + "<td><input name='codigo[]' class='input username' type='text' value='"+ $("#valor_ide").val() +"' size='15' OnFocus='this.blur()'/><input name='codigo_titulo[]' id='codigo_titulo[]' type='hidden' value='"+ $("#tituloID").val() +"'/></td>";
         cadena = cadena + "<td><input name='nombre[]' class='input username' id='nombre[]' type='text' value='"+ $("#valor_uno").val() +"' size='30' OnFocus='this.blur()'/></td>";
         cadena = cadena + "<td><input name='precio[]' class='input username' type='text' value='"+ $("#valor_dos").val() +"' size='30' OnFocus='this.blur()'/></td>";
         cadena = cadena + "<td><input name='cantidad[]' class='input username' id='cantidad[]' type='text' value='"+ $("#valor_tres").val() +"' size='30' OnFocus='this.blur()'/></td>";
-        cadena = cadena + "<td><input name='total[]' class='input username' id='total[]' type='text' value='"+ $("#valor_dos").val() * $("#valor_tres").val() +"' size='30' OnFocus='this.blur()'/></td>";
+        cadena = cadena + "<td><input name='total[]' class='input username' id='total[]' type='text' value='"+ total.toFixed(3) +"' size='30' OnFocus='this.blur()'/></td>";
         cadena = cadena + "<td><a class='elimina'><img src='delete.png' /></a></td>";
         
         $("#grilla tbody").append(cadena);
@@ -426,7 +427,7 @@ function fn_sumatotal(){
         total= total + parseFloat(document.getElementById('grilla').rows[i].cells[4].childNodes[0].value);
              
     }
-    $("#suma_total").html(total); 
+    $("#suma_total").html(total.toFixed(3)); 
 };			
 // funcion que permite eliminar los titulos registrados en la grilla
 function fn_dar_eliminar(){
