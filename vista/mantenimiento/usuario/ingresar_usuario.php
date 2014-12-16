@@ -5,6 +5,8 @@
 require_once("../../../conexiones/class_usuario.php");
 require_once("../../../conexiones/conexion.php");
 //print_r($_POST);nick_usu
+
+
 $tra=new usuario();
 $tra->add_usuario($_POST["nombres_usu"],
 					$_POST["ap_pat"],
@@ -17,4 +19,31 @@ $tra->add_usuario($_POST["nombres_usu"],
 					$fecha_actual,
 					$user,
 					$fecha_actual);
+					
+if (isset($_POST['id']))
+{
+ $id=$_POST['id'];	
+
+$tra=new usuario();
+
+
+
+
+
+foreach($_POST['empresa'] as $obj){
+
+ $obj;
+ $tra->add_permisos($id, $obj);
+
+
+}
+
+	
+
+}					
+else
+{
+	
+}					
+				
 ?>
