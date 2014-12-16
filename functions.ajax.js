@@ -21,7 +21,7 @@ $(document).ready(function(){
 							$('.box-success').hide(0).html('Espera un momento&#133;');
 							$('.box-success').slideDown(timeSlide);
 							setTimeout(function(){
-								window.location.href = "principal.htm";
+								window.location.href = "principal.php?d=1";
 							},(timeSlide + 500));
 						}
 						else{
@@ -34,7 +34,7 @@ $(document).ready(function(){
 					error:function(){
 						$('#timer').fadeOut(300);
 						$('#alertBoxes').html('<div class="box-error"></div>');
-						$('.box-error').hide(0).html('Ha ocurrido un error durante la ejecución');
+						$('.box-error').hide(0).html('Ha ocurrido un error durante la ejecuciÃ³n');
 						$('.box-error').slideDown(timeSlide);
 					}
 				});
