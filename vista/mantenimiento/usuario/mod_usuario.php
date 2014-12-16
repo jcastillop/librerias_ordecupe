@@ -24,6 +24,31 @@ $tra=new usuario();
 if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 {
 	
+
+/* eliminamos los permisos actuales para refrescar los nuevos permisos escogidos */
+					
+$tra=new rol();
+$tra->eliminar_permisos($_GET["id"]);	
+
+
+/* insertamos nuevamente los permisos actualizados */
+$tra=new usuario();
+foreach($_GET['empresa'] as $obj){
+
+ $obj;
+ 
+ $tra->add_permisos($_GET["id"], $obj);
+
+
+}	
+	
+	
+	
+	
+	
+	
+	
+	
 	$tra->edit_usuario
 					($_GET['id'],
 					$_GET["nombres_usu"],
@@ -34,11 +59,23 @@ if (isset($_GET["grabar"]) and $_GET["grabar"]=="si")
 					$_GET["rol"],
 					$_GET["estado"],
 					$user);
+					
+
+				
+					
 	exit;
+	
+	
+	echo "<script type='text/javascript'>
+		alert('SE INSERTO CORRECTAMENTE');
+		cerrar();
+		window.location='usuario.php?load=1';
+		</script>";
 }
 
 
 $reg=$tra->get_usuario_por_id($_GET["id"]);
+$id_user=$_GET["id"];
 ?>
 
 
@@ -49,7 +86,7 @@ $reg=$tra->get_usuario_por_id($_GET["id"]);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <?php
-header('Content-Type: text/html; charset=UTF-8'); 
+//header('Content-Type: text/html; charset=UTF-8'); 
 ?>
 <head>
 
@@ -177,6 +214,27 @@ function formulario(f) {
           <td>Apellido Materno :</td>
           <td><input name="ap_mat" type="text"  maxlength="50" class="input username" style="width: 200px;" onKeyPress="return validar(event)" value="<?php echo $materno_usuario;?>" /></td>
         </tr>
+        
+           <tr>
+          <td>Empresas Asignada :</td>
+          <td>
+            <select name="empresa[]" size="1" multiple="multiple" id="empresa"  style="width:200px; height:35px; text-align:center; font-size:14px;">
+          <?php
+					$tra=new rol();
+					$reg=$tra->get_combo_rol_empresa_id($id_user);
+					for ($i=0;$i<count($reg);$i++)
+					{
+						if ($reg[$i]["dato"]==1){ $dato="selected='selected'"; };
+				?>
+				   <option value="<?php echo $reg[$i]["cod_empresa"];?>"  <?php echo $dato;?>     ><?php echo $reg[$i]["var_nom_emp"];?></option>
+				
+				
+				<?php
+					}
+				?>
+          </select></td>
+        </tr>
+        
         <tr>
           <td>Estado: </td>
           <td><select class="input username"   name="estado" style="width: 155px;" id="estado" onKeyPress="return tab(event,this)" >
