@@ -3,6 +3,7 @@ function cerrarse(){
 window.close() 
 } 
 </script> 
+
 <?php
 require_once("../../../conexiones/class_usuario.php");
 require_once("../../../conexiones/class_rol.php");
@@ -152,6 +153,25 @@ function formulario(f) {
           <td>Apellido Materno :</td>
           <td><input name="ap_mat" type="text" maxlength="50" class="input username" style="width: 200px;" onKeyPress="return validar(event)" /></td>
         </tr>
+        <tr>
+          <td>Empresas Asignada :</td>
+          <td>
+            <select name="empresa[]" size="1" multiple="multiple" id="empresa"  style="width:200px; height:35px; text-align:center; font-size:14px;">
+          <?php
+					$tra=new rol();
+					$reg=$tra->get_combo_empresa();
+					for ($i=0;$i<count($reg);$i++)
+					{
+				?>
+				   <option value="<?php echo $reg[$i]["int_cod_emp"];?>" ><?php echo $reg[$i]["var_nom_emp"];?></option>
+				
+				
+				<?php
+					}
+				?>
+          </select></td>
+        </tr>
+        
         <tr>
           <td><input name="estado" id="estado" type="hidden" value="1" class="input username"  /></td>
         </tr>
