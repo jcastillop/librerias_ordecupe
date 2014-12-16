@@ -26,7 +26,7 @@
 			$monto = $array[$i]->monto;
 		
 			//llamado del procedimiento almacenado para editar el detalle
-			$query_call_spcompgas = "CALL proc_insertar_comp_gas('".$_cod_com."',".$_cod_suc.","
+			$query_call_spcompgas = "CALL proc_modificar_comp_gas('".$_cod_com."',".$_cod_suc.","
 																.$_cod_emp.",'".$desc."',".$monto.",'".$_ped_usu."',@n_Flag, @c_msg)";
 																
 			echo $query_call_spcompgas;
