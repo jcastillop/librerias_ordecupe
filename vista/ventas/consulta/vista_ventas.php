@@ -20,7 +20,6 @@ header('Content-Type: text/html; charset=UTF-8');
     <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">     
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css"> 
-	<script language="javascript" type="text/javascript" src="funciones_vista.js"></script>
     <script type="text/javascript">
     
 		var newwindow;
