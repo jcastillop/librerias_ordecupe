@@ -20,6 +20,7 @@ header('Content-Type: text/html; charset=UTF-8');
     <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">      
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
  
     <script type="text/javascript">
 		var newwindow;
@@ -35,8 +36,13 @@ header('Content-Type: text/html; charset=UTF-8');
     <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.j"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 	<script type="text/javascript" language="javascript" class="init">
 	
+     
+
+
 	$(document).ready(function() {
 	$('#example').DataTable( {
 		/*"scrollY": 200,*/
@@ -75,6 +81,11 @@ $(document).ready( function () {
 
 
 	</script>
+	<script> 
+       $(function() {
+         $( "#datepicker" ).datepicker();
+       });
+     </script>
     <style type="text/css">
 		#d{margin-left: -850px;
 		margin-top: 30px; 
@@ -85,17 +96,40 @@ $(document).ready( function () {
 
 <body class="dt-example" >
 	
-    
+ <form action="reporte_ventas.php" method="post">   
     <div class="container_">
-    
 		<section>
-			<h1>Reporte Ventas</h1>
-
-			
+		  <h1>Reporte Ventas</h1>
+		  <table align="center">
+             <tr>
+               <th>
+                 Titulo
+               </th>
+               <th>
+                 <input type="text" name="tit">
+               </th>
+               <th>
+                 Fecha inicio
+               </th>
+               <th>
+                 <input type="text" name ="fec1" id="datepicker"/>
+               </th>
+               <th>
+                 Fecha fin
+               </th>
+               <th>
+                 <input type="text" name ="fec2" id="datepicker"/>
+               </th>
+               <th>
+                 <input id="submit" name="Submit" class="enviar" value="Enviar" type="submit"/>
+               </th>
+             </tr>
+          </table>
             <div class="tablas"  align="center" >
 			<table id="example"  class="display" cellspacing="0" width="100%">
 				<thead>
 					<tr class="cabecera" >
+					    <th>Número</th>
                         <th>Tit.ID</th>
                         <th>Título</th>
                         <th>Cantidad</th>
@@ -105,11 +139,14 @@ $(document).ready( function () {
 				<tbody align="center">
                  <?php
 					$tra=new reportes();
-					$reg=$tra->get_reporte_ventas();
+					if (isset($_POST['tit']) && isset($_POST['fec1']) && isset($_POST['fec2']))
+					{$reg=$tra->get_reporte_ventas($_POST['tit'], $_POST['fec1'], $_POST['fec2']);}
+					else{$reg=$tra->get_reporte_ventas('%%','2014-11-01','2014-11-24');}
 					for ($i=0;$i<count($reg);$i++)
 					{
 				 ?>  
 					<tr>
+					    <td><?php echo $i+1 ?></td>
                         <td><?php echo $reg[$i]["int_cod_tit"];?></td>                      
 						<td><?php echo $reg[$i]["var_nom_tit"];?></td>                        
 						<td><?php echo $reg[$i]["int_cant_guia_det"];?></td>

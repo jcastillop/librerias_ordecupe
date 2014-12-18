@@ -9,7 +9,7 @@ class reportes
 	{
 		$this->reporte=array();
 	}
-	public function get_reporte_ventas()
+	public function get_reporte_ventas($tit, $fecini, $fecfin)
 	{
 		$sql="select * from(
               select t.int_cod_suc, t.int_cod_emp, t.int_cod_tit, p.var_nom_tit, sum(t.int_cant_guia_det) int_cant_guia_det
@@ -20,9 +20,10 @@ class reportes
                      t.int_cod_tit=p.int_cod_tit and
                      t.int_cod_emp=1 and
                      t.int_cod_suc=1 and
-                     date(y.date_fecenv_guia_cab) between '2014-11-01' and '2014-12-12'
+                     p.var_nom_tit like '$tit'and
+                     date(y.date_fecenv_guia_cab) between '$fecini' and '$fecfin'
             group by t.int_cod_suc, t.int_cod_emp, t.int_cod_tit, p.var_nom_tit) x 
-            order by x.int_cant_guia_det desc";
+            order by x.int_cant_guia_det desc;";
 		
 		$res=mysql_query($sql,Conectar::con());
 		
