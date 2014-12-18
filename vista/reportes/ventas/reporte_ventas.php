@@ -20,7 +20,6 @@ header('Content-Type: text/html; charset=UTF-8');
     <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">      
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
  
     <script type="text/javascript">
 		var newwindow;
@@ -36,7 +35,8 @@ header('Content-Type: text/html; charset=UTF-8');
     <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.j"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 	<script type="text/javascript" language="javascript" class="init">
 	
@@ -83,9 +83,11 @@ $(document).ready( function () {
 	</script>
 	<script> 
        $(function() {
-         $( "#datepicker" ).datepicker();
+         $("#datepicker1").datepicker();
+         $("#datepicker2").datepicker();
        });
      </script>
+
     <style type="text/css">
 		#d{margin-left: -850px;
 		margin-top: 30px; 
@@ -112,13 +114,13 @@ $(document).ready( function () {
                  Fecha inicio
                </th>
                <th>
-                 <input type="text" name ="fec1" id="datepicker"/>
+                 <input type="text" name ="fec1" id="datepicker1"/>
                </th>
                <th>
                  Fecha fin
                </th>
                <th>
-                 <input type="text" name ="fec2" id="datepicker"/>
+                 <input type="text" name ="fec2" id="datepicker2"/>
                </th>
                <th>
                  <input id="submit" name="Submit" class="enviar" value="Enviar" type="submit"/>
