@@ -36,7 +36,7 @@ if (isset($_GET['id_empresa']))
 {
 $_SESSION['id_empresa']=$_GET['id_empresa'];
 }
-print_r($_SESSION);
+//print_r($_SESSION);
 
  ?>
 <!DOCTYPE html>
