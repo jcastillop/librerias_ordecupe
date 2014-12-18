@@ -114,6 +114,20 @@ $_SESSION['id_empresa']=$_GET['id_empresa'];
 																		
 								</ul>
 							</li>
+                            <li class="dropdown">
+							<a>REPORTES<i class="icon-angle-down"></i></a>
+								<ul class="dropdown-menu bold">
+									<li class="dropdown">
+                                    <a>ALMACÉN<i class="icon-angle-down"></i></a>
+                                        <ul >
+                                        <li><a onClick="addTab('Registro Stock','vista/stock/vista_stock.php')">Stock Mínimo</a></li>
+                                        <li><a onClick="addTab('Registro Stock','vista/stock/vista_stock.php')">Stock Máximo</a></li>
+                                                                            
+                                        </ul>
+                                    </li>
+																		
+								</ul>
+							</li>
 						<li class="dropdown">
 							<a href="#">SALIR <i class="icon-angle-down"></i></a>
 						        <ul class="dropdown-menu bold">
