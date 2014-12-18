@@ -33,5 +33,25 @@ class reportes
 		}
 		return $this->reporte;
 	}
+	
+	public function get_reporte_stock_min($cant)
+	{
+		$sql="select 
+				s.int_cod_tit,
+				t.var_nom_tit,
+				s.int_cant_stk
+				from T_stock s
+				INNER JOIN T_titulos t on t.int_cod_tit=s.int_cod_tit
+				where s.int_cant_stk <'$cant'
+				order by s.int_cod_tit desc";
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->reporte[]=$reg;
+		}
+		return $this->reporte;
+	}
 }
 ?>
