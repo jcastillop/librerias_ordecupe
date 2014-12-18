@@ -37,10 +37,42 @@ www.amitjakhu.com
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery-1.2.6.min.js"></script>
  <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 
 <!--Slider-in icons-->
 <script type="text/javascript">
+$(document).ready(function(){
+	// Parametros para e combo1
+
+
+   $("#pais").change(function () {
+   		$("#pais option:selected").each(function () {
+			//alert($(this).val());
+				elegido=$(this).val();			
+				$.post("combo1.php", { elegido: elegido, }, function(data){
+				$("#departamento").html(data);
+				
+			});			
+        });
+   })
+   
+     
+   
+   
+	// Parametros para el combo2
+	$("#departamento").change(function () {
+   		$("#departamento option:selected").each(function () {
+			//alert($(this).val());
+				elegido2=$("#pais").val();
+				elegido3=$("#departamento").val();
+				$.post("combo2.php", { elegido2:elegido2, elegido3:elegido3  }, function(data){
+				$("#provincia").html(data); 
+			});			
+        });
+   })
+});
+
 $(document).ready(function() {
 	$(".username").focus(function() {
 		$(".user-icon").css("left","-48px");
@@ -178,10 +210,11 @@ function formulario(f) {
           <input name="nro_doc" type="text" maxlength="11" style="width: 180px;" class="input username" onKeyPress="return tab(event,this)"  onkeyUp="return ValNumero(this);" /></td>	
         </tr>
         <tr>
-          <td>País: </td>
+         <td>País: </td>
           <td>
-          <select  name="pais" id="pais" style="width: 160px;" class="input username" onKeyPress="return tab(event,this)" onChange="from(document.form1.pais.value,'midiv','proveedor_dep.php')" >
-          <option value="999">--Seleccione--</option>
+          <select  name="pais" id="pais" class="input username" style="width: 200px;" onKeyPress="return tab(event,this)">
+          <!--<option value="999">--Seleccione--</option>-->
+          <option>--Seleccione--</option>
           <?php
 			$tra=new pais();
 			$reg=$tra->get_combo_pais();
@@ -195,22 +228,24 @@ function formulario(f) {
 			}
 		  ?>
             </select>
+             </td>	
+              </tr>
+        <tr>	  
+       <td>Departamento:</td>
+          <td>
+          <select name="departamento" style="width: 200px;" id="departamento" class="input username">	
+            <option>--Seleccione--</option>
+            </select>
           </td>
            </tr>
         <tr>
-          <td>Departamento:</td>
+        <td>Provincia: </td>
           <td>
-          <div id='midiv'><select style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
-          <option>--Seleccione--</option></select></div>
-          </td>
+          <select name="provincia" style="width: 200px;" id="provincia" class="input username">
+            <option>--Seleccione--</option>	
+            </select>
+          </td>		
            </tr>
-        <tr>
-          <td>Provincia: </td>
-          <td>
-          <div id="madiv"><select style="width: 200px;" class="input username" onKeyPress="return tab(event,this)">
-          <option>--Seleccione--</option></select></div>
-          </td>
-        </tr>
         <tr>
           <td>Distrito: </td>
           <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" onKeyDown="return tab(event,this)" onKeyPress="return validar(event)" /></td>

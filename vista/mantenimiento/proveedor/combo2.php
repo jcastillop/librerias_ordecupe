@@ -9,6 +9,7 @@ $rpta="";
 	
 	$tra=new provincia();
 			$reg=$tra->get_combo_provincia($_POST["elegido2"],$_POST["elegido3"]);
+			echo "<option>--Seleccione--</option>";
 			for ($i=0;$i<count($reg);$i++)
 			{
 				$provincia=$reg[$i]['var_nom_provi'];

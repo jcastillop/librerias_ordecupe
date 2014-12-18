@@ -92,10 +92,39 @@ www.amitjakhu.com
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery-1.2.6.min.js"></script>
   <script type="text/javascript" src="../../../paquetes/js/validar.js"></script>
 
 <!--Slider-in icons-->
 <script type="text/javascript">
+$(document).ready(function(){
+	// Parametros para e combo1
+
+
+   $("#pais").change(function () {
+   		$("#pais option:selected").each(function () {
+			//alert($(this).val());
+				elegido=$(this).val();			
+				$.post("combo1.php", { elegido: elegido, }, function(data){
+				$("#departamento").html(data);
+				
+			});			
+        });
+   })
+ 
+	// Parametros para el combo2
+	$("#departamento").change(function () {
+   		$("#departamento option:selected").each(function () {
+			//alert($(this).val());
+				elegido2=$("#pais").val();
+				elegido3=$("#departamento").val();
+				$.post("combo2.php", { elegido2:elegido2, elegido3:elegido3  }, function(data){
+				$("#provincia").html(data); 
+			});			
+        });
+   })
+});
+
 $(document).ready(function() {
 	$(".username").focus(function() {
 		$(".user-icon").css("left","-48px");
@@ -239,11 +268,12 @@ function formulario(f) {
           <input name="nro_doc" type="text" maxlength="11" style="width: 180px;" class="input username" onKeyPress="return tab(event,this)" onkeyUp="return ValNumero(this);" value="<?php echo $nrodoc_prov;?>" /></td>
         </tr>
         <tr>
-          <td>Pais: </td>
+         <td>Pais: </td>
           <td>
-          <select class="input username"  name="pais" style="width: 160px;" id="pais" onKeyPress="return tab(event,this)" onChange="from(document.form1.pais.value,'mai','mod_dep.php')">
+          <select class="input username"  name="pais" style="width: 160px;" id="pais">
           <option value="<?php echo $cod_pais;?>" selected><?php echo $nom_pais;?></option>
-          <?php		  
+          <?php	
+		  		  
 			$tra=new pais();
 			$reg=$tra->get_combo_pais_update($cod_pais);
 			for ($i=0;$i<count($reg);$i++)
@@ -256,16 +286,16 @@ function formulario(f) {
 			?>   
             </select>
           </td>
-           </tr>
-        <tr>
-          <td>Departamento: </td>
+          </tr>
+         <tr>	  
+       <td>Departamento:</td>
           <td>
-          <div id="mai">
-          <select class="input username" style="width: 200px;"  name="departamento" id="departamento" onKeyPress="return tab(event,this)">
-          <option value="<?php echo $cod_dept;?>" selected><?php echo $nom_dept;?></option>
-          <?php	  
+          <select name="departamento" style="width: 200px;" id="departamento" class="input username">	
+           <option value="<?php echo $cod_dept;?>" selected><?php echo $nom_dept;?></option>
+           <?php	
+		  		  
 			$tra=new departamento();
-			$reg=$tra->get_combo_departamentos_update($cod_dept);
+			$reg=$tra->get_combo_departamentos_update($cod_pais,$cod_dept);
 			for ($i=0;$i<count($reg);$i++)
 			{
 			?>
@@ -273,19 +303,18 @@ function formulario(f) {
 			
 			<?php
 			}
-			?>   
-            </select></div>
+			?>              
+            </select>
           </td>
            </tr>
         <tr>
-          <td>Provincia: </td>
+        <td>Provincia: </td>
           <td>
-          <div id="mei">
-          <select class="input username" style="width: 200px;"  name="provincia" id="provincia" onKeyPress="return tab(event,this)">
-          <option value="<?php echo $cod_provi;?>" selected><?php echo $nom_provi;?></option>
-          <?php			  
+          <select name="provincia" style="width: 200px;" id="provincia" class="input username">
+            <option value="<?php echo $cod_provi;?>" selected><?php echo $nom_provi;?></option>	
+             <?php			  
 			$tra=new provincia();
-			$reg=$tra->get_combo_provincias_update($cod_provi);
+			$reg=$tra->get_combo_provincias_update($cod_pais,$cod_dept,$cod_provi);
 			for ($i=0;$i<count($reg);$i++)
 			{
 			?>
@@ -294,12 +323,12 @@ function formulario(f) {
 			<?php
 			}
 			?>   
-            </select></div>
-          </td>
-        </tr>
+            </select>
+          </td>		
+           </tr>
         <tr>
           <td>Distrito: </td>
-          <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" onkeydown="return tab(event,this)" onKeyPress="return validar(event,this)" value="<?php echo $dist_prov;?>" /></td>
+          <td><input name="distrito" type="text" maxlength="50" style="width: 300px;" class="input username" onKeyDown="return tab(event,this)" onKeyPress="return validar(event,this)" value="<?php echo $dist_prov;?>" /></td>
            </tr>
         <tr>
           <td>Direccion: </td>
