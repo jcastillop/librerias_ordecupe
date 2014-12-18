@@ -107,6 +107,13 @@ print_r($_SESSION);
 									
 								</ul>
 							</li>
+                            <li class="dropdown">
+							<a >STOCK<i class="icon-angle-down"></i></a>
+								<ul class="dropdown-menu bold">
+									<li><a onClick="addTab('Registro Stock','vista/stock/vista_stock.php')">REGISTRO</a></li>
+																		
+								</ul>
+							</li>
 						<li class="dropdown">
 							<a href="#">SALIR <i class="icon-angle-down"></i></a>
 						        <ul class="dropdown-menu bold">
