@@ -1,7 +1,7 @@
 
 <?php
-require_once("../../conexiones/class_reportes.php");
-require_once("../../conexiones/conexion.php");
+require_once("../../../conexiones/class_reportes.php");
+require_once("../../../conexiones/conexion.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,10 +16,10 @@ header('Content-Type: text/html; charset=UTF-8');
 	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 	<title>Reporte Almacen</title>
-	<link rel="stylesheet" type="text/css" href="../../paquetes/media/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="../../paquetes/media/css/dataTables.tableTools.css">      
-	<link rel="stylesheet" type="text/css" href="../../paquetes/syntax/shCore.css">
-	<link rel="stylesheet" type="text/css" href="../../paquetes/resources/demo.css">
+	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">      
+	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
+	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
  
     <script type="text/javascript">
 		var newwindow;
@@ -29,12 +29,12 @@ header('Content-Type: text/html; charset=UTF-8');
 			if (window.focus) {newwindow.focus()}
 		}
 	</script>
-	<script type="text/javascript" language="javascript" src="../../paquetes/media/js/jquery.js"></script>    
-	<script type="text/javascript" language="javascript" src="../../paquetes/media/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" language="javascript" src="../../paquetes/media/js/dataTables.tableTools.js"></script>
-    <script type="text/javascript" language="javascript" src="../../paquetes/media/js/js/TableTools.j"></script>
-	<script type="text/javascript" language="javascript" src="../../paquetes/resources/syntax/shCore.js"></script>
-	<script type="text/javascript" language="javascript" src="../../paquetes//resources/demo.js"></script>
+	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.js"></script>    
+	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/dataTables.tableTools.js"></script>
+    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.j"></script>
+	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
 	<script type="text/javascript" language="javascript" class="init">
 	
 	$(document).ready(function() {
@@ -89,15 +89,13 @@ $(document).ready( function () {
     <div class="container_">
     
 		<section>
-			<h1>STOCK</h1>
+			<h1>Reporte Ventas</h1>
 
 			
             <div class="tablas"  align="center" >
 			<table id="example"  class="display" cellspacing="0" width="100%">
 				<thead>
 					<tr class="cabecera" >
-						
-						<th><a href="javascript:poptastic('stock.php');"><img src="../../img/images/actualizar.png"/></th>
                         <th>Tit.ID</th>
                         <th>Título</th>
                         <th>Cantidad</th>
@@ -106,13 +104,12 @@ $(document).ready( function () {
 				</thead>
 				<tbody align="center">
                  <?php
-					$tra=new reporte();
+					$tra=new reportes();
 					$reg=$tra->get_reporte_ventas();
 					for ($i=0;$i<count($reg);$i++)
 					{
 				 ?>  
 					<tr>
-						<td></td> 
                         <td><?php echo $reg[$i]["int_cod_tit"];?></td>                      
 						<td><?php echo $reg[$i]["var_nom_tit"];?></td>                        
 						<td><?php echo $reg[$i]["int_cant_guia_det"];?></td>
