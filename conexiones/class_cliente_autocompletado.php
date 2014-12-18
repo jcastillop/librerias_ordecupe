@@ -62,6 +62,18 @@ class cliente
 		}
 			return $this->cliente;
 	}
+	public function get_nom_titulo_like($q)
+	{
+		$sql="select int_cod_tit,var_nom_tit from T_titulos where int_est_tit=1 and var_nom_tit like '%$q%'";
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->cliente[]=$reg;
+		}
+			return $this->cliente;
+	}
 	
 	public function get_cod_comp_titulo_like($q)
 	{

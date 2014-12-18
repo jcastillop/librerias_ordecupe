@@ -15,27 +15,45 @@ header('Content-Type: text/html; charset=UTF-8');
 	<meta charset="utf-8">
 	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
-	<title>Stock</title>
+	<title>Stock</title> 
+	<script type="text/javascript" src="busquedas/js/jquery-1.4.2.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    
+	<script type='text/javascript' src="busquedas/js/jquery.autocomplete.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="busquedas/js/jquery.autocomplete.css" />
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">      
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
  
-    <script type="text/javascript">
-		var newwindow;
-		function poptastic(url)
-		{
-			newwindow=window.open(url,'name','height=238,width=380,left=400');
-			if (window.focus) {newwindow.focus()}
-		}
-	</script>
-	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.js"></script>    
 	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.dataTables.js"></script>
     <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/dataTables.tableTools.js"></script>
-    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.j"></script>
-	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
-	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
-	<script type="text/javascript" language="javascript" class="init">
+    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.js"></script>
+
+	<script type="text/javascript" >
+	$().ready(function() {
+	$("#titulo").autocomplete("busquedas/autoCompleteMainNom_Titulo.php", {
+		width: 260,
+		matchContains: true,
+		//mustMatch: true,
+		//minChars: 0,
+		//multiple: true,
+		//highlight: false,
+		//multipleSeparator: ",",
+		selectFirst: false
+	});
+	
+	$("#titulo").result(function(event, data, formatted) {
+		
+		$("#cod_tit").val(data[1]);
+		$("#titulo").focus();
+		
+	
+	});
+});
 	
 	$(document).ready(function() {
 	$('#example').DataTable( {
@@ -53,34 +71,20 @@ header('Content-Type: text/html; charset=UTF-8');
 			} );
 		} );
 
-
-$(document).ready(function() {
-	var table = $('#example').DataTable();
-
-	$('#example tbody').on( 'dblclick', 'tr', function () {
-		$(this).toggleClass('selected');
-	} );
-
-	$('#button').click( function () {
-		alert( table.rows('.selected').data().length +' row(s) selected' );
-	} );
-} );
-
-
-
 $(document).ready( function () {
     var table = $('#example').DataTable();
     $.fn.dataTable.KeyTable( table );
 } );
 
+  </script>	
 
-	</script>
-    <style type="text/css">
-		#d{margin-left: -850px;
-		margin-top: 30px; 
-		margin-bottom: -50px;}
-	</style>
-	
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+    $( "#datepicker1" ).datepicker();
+  });
+  
+  </script>
 </head>
 
 <body class="dt-example" >
@@ -90,41 +94,32 @@ $(document).ready( function () {
     
 		<section>
 			<h1>STOCK</h1>
+            <table align="center" >
+                <tr>
+               		<td>Título</td>
+                	<td><input type="text" name="cod_tit" id="cod_tit" ><input type="text" name="titulo" id="titulo" ></td>
+                	<td>Fecha Ini.</td>
+                    <td><input type="text" id="datepicker"></td>
+                    <td>Fecho Fin</td>
+                    <td><input type="text" id="datepicker1"></td>
+                    <td><input type="submit" name="submit" id="submit" value="Consultar" /></td>
+                </tr>
+            </table>
 
 			
             <div class="tablas"  align="center" >
-			<table id="example"  class="display" cellspacing="0" width="100%">
+			<table border="1px solid" id="example"  class="display" cellspacing="0" width="100%">
 				<thead>
-					<tr class="cabecera" >
+					<tr class="cabecera">
 						
-						<th><a href="javascript:poptastic('stock.php');"><img src="../../../img/images/actualizar.png"/></th>
-                        <th>Tit.ID</th>
+						<th>Tit.ID</th>
                         <th>Título</th>
                         <th>Cantidad</th>
 				
 					</tr>
 				</thead>
 				<tbody align="center">
-                 <?php
-					$tra=new stock();
-					$reg=$tra->get_stock();
-					for ($i=0;$i<count($reg);$i++)
-					{
-				 ?>  
-					<tr>
-                  <!--<td align='center' ><a href=" javascript:poptastic('mod_titulos.php?id=<?php echo $reg[$i]["int_cod_tit"];?>'); " ><img src='../../img/images/edit.png' width='15px' height='15px' title='Actualizar'></a></td>-->
-
-						<td></td> 
-                        <td><?php echo $reg[$i]["int_cod_tit"];?></td>                      
-						<td><?php echo $reg[$i]["var_nom_tit"];?></td>                        
-						<td><?php echo $reg[$i]["int_cant_stk"];?></td>
-
-						
-					</tr>
-				
-  <?php
-}
-?>        
+                
                 </tbody>
 			</table>
 			</div>
@@ -135,4 +130,5 @@ $(document).ready( function () {
         </section> 
 </div>
 </body>
+
 </html>
