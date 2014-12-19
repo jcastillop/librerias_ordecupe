@@ -1,9 +1,3 @@
-
-<?php
-require_once("../../../conexiones/class_reportes.php");
-require_once("../../../conexiones/conexion.php");
-require_once("../../../conexiones/fechas.php");
-?>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,34 +11,21 @@ header('Content-Type: text/html; charset=UTF-8');
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 	<title>Reporte Almacen</title>
 
-<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
-<!--****************************estilos de la tablas de datos********************************-->
-<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
-<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
-<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
-<!--*********************************************************************************** -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/tabletools/2.2.3/css/dataTables.tableTools.css">
+<link rel="stylesheet" type="text/css" href="https://editor.datatables.net/media/css/dataTables.editor.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+ <link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
+    <link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
 
-<!--****************************links para el datepicker********************************-->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!--*********************************************************************************** -->
-
-<!--***********************************funciones de la tablas de datos*******************************************-->
-<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.dataTables.js"></script>
-<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/dataTables.tableTools.js"></script>
-<!--************************************************************************************************************ -->
-
-<!--***********************************Api de ajax para realizar operaciones**************************************-->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-<!--************************************************************************************************************ -->
-
-<!--*******************************Codigo autocomplete para realizar busquedas***********************************-->
-<script type='text/javascript' src="busquedas/js/jquery.autocomplete.js"></script>
-<link rel="stylesheet" type="text/css" href="busquedas/js/jquery.autocomplete.css" />
-<!--************************************************************************************************************ -->
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://jquery-datatables-editable.googlecode.com/svn-history/r88/trunk/media/js/jquery.jeditable.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script language="javascript" type="text/javascript" src="https://jquery-datatables-editable.googlecode.com/svn-history/r122/trunk/media/js/jquery.dataTables.editable.js"></script>
+ <script language="javascript" type="text/javascript" src="funciones.js"></script>
+<!-- DataTables -->
 
 <script>
   $().ready(function() {
@@ -108,35 +89,14 @@ header('Content-Type: text/html; charset=UTF-8');
 				
 					</tr>
 				</thead>
-				<tbody align="center">
-                 <?php
-					$tra=new reportes();
-					if (isset($_POST['titulo']) && isset($_POST['fec1']) && isset($_POST['fec2']))
-					{
-					   $titulo=$_POST['titulo']==''?'%%':$_POST['titulo'];
-					   $fecini=$_POST['fec1']==''?Fechas::mifechagmtactual(time(),-5):$_POST['fec1'];
-				       $fecfin=$_POST['fec2']==''?Fechas::mifechagmtactual(time(),-5):$_POST['fec2'];
-					   $reg=$tra->get_reporte_ventas($titulo, $fecini,$fecfin);
-					}
-					else
-					{
-					   $fecini=Fechas::mifechagmtactual(time(),-5);
-					   $fecfin=Fechas::mifechagmtactual(time(),-5);
-					   $reg=$tra->get_reporte_ventas('%%',$fecini, $fecfin);
-					}
-					for ($i=0;$i<count($reg);$i++)
-					{
-				 ?>  
-					<tr>
-					    <td><?php echo $i+1 ?></td>
-                        <td><?php echo $reg[$i]["int_cod_tit"];?></td>                      
-						<td><?php echo $reg[$i]["var_nom_tit"];?></td>                        
-						<td><?php echo $reg[$i]["int_cant_guia_det"];?></td>
-					</tr>
-  <?php
-}
-?>        
-                </tbody>
+				<tfoot>
+                   <tr>
+                        <th>Numero</th>
+                        <th>Tit. ID</th>
+                        <th>Titulo</th>
+                        <th>Cantidad</th>
+            </tr>
+        </tfoot>
 			</table>
 			</div>
 		</section>
