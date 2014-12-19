@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-               
+var tipo_accion;               
   //capturando los datos para la edicion
   if(typeof $_GET("id") != 'undefined'){
                   
@@ -21,16 +21,22 @@ $(document).ready(function(){
       //concatenamos los parametros que usaremos para buscar los registros
       data: "cod=" + codigo + "&suc=" + sucursal+ "&emp=" + empresa,
       success: function(datos){
+
+        
         //decodificando el JSON proveniente de guias_buscar.php                        
         var jsonData = JSON.parse(datos);
+         
         cadena_precio_mercaderia="<tr>";
         cadena_precio_mercaderia= cadena_precio_mercaderia + "<td><input name='desc[]' class='input username' type='text' value='FOB(Precio Mercaderia)' size='15' OnFocus='this.blur()'/></td>";
-        cadena_precio_mercaderia= cadena_precio_mercaderia + "<td><input name='monto[]' class='input username' type='text' value='"+ jsonData[0].total +"' size='30' OnFocus='this.blur()'/></td>";
+        cadena_precio_mercaderia= cadena_precio_mercaderia + "<td><input name='monto[]' class='input username' type='text' value='"+ jsonData[0][0].total +"' size='30' OnFocus='this.blur()'/></td>";
         cadena_precio_mercaderia= cadena_precio_mercaderia + "</tr>";
 
         $("#grilla tbody").append(cadena_precio_mercaderia);
-                        for(i=0;i<jsonData.length;i++){
-                //cargando en un array en una cadena con el formato de la tabla detalle        
+        //alert(jsonData.length);
+         tipo_accion=jsonData.length;
+          for(i=1;i<jsonData.length;i++){
+                //cargando en un array en una cadena con el formato de la tabla detalle   
+                if(jsonData[i].var_cod_comp_gas>0){
                     cadena = "<tr>";
                     cadena = cadena + "<td><input name='desc[]' class='input username' type='text' value='"+ jsonData[i].var_des_comp_gas +"' size='15' OnFocus='this.blur()'/></td>";
                     cadena = cadena + "<td><input name='monto[]' class='input username' type='text' value='"+ jsonData[i].dec_val_comp_gas +"' size='30' OnFocus='this.blur()'/></td>";
@@ -39,12 +45,15 @@ $(document).ready(function(){
                     //agregando la cadena a la grilla
                     $("#grilla tbody").append(cadena);
 
+                };     
+
+
 
                 };
-                $("#fecha_compra").val(jsonData[0].date_fec_rec_comp_cab);
-                $("#descripcion_compra").val(jsonData[0].var_desc_comp_cab);
-                $("#fob_compra").html(jsonData[0].total);
-                                    //estableciendo el foco 
+                $("#fecha_compra").val(jsonData[0][0].date_fec_rec_comp_cab);
+                $("#descripcion_compra").val(jsonData[0][0].var_desc_comp_cab);
+                $("#fob_compra").html(jsonData[0][0].total);
+                   //estableciendo el foco 
                     $("#descripcion").focus();
                     //funcion eliminar permite activar la opcionde borrar los registros
                     fn_dar_eliminar();
@@ -81,17 +90,19 @@ $(document).ready(function(){
                     var cod_com=$("#codigo_compra").val();
                     var cod_suc=$("#codigo_sucursal").val();
                     var cod_emp=1;
+                  
           
-                   
+                            
                     var detalle = "[";
-                    for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
-                        
-                        detalle = detalle + 
-                            '{"descripcion":"' 
+
+                    for (var i=2;i<document.getElementById('grilla').rows.length-1;i++){ 
+                     
+                        detalle = detalle 
+                            +'{"descripcion":"' 
                             + document.getElementById('grilla').rows[i].cells[0].childNodes[0].value + '", '
                             + '"monto":'
                             + document.getElementById('grilla').rows[i].cells[1].childNodes[0].value + "}";
-                           
+                       
                         
                             if (i==document.getElementById('grilla').rows.length-2){
                             detalle = detalle + "]";
@@ -99,7 +110,7 @@ $(document).ready(function(){
                             detalle = detalle + ','; 
                             }       
                     }
-                     
+                     alert(detalle);
                     if(detalle=="["){
                        
                         alert("Registre correctamente los campos as");
@@ -108,8 +119,10 @@ $(document).ready(function(){
                         var dataString= 'cod_com='+cod_com+
                                         '&cod_suc='+cod_suc+
                                         '&cod_emp='+cod_emp+
+                                        '&tipo_accion='+tipo_accion+
                                         '&detalle='+detalle;
-                                                         
+                                                          
+                                              
                         $.ajax({
                           type: "POST",
                           url: "insertar_datos.php",
@@ -126,6 +139,7 @@ $(document).ready(function(){
                             alert("error");
                           }
                         });
+                     
                     }
                     
                     return false;   
@@ -165,6 +179,7 @@ $(document).ready(function(){
         total= total + parseFloat(document.getElementById('grilla').rows[i].cells[1].childNodes[0].value);
              
     }
+    total=parseFloat(Math.round(total * 100) / 100).toFixed(2);
     $("#suma_total").html(total); 
     $("#total_compra").html(total);
     var fob=parseFloat($("#fob_compra").html());

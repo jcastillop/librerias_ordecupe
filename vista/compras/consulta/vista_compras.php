@@ -22,7 +22,7 @@ header('Content-Type: text/html; charset=UTF-8');
 
 	<title>Documento</title>
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
-    	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
+    <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
         
 
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
@@ -183,6 +183,7 @@ $(document).ready(function() {
                         <th style="width: 150px;">Mes</th>
                         <th style="width: 100px;">Año</th>
                         <th style="width: 100px;">Gastos</th>
+                        <th style="width: 100px;">Precios</th>
 					</tr>
 				</thead>
 				<tbody align="center">
@@ -201,11 +202,10 @@ $(document).ready(function() {
                         <td><?php echo nombremes($reg[$i]["mes"]);?></td>
                         <td><?php echo $reg[$i]["año"];?></td>
                         <td align='center'><a href=" javascript:window.parent.addTab('Costos Transporte','vista/compras/gastos/index.php?id=<?php echo $reg[$i]["var_cod_comp_cab"];?>&sucursal=<?php echo $reg[$i]["int_cod_suc"];?>'); " ><img src='images/img_gastos.jpg' width='15px' height='15px'></a></td>
-
-					</tr>
-				
-  <?php
-}
+                        <td align='center'><a href=" javascript:window.parent.addTab('Precio Titulos','vista/compras/precios/index.php?id=<?php echo $reg[$i]["var_cod_comp_cab"];?>&sucursal=<?php echo $reg[$i]["int_cod_suc"];?>'); " ><img src='images/img_gastos.jpg' width='15px' height='15px'></a></td>				
+                    </tr>
+  				<?php
+			}
 ?>        
                 </tbody>
 			</table>
