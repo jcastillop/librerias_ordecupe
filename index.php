@@ -150,7 +150,7 @@ else{
         <p>&nbsp;</p>
         <p>&nbsp;</p>
 		<div id="footer">
-			© Derechos reservados por Byte Peru S.A.C.<a href="http://azmind.com/2012/01/15/create-a-clean-web-2-0-login-form-part-2-html-css/"></a>
+			© Derechos reservados por Sbcc Engineers Solutions S.A.C.<a href="http://azmind.com/2012/01/15/create-a-clean-web-2-0-login-form-part-2-html-css/"></a>
 		</div>
         
         
