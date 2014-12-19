@@ -40,6 +40,13 @@
 
             
             <div class="tablas"  align="center" >
+
+                <p id="renderingEngineFilter"></p>
+    <p id="browserFilter"></p>
+    <p id="platformsFilter"></p>
+    <p id="engineVersionFilter"></p>
+    <p id="cssGradeFilter"></p>
+    
 		<table id="example" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>

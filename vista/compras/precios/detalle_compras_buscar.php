@@ -11,11 +11,11 @@
         "TotalDisplayRecords" => count($reg),
           "data"=>$reg);
 
-
+/*
 	echo "<pre>";
 print_r ($reg);	
 echo "</pre>";
 
-
+*/
 echo json_encode($res);
 	?>

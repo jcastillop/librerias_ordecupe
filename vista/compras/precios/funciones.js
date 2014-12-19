@@ -1,6 +1,6 @@
 
 $( document ).ready(function() {
-$('#example').dataTable({
+var dt = $('#example').dataTable({
                  "processing": true,
                  "ajax": "detalle_compras_buscar.php",
                  "aoColumns": [
@@ -10,7 +10,10 @@ $('#example').dataTable({
                         { data: 'var_nom_edit' },
                         { data: 'var_rsoc_prov' },
                 ]
-        }).makeEditable({
+        })
+
+    dt.makeEditable({
             sUpdateURL: "UpdateData.php"
-        });   
+        });
+           dt.columnFilter();
 });
