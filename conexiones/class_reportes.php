@@ -34,16 +34,25 @@ class reportes
 		return $this->reporte;
 	}
 	
-	public function get_reporte_stock_min($cant)
+	public function get_reporte_stock_min($cant, $fecini, $fecfin)
 	{
+		if($cant==""){
+			$cant1="";
+			}
+			else
+			{
+			$cant1="s.int_cant_stk <'$cant' and";	
+			}
+		
 		$sql="select 
 				s.int_cod_tit,
 				t.var_nom_tit,
-				s.int_cant_stk
+				s.int_cant_stk,
+				date(s.date_fecact_stk) as date_fecact_stk 
 				from T_stock s
 				INNER JOIN T_titulos t on t.int_cod_tit=s.int_cod_tit
-				where s.int_cant_stk <'$cant'
-				order by s.int_cod_tit desc";
+				where  $cant1  date(s.date_fecact_stk) between'$fecini' and '$fecfin'
+				order by s.int_cod_tit desc;";
 		
 		$res=mysql_query($sql,Conectar::con());
 		
@@ -53,5 +62,6 @@ class reportes
 		}
 		return $this->reporte;
 	}
+	
 }
 ?>

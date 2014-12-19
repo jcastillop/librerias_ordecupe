@@ -235,9 +235,9 @@ for ($i=0;$i<count($reg);$i++)
             </div>		
 		</section>
 
-        <section>
-            <div class="footer"></div>
-        </section>
+            <section>
+                <div class="footer"></div>
+            </section>
 </div>
 </body>
 </html>

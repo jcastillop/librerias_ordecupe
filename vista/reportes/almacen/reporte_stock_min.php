@@ -1,6 +1,6 @@
 
 <?php
-require_once("../../../conexiones/class_stock.php");
+require_once("../../../conexiones/class_reportes.php");
 require_once("../../../conexiones/conexion.php");
 ?>
 <!DOCTYPE html>
@@ -16,25 +16,22 @@ header('Content-Type: text/html; charset=UTF-8');
 	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 	<title>Stock</title> 
-	<script type="text/javascript" src="busquedas/js/jquery-1.4.2.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-    
-	<script type='text/javascript' src="busquedas/js/jquery.autocomplete.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
+    	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
+        
 
-	<link rel="stylesheet" type="text/css" href="busquedas/js/jquery.autocomplete.css" />
-	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">      
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
- 
+	
+<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.js"></script>
+    
 	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.dataTables.js"></script>
     <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/dataTables.tableTools.js"></script>
-    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.js"></script>
-
+    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.j"></script>
+	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
 	<script type="text/javascript" >
-	$().ready(function() {
+	/*$().ready(function() {
 	$("#titulo").autocomplete("busquedas/autoCompleteMainNom_Titulo.php", {
 		width: 260,
 		matchContains: true,
@@ -53,7 +50,7 @@ header('Content-Type: text/html; charset=UTF-8');
 		
 	
 	});
-});
+});*/
 	
 	$(document).ready(function() {
 	$('#example').DataTable( {
@@ -77,11 +74,13 @@ $(document).ready( function () {
 } );
 
   </script>	
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <script>
   $(function() {
-    $( "#datepicker" ).datepicker();
-    $( "#datepicker1" ).datepicker();
+    $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#datepicker1" ).datepicker({ dateFormat: 'yy-mm-dd' });
   });
   
   </script>
@@ -89,20 +88,21 @@ $(document).ready( function () {
 
 <body class="dt-example" >
 	
-    
+   <form action="reporte_stock_min.php" method="post">   
     <div class="container_">
     
 		<section>
 			<h1>STOCK</h1>
             <table align="center" >
                 <tr>
-               		<td>Título</td>
-                	<td><input type="text" name="cod_tit" id="cod_tit" ><input type="text" name="titulo" id="titulo" ></td>
+               		<td>Cantidad</td>
+                	<!--<td><input type="text" name="cod_tit" id="cod_tit" ><input type="text" name="titulo" id="titulo" ></td>-->
+                    <td><input type="text" name="cant" id="cant" ></td>
                 	<td>Fecha Ini.</td>
-                    <td><input type="text" id="datepicker"></td>
+                    <td><input type="text" id="datepicker" name="fec_ini"></td>
                     <td>Fecho Fin</td>
-                    <td><input type="text" id="datepicker1"></td>
-                    <td><input type="submit" name="submit" id="submit" value="Consultar" /></td>
+                    <td><input type="text" id="datepicker1" name="fec_fin"></td>
+                    <td><input id="submit" name="Submit" class="enviar" value="Enviar" type="submit"/></td>
                 </tr>
             </table>
 
@@ -115,11 +115,28 @@ $(document).ready( function () {
 						<th>Tit.ID</th>
                         <th>Título</th>
                         <th>Cantidad</th>
+                        <th>Fecha</th>
 				
 					</tr>
 				</thead>
 				<tbody align="center">
-                
+                <?php
+					$tra=new reportes();
+					if (isset($_POST['cant']) && isset($_POST['fec_ini']) && isset($_POST['fec_fin']))
+					{$reg=$tra->get_reporte_stock_min($_POST['cant'], $_POST['fec_ini'], $_POST['fec_fin']);}
+					else{$reg=$tra->get_reporte_stock_min('%%','2014-01-15','2014-12-18');}
+					for ($i=0;$i<count($reg);$i++)
+					{
+				 ?>  
+					<tr>
+					    <td><?php echo $i+1 ?></td>
+                        <td><?php echo $reg[$i]["var_nom_tit"];?></td>                      
+						<td><?php echo $reg[$i]["int_cant_stk"];?></td>                        
+						<td><?php echo $reg[$i]["date_fecact_stk"];?></td>
+					</tr>
+				  <?php
+                }
+                ?>        
                 </tbody>
 			</table>
 			</div>
@@ -129,6 +146,7 @@ $(document).ready( function () {
             <div class="footer"></div>
         </section> 
 </div>
+</form>
 </body>
 
 </html>
