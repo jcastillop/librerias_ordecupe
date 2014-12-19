@@ -123,8 +123,8 @@ $(document).ready( function () {
                 <?php
 					$tra=new reportes();
 					if (isset($_POST['cant']) && isset($_POST['fec_ini']) && isset($_POST['fec_fin']))
-					{$reg=$tra->get_reporte_stock_min($_POST['cant'], $_POST['fec_ini'], $_POST['fec_fin']);}
-					else{$reg=$tra->get_reporte_stock_min('%%','2014-01-15','2014-12-18');}
+					{$reg=$tra->get_reporte_stock_min($_POST['cant'], $_POST['fec_ini'], $_POST['fec_fin']);
+					
 					for ($i=0;$i<count($reg);$i++)
 					{
 				 ?>  
@@ -135,7 +135,7 @@ $(document).ready( function () {
 						<td><?php echo $reg[$i]["date_fecact_stk"];?></td>
 					</tr>
 				  <?php
-                }
+                }}
                 ?>        
                 </tbody>
 			</table>
