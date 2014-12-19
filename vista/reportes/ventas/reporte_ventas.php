@@ -2,6 +2,7 @@
 <?php
 require_once("../../../conexiones/class_reportes.php");
 require_once("../../../conexiones/conexion.php");
+require_once("../../../conexiones/fechas.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,87 +14,56 @@ header('Content-Type: text/html; charset=UTF-8');
 <head>
   <p id="deHijo"></p>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 	<title>Reporte Almacen</title>
-	<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">      
-	<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
-	<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
- 
-    <script type="text/javascript">
-		var newwindow;
-		function poptastic(url)
-		{
-			newwindow=window.open(url,'name','height=238,width=380,left=400');
-			if (window.focus) {newwindow.focus()}
-		}
-	</script>
-	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.js"></script>    
-	<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/dataTables.tableTools.js"></script>
-    <script type="text/javascript" language="javascript" src="../../../paquetes/media/js/js/TableTools.j"></script>
-	<script type="text/javascript" language="javascript" src="../../../paquetes/resources/syntax/shCore.js"></script>
-	<script type="text/javascript" language="javascript" src="../../../paquetes//resources/demo.js"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-	<script type="text/javascript" language="javascript" class="init">
-	
-     
+
+<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+<!--****************************estilos de la tablas de datos********************************-->
+<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="../../../paquetes/media/css/dataTables.tableTools.css">
+<link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
+<link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
+<!--*********************************************************************************** -->
+
+<!--****************************links para el datepicker********************************-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--*********************************************************************************** -->
+
+<!--***********************************funciones de la tablas de datos*******************************************-->
+<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="../../../paquetes/media/js/dataTables.tableTools.js"></script>
+<!--************************************************************************************************************ -->
+
+<!--***********************************Api de ajax para realizar operaciones**************************************-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<!--************************************************************************************************************ -->
+
+<!--*******************************Codigo autocomplete para realizar busquedas***********************************-->
+<script type='text/javascript' src="busquedas/js/jquery.autocomplete.js"></script>
+<link rel="stylesheet" type="text/css" href="busquedas/js/jquery.autocomplete.css" />
+<!--************************************************************************************************************ -->
+
+<script>
+  $().ready(function() {
+    $("#titulo").autocomplete("busquedas/autoCompleteMainNom_Titulo.php", {
+		width: 260,
+		matchContains: true,
+		//mustMatch: true,
+		//minChars: 0,
+		//multiple: true,
+		//highlight: false,
+		//multipleSeparator: ",",
+		selectFirst: false
+    });
+    $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});
+    $("#datepicker2").datepicker({dateFormat: 'yy-mm-dd'});
+  });
+</script>
 
 
-	$(document).ready(function() {
-	$('#example').DataTable( {
-		/*"scrollY": 200,*/
-        "scrollX": true,
-		dom: 'T<"clear">lfrtip',
-		tableTools: {
-			
-			"aButtons": [
-				
-				"print",
-				
-					]
-				}
-			} );
-		} );
-
-
-$(document).ready(function() {
-	var table = $('#example').DataTable();
-
-	$('#example tbody').on( 'dblclick', 'tr', function () {
-		$(this).toggleClass('selected');
-	} );
-
-	$('#button').click( function () {
-		alert( table.rows('.selected').data().length +' row(s) selected' );
-	} );
-} );
-
-
-
-$(document).ready( function () {
-    var table = $('#example').DataTable();
-    $.fn.dataTable.KeyTable( table );
-} );
-
-
-	</script>
-	<script> 
-       $(function() {
-         $("#datepicker1").datepicker();
-         $("#datepicker2").datepicker();
-       });
-     </script>
-
-    <style type="text/css">
-		#d{margin-left: -850px;
-		margin-top: 30px; 
-		margin-bottom: -50px;}
-	</style>
-	
 </head>
 
 <body class="dt-example" >
@@ -108,7 +78,7 @@ $(document).ready( function () {
                  Titulo
                </th>
                <th>
-                 <input type="text" name="tit">
+                 <input type="text" name="titulo" id="titulo">
                </th>
                <th>
                  Fecha inicio
@@ -141,9 +111,19 @@ $(document).ready( function () {
 				<tbody align="center">
                  <?php
 					$tra=new reportes();
-					if (isset($_POST['tit']) && isset($_POST['fec1']) && isset($_POST['fec2']))
-					{$reg=$tra->get_reporte_ventas($_POST['tit'], $_POST['fec1'], $_POST['fec2']);}
-					else{$reg=$tra->get_reporte_ventas('%%','2014-11-01','2014-11-24');}
+					if (isset($_POST['titulo']) && isset($_POST['fec1']) && isset($_POST['fec2']))
+					{
+					   $titulo=$_POST['titulo']==''?'%%':$_POST['titulo'];
+					   $fecini=$_POST['fec1']==''?Fechas::mifechagmtactual(time(),-5):$_POST['fec1'];
+				       $fecfin=$_POST['fec2']==''?Fechas::mifechagmtactual(time(),-5):$_POST['fec2'];
+					   $reg=$tra->get_reporte_ventas($titulo, $fecini,$fecfin);
+					}
+					else
+					{
+					   $fecini=Fechas::mifechagmtactual(time(),-5);
+					   $fecfin=Fechas::mifechagmtactual(time(),-5);
+					   $reg=$tra->get_reporte_ventas('%%',$fecini, $fecfin);
+					}
 					for ($i=0;$i<count($reg);$i++)
 					{
 				 ?>  
@@ -165,5 +145,6 @@ $(document).ready( function () {
             <div class="footer"></div>
         </section> 
 </div>
+</form>
 </body>
 </html>
