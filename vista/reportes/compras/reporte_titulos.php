@@ -2,7 +2,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <?php
 require_once("../../../conexiones/class_empresa.php");
-require_once("../../../conexiones/class_deporte.php");
+require_once("../../../conexiones/class_reporte.php");
 require_once("../../../conexiones/conexion.php");
 
  ?>
@@ -29,8 +29,9 @@ $(document).ready(function() {
 
 <script src="funciones.js"></script>
 
-<body style="zoom:70%;">
-<form name="form" method="post" >
+
+
+<form name="form" method="post">
 
 <div align="center" class="fo"  >
 
@@ -115,26 +116,14 @@ $(document).ready(function() {
         </tfoot>
  
         <tbody>
-            <tr>
             
-            
-            
-            
-            
-                    	<td ></td>              
-						<td ></td> 
-                        <td ></td>
-                        <td ></td>
-						<td align="center" ></td>
-                        <td align="center" ></td>
-					
-					</tr>
                     <tr>
               <?php
 					$tra=new reporte();
 			if (isset($_POST['fec1']))
 			{
-			$reg=$tra->get_reporte_detallado($_POST['fec1'],$_POST['fec2'],$_POST['empresa'],$_POST['sucursal']);
+			//print_r($_POST);	
+			 $reg=$tra->get_reporte_detallado($_POST['fec1'],$_POST['fec2'],$_POST['empresa'],$_POST['sucursal']);
 			}
 			else
 			{
@@ -143,6 +132,28 @@ $(document).ready(function() {
 			
 			
 			
+		    if (empty($reg))
+			{
+			
+			?>
+            
+            	        <td ></td>              
+						<td ></td> 
+                        <td ></td>
+                        <td ></td>
+						<td align="center" ></td>
+                        <td align="center" ></td>
+					
+					</tr> 
+            
+            <?php 
+			
+			
+			}
+			else
+			{
+				echo "no es array";
+		
 			
 					for ($i=0;$i<count($reg);$i++)
 			{
@@ -156,7 +167,9 @@ $(document).ready(function() {
                 
                 
                     
-                    	<td ><?php // echo $reg[$i]["id"];?></td>              
+                    	<td ><?php // echo $reg[$i]["id"];
+						
+						?></td>              
 						<td ><?php echo $reg[$i]["var_nom_emp"];?></td> 
                         <td ><?php echo $reg[$i]["var_nom_suc"];?></td>
                         <td ><?php echo $reg[$i]["var_nom_tit"];?></td>
@@ -165,9 +178,10 @@ $(document).ready(function() {
 					
 					</tr> 
 <?php 				
-}     ?>          
+} 
+
+			}?>          
           </tbody>
             
       
     </table>
-</body>
