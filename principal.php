@@ -114,7 +114,7 @@ $_SESSION['id_empresa']=$_GET['id_empresa'];
                                     <a>ALMACÉN<i class="icon-angle-down"></i></a>
                                         <ul >
                                         <li><a onClick="addTab('Stock General','vista/stock/vista_stock.php')">Stock General</a></li>
-                                        <li><a onClick="addTab('Reporte Stock Minimo','vista/reportes/almacen/reporte_stock_min.php')">Stock Mínimo</a></li>                                                                                                                 
+                                        <li><a onClick="addTab('Reporte Stock Minimo','vista/reportes/almacen/reporte_stock_min.php')">Stock Mínimo</a></li>                                        <li><a onClick="addTab('prueba','vista/reportes/almacen/prueba.php')">prueba</a></li>                                                                         
                                         </ul>
                                     </li>
 

@@ -62,6 +62,53 @@ class reportes
 		}
 		return $this->reporte;
 	}
+	public function get_todo()
+	{
+				
+		$sql="select 
+				s.int_cod_tit,
+				t.var_nom_tit,
+				s.int_cant_stk,
+				s.int_cod_suc,
+				z.var_nom_suc,
+				date(s.date_fecact_stk) as date_fecact_stk 
+				from T_stock s
+				INNER JOIN T_titulos t on t.int_cod_tit=s.int_cod_tit
+				INNER JOIN T_sucursal z on z.int_cod_suc=s.int_cod_suc
+				order by s.int_cod_tit desc;";
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->reporte[]=$reg;
+		}
+		return $this->reporte;
+	}
+	public function get_por_sucursal($sucursal)
+	{
+				
+		$sql="select 
+				s.int_cod_tit,
+				t.var_nom_tit,
+				s.int_cant_stk,
+				s.int_cod_suc,
+				z.var_nom_suc,
+				date(s.date_fecact_stk) as date_fecact_stk 
+				from T_stock s
+				INNER JOIN T_titulos t on t.int_cod_tit=s.int_cod_tit
+				INNER JOIN T_sucursal z on z.int_cod_suc=s.int_cod_suc
+				where  z.var_nom_suc = '$sucursal'
+				order by s.int_cod_tit desc;";
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->reporte[]=$reg;
+		}
+		return $this->reporte;
+	}
 	
 }
 ?>
