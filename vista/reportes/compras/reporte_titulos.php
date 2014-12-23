@@ -116,12 +116,13 @@ $(document).ready(function() {
         </tfoot>
  
         <tbody>
-            
+             
                     <tr>
               <?php
 					$tra=new reporte();
 			if (isset($_POST['fec1']))
 			{
+				echo "<div align='center'> <a href='' ><img src='../../../img/images/impre.gif'/></a> </div>";
 			//print_r($_POST);	
 			 $reg=$tra->get_reporte_detallado($_POST['fec1'],$_POST['fec2'],$_POST['empresa'],$_POST['sucursal']);
 			}
@@ -152,7 +153,7 @@ $(document).ready(function() {
 			}
 			else
 			{
-				echo "no es array";
+			
 		
 			
 					for ($i=0;$i<count($reg);$i++)
