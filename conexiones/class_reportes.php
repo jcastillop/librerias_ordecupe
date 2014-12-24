@@ -74,7 +74,7 @@ class reportes
 				date(s.date_fecact_stk) as date_fecact_stk 
 				from T_stock s
 				INNER JOIN T_titulos t on t.int_cod_tit=s.int_cod_tit
-				INNER JOIN T_sucursal z on z.int_cod_suc=s.int_cod_suc
+				INNER JOIN T_sucursal z on z.int_cod_suc=s.int_cod_suc  where s.date_fecact_stk=month(now())
 				order by s.int_cod_tit desc;";
 		
 		$res=mysql_query($sql,Conectar::con());
@@ -85,10 +85,47 @@ class reportes
 		}
 		return $this->reporte;
 	}
-	public function get_por_sucursal($sucursal)
+
+	public function get_por_suc_cant($sucursal, $cantidad)
 	{
-				
-		$sql="select 
+	  
+		if ($sucursal=='0')
+		{
+			
+		echo $sucursald="";	
+		}
+		else
+		{
+			
+		if ($cantidad=='0' )
+		{
+		$and="";	
+		}
+		else
+		{
+			$and="and";
+		}
+		echo $sucursald="z.var_nom_suc='".$sucursal. "'".$and;	
+		}
+		
+		if ($cantidad==0)
+		{
+		$cantidadd="";	
+		}
+		else
+		{
+		$cantidadd="s.int_cant_stk < ".$cantidad;	
+		}
+		
+		if ($cantidad=='0' && $sucursal=='0')
+			{
+		$where="";
+		}
+		else
+		{
+		$where=" where  ";
+		}	
+		 $sql="select 
 				s.int_cod_tit,
 				t.var_nom_tit,
 				s.int_cant_stk,
@@ -98,8 +135,9 @@ class reportes
 				from T_stock s
 				INNER JOIN T_titulos t on t.int_cod_tit=s.int_cod_tit
 				INNER JOIN T_sucursal z on z.int_cod_suc=s.int_cod_suc
-				where  z.var_nom_suc = '$sucursal'
+				$where $sucursald  $cantidadd 
 				order by s.int_cod_tit desc;";
+				
 		
 		$res=mysql_query($sql,Conectar::con());
 		
@@ -109,6 +147,5 @@ class reportes
 		}
 		return $this->reporte;
 	}
-	
 }
 ?>

@@ -97,15 +97,13 @@ $(document).ready( function () {
                 <tr>
                		<td>Sucursal</td>
                     <td><input type="text" name="suc" id="suc" ></td>
-                    <td ROWSPAN="3"><input style="height:75px" id="submit" name="Submit" class="enviar" value="Enviar" type="submit"/></td>
+                    <td ROWSPAN="3"><input style="height:75px" id="submit" name="Submit" class="enviar" value="Consultar" type="submit"/></td>
                 </tr>
+                <tr>
                 	<td>Cantidad</td>
                     <td><input type="text" name="cant" id="cant" ></td>
                 </tr>
-                    <td>Proveedor</td>
-                    <td><input type="text" id="prove" name="prove"></td>
-                    
-                </tr>
+                   
             </table>
 
 			
@@ -117,19 +115,68 @@ $(document).ready( function () {
 						<th>Tit.ID</th>
                         <th>Título</th>
                         <th>Cantidad</th>
-                        <th>Proveedor</th>
+                        <th>Sucursal</th>
                         <th>Fecha</th>
 				
 					</tr>
 				</thead>
 				<tbody align="center">
                 <?php
-					$tra=new reportes();
-					if (isset($_POST['suc']) && isset($_POST['cant']) && isset($_POST['prove']))
-					{$reg=$tra->get_todo();}
+				
+				//print_r($_POST);
+				$tra=new reportes();
+					if (!isset($_POST['suc']) && !isset($_POST['cant']))
+					{
+						
+						$reg=$tra->get_todo();}
 					else{
-						$reg=$tra->get_por_sucursal(isset($_POST['suc']));
+						
+						if ($_POST['suc']==''){
+								 $sucursal1=0;
+							}
+							else
+							{
+								 $sucursal1=$_POST['suc'];
+						
+							}
+							
+							if ($_POST['cant']==""){
+							 $cant=0;
+							}
+							else
+							{
+								 $cant=$_POST['cant'];
+						
+							}
+							
+						
+						$reg=$tra->get_por_suc_cant($sucursal1,$cant);
 						}
+					
+					
+					
+					
+			if (empty($reg))
+			{
+			
+			?>
+            
+            	                 
+						<td ></td> 
+                        <td ></td>
+                        <td ></td>
+						<td align="center" ></td>
+                        <td align="center" ></td>
+					
+					</tr> 
+            
+            <?php 
+			
+			
+			}
+			else
+			{
+					
 					
 					for ($i=0;$i<count($reg);$i++)
 					{
@@ -140,10 +187,11 @@ $(document).ready( function () {
 						<td><?php echo $reg[$i]["int_cant_stk"];?></td>
                         <td><?php echo $reg[$i]["var_nom_suc"];?></td>                         
 						<td><?php echo $reg[$i]["date_fecact_stk"];?></td>
-					</tr>
-				  <?php
-                }
-                ?>        
+					</tr>  
+                    <?php  
+				}
+				}
+					 ?>
                 </tbody>
 			</table>
 			</div>
