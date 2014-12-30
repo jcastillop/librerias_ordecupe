@@ -7,8 +7,8 @@ $( document ).ready(function() {
     var empresa = 1;
 
 var dt = $('#example').dataTable({
-                 "bProcessing" : true,
-                 "bServerSide" : true,
+                 "bProcessing" : false,
+                 "bServerSide" : false,
                  "sAjaxSource": "detalle_compras_buscar.php",
                  fnServerParams : function(aoData) {
                          
@@ -28,11 +28,13 @@ var dt = $('#example').dataTable({
                             },
                  "aoColumns": [
                         { "mData": 'int_cod_tit', "bVisible":false } ,
-                        { "mData": 'int_cant_comp_det', "bVisible":false } ,
+                        { "mData": 'int_cant_comp_det'} ,
                         { "mData": 'var_nom_tit' } ,
                         { "mData": 'var_autor_tit' },
                         { "mData": 'var_nom_edit' },
                         { "mData": 'var_rsoc_prov' },
+                        { "mData": 'dec_val_comp_det' },
+                        { "mData": 'punit' },
                         { "mData": 'precio' },
                         { "mData": 'por_mayor' },
                         { "mData": 'por_menor' },
@@ -53,6 +55,9 @@ var dt = $('#example').dataTable({
     dt.makeEditable({
         sUpdateURL: "insertar_datos.php",
             aoColumns:[
+                null,
+                null,
+                null,
                 null,
                 null,
                 null,

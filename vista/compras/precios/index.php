@@ -48,14 +48,16 @@
         <thead>
             <tr>
                 <th>Codigo</th>
-                <th>Cantidad</th>
+                <th>Cant</th>
                 <th>Titulo</th>
 				<th>Autor</th>
                  <th>Editorial</th>
                 <th>Proveedor</th>
-                <th>P.Unit(*FOB)</th>
-                <th>P.Mayorista</th>
-               <th>P.Minorista</th>
+                <th>P.C</th>
+                <th>P.C.U</th>
+                <th>P.C.U(*FOB)</th>
+                <th>P.Mayo</th>
+               <th>P.Meno</th>
                
             </tr>
         </thead>

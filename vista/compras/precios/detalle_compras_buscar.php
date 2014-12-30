@@ -7,8 +7,9 @@
 	$reg=$tra->get_ordcomp_detalle($_GET["emp"],$_GET["suc"],$_GET["cab"]);
 
 	$res= array(
-			    "TotalRecords" => count($reg),
-        "TotalDisplayRecords" => count($reg),
+		"draw" => 1,
+			    "recordsTotal" => count($reg),
+        "recordsFiltered" => count($reg),
           "data"=>$reg);
 
 /*
