@@ -101,7 +101,13 @@ require_once("../../../conexiones/class_cliente.php");
 		    <label for="lblruc"  style="margin-left:30px;">R.U.C:</label>
             <input name="ruc" class="input username" style="width:200px; margin-top:5px" type="text" id="ruc" onkeypress="" /> <br>
             <label for="lbldireccion" style="width:150px">Dirección alternativa:</label>
-            <input name="direccion_compra" class="input username" style="width:750px;margin-top:10px;" type="text" id="direccion_compra"/><br>
+            <input name="direccion_compra" class="input username" style="width:490px;margin-top:10px;" type="text" id="direccion_compra"/>
+            <label for="lbldireccion" style="width:40px">Tipo:</label>
+            <select id="tipo_venta" style="width:100px;margin-top:0px" class="menu">>
+                <option value="1">Minorista</option>
+                <option value="2">Mayorista</option>
+            </select><br>
+
             <label for="lblpartida">Punto de partida:</label>
             <input name="punto_partida" class="input username" style="width:300px;margin-top:10px;margin-left:35px;" type="text" id="punto_partida" >
             <label for="lblllegada">Punto de llegada:</label>
@@ -143,6 +149,7 @@ require_once("../../../conexiones/class_cliente.php");
                             <td><input name="valor_dos" class="input username" style="width:100px" type="text" id="valor_dos" size="10" class="required"/>
                                 <input type="hidden" id="tituloID" name="tituloID"></input>
                             </td>
+
                                 
                             <td><label for="lbldesc" style="width:180px">Cantidad</label></td>
                             <td><input name="valor_tres" class="input username" style="width:100px" type="text" id="valor_tres" size="10" onkeypress="return tabular(event,this)"/></td>

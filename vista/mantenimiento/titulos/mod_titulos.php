@@ -231,9 +231,9 @@ function formulario(f) {
           </td>
         </tr>        
         <tr>
-          <td height="20">Precio Definido: </td>
+          <td height="20">Precio por Menor: </td>
           <td><input name="pre_definido" type="text" maxlength="10" style="width: 120px;"  class="input username" id="pre_definido" onKeyPress="return tab(event,this)" onkeyUp="return decimal(this);"  value="<?php echo $preven_def_tit;?>" />
-          Precio Sugerido:
+          Precio por Mayor:
           <input name="pre_sugerido" type="text" maxlength="10" style="width: 120px;"  class="input username" id="pre_sugerido" onKeyPress="return tab(event,this)" onkeyUp="return decimal(this);"  value="<?php echo $preven_sug_tit;?>" /> </td>
         </tr>
         <tr>

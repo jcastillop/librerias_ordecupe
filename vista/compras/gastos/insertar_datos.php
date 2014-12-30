@@ -4,6 +4,7 @@
 	$_cod_com=$_POST['cod_com'];
 	$_cod_suc=$_POST['cod_suc'];
 	$_cod_emp=$_POST['cod_emp'];
+	$_fac_com=$_POST['fac_com'];
 	
 	if(isset($_POST['tipo_accion'])){$_tipo_accion=$_POST['tipo_accion'];}else{$_tipo_accion='';};
 	$_ped_usu='JCASTILLO';
@@ -29,7 +30,7 @@
 			$query_call_spcompgas = "CALL proc_modificar_comp_gas('".$_cod_com."',".$_cod_suc.","
 																.$_cod_emp.",'".$desc."',".$monto.",'".$_ped_usu."',@n_Flag, @c_msg)";
 																
-			echo $query_call_spcompgas;
+			
 			mysql_query($query_call_spcompgas,Conectar::con());
 	
 			$array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
@@ -59,7 +60,7 @@
 			$query_call_spcompgas = "CALL proc_insertar_comp_gas('".$_cod_com."',".$_cod_suc.","
 																.$_cod_emp.",'".$desc."',".$monto.",'".$_ped_usu."',@n_Flag, @c_msg)";
 																
-			echo $query_call_spcompgas;
+			
 			mysql_query($query_call_spcompgas,Conectar::con());
 	
 			$array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
@@ -70,12 +71,16 @@
 			$contador=$contador+1; 
 		
    		};
+
+
+
    	echo "Numero de registros insertados: ".$contador;
 };
 
 
 
-		
+	$query_insertar_fob_cabecera="update T_ordcomp_cab set dec_fob_comp_cab=".$_fac_com." where int_cod_emp=".$_cod_emp." and int_cod_suc=".$_cod_suc." and var_cod_comp_cab='".$_cod_com."'";
+   	mysql_query($query_insertar_fob_cabecera,Conectar::con());
 
 		
 		       

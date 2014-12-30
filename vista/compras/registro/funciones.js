@@ -4,6 +4,7 @@ $(document).ready(function(){
 $.datepicker.setDefaults($.datepicker.regional["es"]);
     $( "#fecha_recepcion" ).datepicker({dateFormat: 'dd-mm-yy'});
     $("#frm_usu").css("display", "none");
+    $("#precios").css("display", "none");
 //Validaciones y envio del formulario
 	$("#form").validate({
     //Especificando las reglas de validacion
@@ -42,6 +43,8 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
         var cod_suc = $("#sucursal").val();
         var fec_rec = $("#fecha_recepcion").datepicker("option", "dateFormat", "yy-mm-dd ").val();
         var desc = $("#descripcion").val();
+        var mayorista = $("#mayorista").val();
+        var minorista = $("#minorista").val();
         var nom_file = $("#file").val().split('\\').pop();
         var compra_detalle = "[";
                     
@@ -96,6 +99,8 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
                         '&fec_rec='+fec_rec+
                         '&desc='+desc+
                         '&nom_file='+nom_file+
+                        '&mayorista='+mayorista+
+                        '&minorista='+minorista+
                         '&compra_detalle='+compra_detalle;
                       
                         $.ajax({
@@ -134,6 +139,13 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
                   $("#frm_usu").css("display", "none");
                   }
                   });
+    $("#precio_venta").click(function(evento){
+                  if ($("#precio_venta").attr("checked")){
+                  $("#precios").css("display", "block");
+          }else{
+                  $("#precios").css("display", "none");
+                  }
+                  });    
 
     //buscar registros cargados y mostrar una alerta
      $("input:file").change(function (){

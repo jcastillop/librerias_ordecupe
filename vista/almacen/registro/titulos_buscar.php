@@ -12,12 +12,18 @@
 
 		$response["codigo"]=$reg[0]["int_cod_tit"];
 		$response["nombre"]=$reg[0]["var_nom_tit"];
-		if($reg[0]["dec_preven_def_tit"]===0){
-		$response["precio"]=$reg[0]["dec_preven_sug_tit"];
-		}else{
-		$response["precio"]=$reg[0]["dec_preven_def_tit"];			
-		}
 		
+
+		switch ($_GET["tipo_venta"]) {
+  			case 1:
+    			$response["precio"]=$reg[0]["dec_preven_def_tit"];
+    			break;
+  			case 2:
+    			$response["precio"]=$reg[0]["dec_preven_sug_tit"];	
+    			break;
+		}
+
+
 
 	}else{
 

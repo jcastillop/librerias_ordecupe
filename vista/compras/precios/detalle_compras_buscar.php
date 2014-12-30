@@ -4,7 +4,7 @@
 	require_once("../../../conexiones/class_compras_detalle.php");
 	$tra=new ordcomp_detalle();
 	
-	$reg=$tra->get_ordcomp_detalle(1,1,'000001');
+	$reg=$tra->get_ordcomp_detalle($_GET["emp"],$_GET["suc"],$_GET["cab"]);
 
 	$res= array(
 			    "TotalRecords" => count($reg),

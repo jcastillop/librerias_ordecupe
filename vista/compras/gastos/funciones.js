@@ -90,8 +90,9 @@ var tipo_accion;
                     var cod_com=$("#codigo_compra").val();
                     var cod_suc=$("#codigo_sucursal").val();
                     var cod_emp=1;
+                    var fac_com=$("#factor").html(); 
                   
-          
+                  
                             
                     var detalle = "[";
 
@@ -110,7 +111,7 @@ var tipo_accion;
                             detalle = detalle + ','; 
                             }       
                     }
-                     alert(detalle);
+                    
                     if(detalle=="["){
                        
                         alert("Registre correctamente los campos as");
@@ -119,10 +120,11 @@ var tipo_accion;
                         var dataString= 'cod_com='+cod_com+
                                         '&cod_suc='+cod_suc+
                                         '&cod_emp='+cod_emp+
+                                        '&fac_com='+fac_com+
                                         '&tipo_accion='+tipo_accion+
                                         '&detalle='+detalle;
                                                           
-                                              
+                         
                         $.ajax({
                           type: "POST",
                           url: "insertar_datos.php",

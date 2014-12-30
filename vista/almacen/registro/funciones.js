@@ -293,43 +293,14 @@ $(document).ready(function(){
         select: function( event, ui ) {
             $("#valor_uno" ).val( ui.item.label );
             $("#valor_ide").val(ui.item.id);
-            $("#valor_ide").focus();
+            autocompletado_titulos();
             return false;
         }
     });
 
     //Busqueda de titulos segun el codgo de barra proporcionado en el evneto change
     $("#valor_ide").focusout(function() {
-                    
-        $.ajax({
-            type: "GET",
-            url: "titulos_buscar.php",
-            data: "id=" + $("#valor_ide").val(),
-                        
-            success: function(datos){
-                        
-                var res = jQuery.parseJSON(datos);
-                        
-                if(res.nombre===""){
-                            
-                    alert("Título no registrado, proceda a agregarlo en el menú correspondiente");
-                        
-                }else{
-
-                    $("#valor_uno").val(res.nombre);
-                    $("#tituloID").val(res.codigo);
-                    $("#valor_dos").val(res.precio);
-                    $("#valor_cuatro").val(res.precio);
-                    $("#valor_tres").focus();
-                        
-                    fn_dar_eliminar();
-                    fn_cantidad(); 
-                }
-            },
-            error: function(datos) {
-                alert("Data not found");
-            }
-        });
+        autocompletado_titulos();
     });
     // permite agregar de manera individual un titulo completando los campos
     $("#valor_tres").change(function() {
@@ -505,4 +476,36 @@ function $_GET(param){
         }
     x++;
     }
+};
+//funcion para el autocompletado
+function autocompletado_titulos(){
+            $.ajax({
+            type: "GET",
+            url: "titulos_buscar.php",
+            data: {id: $("#valor_ide").val(),tipo_venta: $("#tipo_venta").val()},
+                        
+            success: function(datos){
+                        
+                var res = jQuery.parseJSON(datos);
+                        
+                if(res.nombre===""){
+                            
+                    alert("Título no registrado, proceda a agregarlo en el menú correspondiente");
+                        
+                }else{
+
+                    $("#valor_uno").val(res.nombre);
+                    $("#tituloID").val(res.codigo);
+                    $("#valor_dos").val(res.precio);
+                    $("#valor_cuatro").val(res.precio);
+                    $("#valor_tres").focus();
+                        
+                    fn_dar_eliminar();
+                    fn_cantidad(); 
+                }
+            },
+            error: function(datos) {
+                alert("Data not found");
+            }
+        });
 };

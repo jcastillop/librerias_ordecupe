@@ -16,12 +16,13 @@
     <link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
 
 <!-- jQuery -->
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://jquery-datatables-editable.googlecode.com/svn-history/r88/trunk/media/js/jquery.jeditable.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="https://jquery-datatables-editable.googlecode.com/svn-history/r88/trunk/media/js/jquery.jeditable.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script language="javascript" type="text/javascript" src="https://jquery-datatables-editable.googlecode.com/svn-history/r122/trunk/media/js/jquery.dataTables.editable.js"></script>
- <script language="javascript" type="text/javascript" src="funciones.js"></script>
+<script src="https://jquery-datatables-editable.googlecode.com/svn-history/r122/trunk/media/js/jquery.dataTables.editable.js"></script>
+<script src="http://jquery-datatables-column-filter.googlecode.com/svn/trunk/media/js/jquery.dataTables.columnFilter.js"></script>
+<script src="funciones.js"></script>
 <!-- DataTables -->
 
 
@@ -34,43 +35,33 @@
 	<div class="container">
 
       <!-- Main component for a primary marketing message or call to action -->
+      <div id="trace"></div>
  
         <section>
             <h1>ÓRDENES DE COMPRA<span></span></h1>
-
+                  
             
             <div class="tablas"  align="center" >
 
-                <p id="renderingEngineFilter"></p>
-    <p id="browserFilter"></p>
-    <p id="platformsFilter"></p>
-    <p id="engineVersionFilter"></p>
-    <p id="cssGradeFilter"></p>
-    
+
 		<table id="example" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
+                <th>Codigo</th>
                 <th>Cantidad</th>
                 <th>Titulo</th>
 				<th>Autor</th>
                  <th>Editorial</th>
                 <th>Proveedor</th>
-               
+                <th>P.Unit(*FOB)</th>
+                <th>P.Mayorista</th>
+               <th>P.Minorista</th>
                
             </tr>
         </thead>
- 
-        <tfoot>
-            <tr>
-               <th>Cantidad</th>
-                <th>Titulo</th>
-                <th>Autor</th>
-                 <th>Editorial</th>
-                <th>Proveedor</th>
-               
-            </tr>
-        </tfoot>
+
     </table>
+    
 </div>
         </section>
 

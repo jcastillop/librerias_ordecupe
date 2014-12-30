@@ -164,7 +164,19 @@ header('Content-Type: text/html; charset=UTF-8');
                     <tfoot>
                     </tfoot>
               
-            </div></div>
+            </div>
+
+          </div>
+          <div class="container3" align="center" >
+            <h4 align="center">Porcentaje venta<input type="checkbox" name="precio_venta" value="1" id="precio_venta"></h4>
+            <div id="precios">
+            
+            <label for="lblMayorista" >Mayorista</label>
+            <input name="mayorista" type="text" id="mayorista" value="20" onkeypress="return tabular(event,this)"/>%
+            <label for="lblMinorista" >Minorista </label>
+            <input name="minorista" type="text" id="minorista" value="25" onkeypress="return tabular(event,this)"/>%
+          </div>
+          </div>
             	
 			<div class="container4" style="height:auto; overflow: scroll;" >
             <table id="grilla">
