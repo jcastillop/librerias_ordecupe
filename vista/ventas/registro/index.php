@@ -186,7 +186,7 @@ $(document).ready(function () {
                     <input name="distrito" class="input username"  type="text" id="distrito" />
                     
             
-            <input name="checkbox_comprobar" id="checkbox_comprobar" type="button" value="Comprobar" />  
+         
 
             <br />
              </div>
