@@ -64,7 +64,27 @@ mes	,
 			return $this->factura_cabecera;
 	}
 	
-	
+		public function get_conta_ventas_factura_cabecera_detalle($emp,$mes,$anho)
+	{
+		
+		
+		
+	 	$sql="select date(f.date_fecenv_fact_cab)as fecha, if(f.int_tip_doc_fact=2,'1','3') as documento, f.var_cod_ser as serie,
+f.var_cod_fact_cab as numero, if(c.int_tipper_cli=1,'1','6') as tipdoc, if(c.int_tipper_cli=1,c.var_dni_cli,c.var_ruc_cli) as nrodoc, c.var_rsoc_cli as rsocial,
+(select sum(dec_vtotal_fact_det)from T_factura_detalle d where d.var_cod_fact_cab=f.var_cod_fact_cab) as total,'' as vacio 
+from T_factura_cabecera f inner join T_cliente c on f.int_cod_cli=c.int_cod_cli 
+where month(f.date_fecenv_fact_cab)=$mes and year(f.date_fecenv_fact_cab)=$anho;
+
+		";	
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->factura_cabecera[]=$reg;
+		}
+			return $this->factura_cabecera;
+	}
 	public function get_factura_det($cod_fac,$cod_serv,$cod_suc,$cod_emp,$tip_doc_fac)
 	{
 		
