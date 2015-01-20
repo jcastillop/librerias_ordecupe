@@ -216,6 +216,42 @@ $( document ).ready(function() {
     });
 $('#guardar').click(function(){
      $('#content').html('<div><img src="loading.gif"/></div>');
+
+     var tabla = $('#example').DataTable();
+     var a_codigo = [];  
+     var a_precio_def_may = []; 
+     var a_precio_def_men = [];
+ alert(1);
+       
+        for(var i=0;i<tabla.column(0).data().length;i++)
+        {
+            a_codigo.push(tabla.column(0).data()[i]);
+            a_precio_def_may.push(tabla.column(11).data()[i]);
+            a_precio_def_men.push(tabla.column(12).data()[i]);
+        }
+       
+alert(2);
+      $.ajax({
+        url: "guardar.php",
+        type: "POST",
+        cache: false,
+        data: {
+            a_codigo:JSON.stringify(a_codigo),
+            a_precio_def_may:JSON.stringify(a_precio_def_may),
+            a_precio_def_men:JSON.stringify(a_precio_def_men)
+        },
+
+        success: function(result) {
+      
+            $('#content').fadeIn(1000).html(result)
+        },
+        error: function(result){
+                      
+            alert("error");
+        }
+
+      });
+
  });
  $('#aplicar').click(function(){
      $('#content').html('<div><img src="loading.gif"/></div>');
@@ -284,7 +320,8 @@ $('#guardar').click(function(){
             for(i=0;i<result.mayor.length;i++){
                 dt.fnUpdate(result.mayor[i].monto, i, 11);
                 dt.fnUpdate(result.menor[i].monto, i, 12);     
-            }      
+            }
+
              $('#content').hide();  
         },
         error: function(result){
