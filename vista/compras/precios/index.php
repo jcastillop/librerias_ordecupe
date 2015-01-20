@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
  <link rel="stylesheet" type="text/css" href="../../../paquetes/syntax/shCore.css">
     <link rel="stylesheet" type="text/css" href="../../../paquetes/resources/demo.css">
+    <link href="../../../css/estilo.css" rel="stylesheet" type="text/css" />
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -24,27 +25,43 @@
 <script src="http://jquery-datatables-column-filter.googlecode.com/svn/trunk/media/js/jquery.dataTables.columnFilter.js"></script>
 <script src="funciones.js"></script>
 <!-- DataTables -->
-
+<style type="text/css">
+td.highlight {
+    background-color: whitesmoke !important;
+}
+</style> 
 
 
 <body class="dt-example">
 
 
+    <h4 align="center" >Precios de títulos</h4>
     
-	
-	<div class="container">
+    	<div class="container2" align="center" id="edicion_precios_totales">
+
+        <label for="lblpmay">Precio por mayor</label>
+        <input name ="pmayor" type="text" id="pmayor" style="width:40px;height:15px" value="0"/>
+        <label for="lblpmen"style="margin-left:20px">Precio por menor</label>
+        <input name ="pmenor" type="text" id="pmenor" style="width:40px;height:15px;" value="0"/><br>
+        <input type="checkbox" name="porcentaje" id="porcentaje" value="1" checked="true" style="width:40px;height:15px;margin-right:0;margin-top:7px;">
+        <label for="lblporcentaje"style="margin-left:1px" >Porcentaje</label>
+        <input type="checkbox" name="vacios" id="vacios" value="1" checked="true" style="width:40px;height:15px;margin-right:0">
+        <label for="lblvacios"style="margin-left:1px " >Aplicar solo a campos vacíos</label><br>
+        <input id="aplicar" class="enviar" value="Aplicar" type="button" style="width:150px;">
+        <input id="guardar" class="enviar" value="Guardar" type="button" style="width:150px;">
+        <input id="cancelar" class="enviar" value="Cancelar" type="button" style="width:150px;margin-top:5px;">
+    </div>
+<div id="content"></div>
+	<div class="container3">
 
       <!-- Main component for a primary marketing message or call to action -->
-      <div id="trace"></div>
  
         <section>
-            <h1>ÓRDENES DE COMPRA<span></span></h1>
-                  
-            
+  
             <div class="tablas"  align="center" >
 
 
-		<table id="example" class="display" width="100%" cellspacing="0">
+		<table id="example" class="cell-border" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>Codigo</th>
@@ -53,20 +70,27 @@
 				<th>Autor</th>
                  <th>Editorial</th>
                 <th>Proveedor</th>
-                <th>P.C</th>
-                <th>P.C.U</th>
-                <th>P.C.U(*FOB)</th>
-                <th>P.Mayo</th>
-               <th>P.Meno</th>
+                <th>Precio Compra Total</th>
+                <th>Precio Compra Unitario</th>
+                <th>P.C.U.(*FOB)</th>
+                <th>Sugerido x Mayor</th>
+               <th>Sugerido x Menor</th>
+                <th>Definido x Mayor</th>
+               <th>Definido x Menor</th>               
                
             </tr>
         </thead>
 
     </table>
-    
+
 </div>
         </section>
-
+      
     </div>
+          <div class="container4" align="center">
+                
+                
+               
+            </div>
 <!---->
 </body></html>

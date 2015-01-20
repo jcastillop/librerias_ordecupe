@@ -12,10 +12,10 @@
      of the object or column in the table) and value that should be
      set */ 
 switch ($columnPosition) {
-  case 8:
+  case 7:
     $query_actualizar_precio_titulos="update T_titulos set dec_preven_sug_tit=".$value." where int_cod_tit=".$id;
     break;
-  case 9:
+  case 8:
     $query_actualizar_precio_titulos="update T_titulos set dec_preven_def_tit=".$value." where int_cod_tit=".$id;
     break;
 }

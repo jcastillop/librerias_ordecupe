@@ -132,7 +132,14 @@ $_SESSION['id_empresa']=$_GET['id_empresa'];
                                         <li><a onClick="addTab('Reporte Compras','vista/reportes/compras/reporte_titulos.php')">Record Compras</a></li>
                                                                             
                                         </ul>
-                                    </li>									
+                                    </li>	
+                                    <li class="dropdown">
+                                    <a>CONTABILIDAD<i class="icon-angle-down"></i></a>
+                                        <ul >
+                                        <li><a onClick="addTab('Registro de Ventas e Ingresos','vista/reportes/contabilidad/ventas_ingresos/index.php')">Registro de Ventas e Ingresos</a></li>
+                                                                            
+                                        </ul>
+                                    </li>	                                    								
 								</ul>
 							</li>
 						<li class="dropdown">

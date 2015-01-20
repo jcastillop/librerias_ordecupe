@@ -1,10 +1,10 @@
 	
 	<?php
 
-	require_once("../../../conexiones/class_compras_detalle.php");
-	$tra=new ordcomp_detalle();
+	require_once("../../../../conexiones/class_historico_ventas_pdf.php");
+	$tra=new factura_cabecera();
 	
-	$reg=$tra->get_ordcomp_detalle($_GET["emp"],$_GET["suc"],$_GET["cab"]);
+	$reg=$tra->get_conta_ventas_factura_cabecera_detalle($_GET["emp"],$_GET["mes"],$_GET["anho"]);
 
 	$res= array(
 		"draw" => 1,
