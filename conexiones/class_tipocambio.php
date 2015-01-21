@@ -33,7 +33,7 @@ class tipocambio
 					t.dec_val_tipcam,
 					t.var_desc_tipcam 
 					FROM T_tipocambio t
-					inner join T_monedas m on m.int_cod_mon=t.int_cod_mon
+					inner join T_monedas m on m.int_cod_mon=t.int_cod_mon order by date_fecha_tipcam desc
 		
 		";	
 		

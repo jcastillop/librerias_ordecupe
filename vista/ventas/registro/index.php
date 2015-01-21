@@ -5,10 +5,11 @@ require_once("../../../conexiones/conexion.php");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>VENTAS</title>
-        <script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.j"></script>
+        <script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="busquedas/js/jquery-1.4.2.js"></script>
         <script language="javascript" type="text/javascript" src="funciones.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -74,6 +75,7 @@ $().ready(function() {
 	$("#valor_uno").result(function(event, data, formatted) {
 		$("#valor_ide").val(data[1]);
 		$("#valor_dos").val(data[2]);
+        $("#tituloID").val(data[3]);
 		$("#valor_tres").focus(3);
 		
 	
@@ -246,6 +248,7 @@ $(document).ready(function () {
                     	<td colspan="3"><strong>Cantidad:</strong> <span id="span_cantidad">0</span> productos.</td>
                         <td><strong>Suma total:</strong> <span id="suma_total">0</span></td>
                         <td colspan="5" align="center"><input id="submit" name="Submit" class="enviar" value="GUARDAR DATOS" type="submit" /></td>
+                   
                     </tr>
                 </tfoot>
             </table>

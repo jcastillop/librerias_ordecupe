@@ -15,8 +15,9 @@ for ($i=0;$i<count($reg);$i++)
 $cid = $reg[$i]["var_cod_bar_tit"];
 	$cname = $reg[$i]["var_nom_tit"];
 	$cprecio= $reg[$i]["dec_preven_def_tit"];
+	$ctit = $reg[$i]["int_cod_tit"];
 	
-		echo "$cname|$cid|$cprecio\n";
+		echo "$cname|$cid|$cprecio|$ctit\n";
 
 }
 ?>

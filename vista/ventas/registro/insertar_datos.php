@@ -96,12 +96,15 @@ $var_ped_detalle=$var_ped_detalle.'(lpad("'.$var_cod_ped_det.'",6,"0"),'
        }  
    }
    $query_call_sppedd = "CALL proc_insertar_pedi_det(".$var_ped_detalle.", @n_Flag, @c_msg)";
+
    //Ejecucion del Procedimiento Insertar Detalle
 
    mysql_query($query_call_sppedd,Conectar::con());
    $array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
    $array_msg = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
-   $codigo_msg = $array_msg["@c_msg"];}
+   $codigo_msg = $array_msg["@c_msg"];
+
+   }
 
 if ($codigo_flag1==0) {
    $var_guia_detalle="'";
@@ -134,8 +137,10 @@ $var_guia_detalle=$var_guia_detalle.'(lpad("'.$var_cod_guia_det.'",6,"0"),'
    mysql_query($query_call_spguid,Conectar::con());
    $array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
    $array_msg = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
-   $codigo_msg = $array_msg["@c_msg"];}
-   
+   $codigo_msg = $array_msg["@c_msg"];
+ }
+
+
       if ($codigo_flag3==0) {
    $var_fact_detalle="'";
    for($i=0;$i<count($array);$i++){ 
@@ -168,13 +173,15 @@ $var_fact_detalle=$var_fact_detalle.'(lpad("'.$var_cod_fact_det.'",6,"0"),'
    
    $array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
    $array_msg = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
-   $codigo_msg1 = $array_msg["@c_msg"];}
- 
+   $codigo_msg1 = $array_msg["@c_msg"];
+ }
+
    
     $response = array ("codigo" => "", "mensaje" => "");
     $response["mensaje"]=$codigo_msg1;
-    $response["codigo"]=$codigo_gen3;
+    //$response["codigo"]=$codigo_gen3;
     echo json_encode($response);
+    
     //echo $query_call_spfact;
 ?> 
 

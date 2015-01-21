@@ -1,7 +1,6 @@
        $(document).ready(function(){
                
                                         
-
               $("#boton").click(function() {
                 var tip_per=$("#tip_per").val();
                 var rsoc=$("#rsoc").val();
@@ -89,8 +88,7 @@
                     var cod_ser='1';
                     var cod_usu=$("#vendedor").val();
                     
-                    var pedido_detalle = "[";
-              
+                    
                     if($("#afecto").is(':checked')) {
 		             	var igv=0.18;
 						var igv_t=18;
@@ -98,62 +96,44 @@
 			             var igv=0;
 						 var igv_t=0;
 		               }
-                    
+
+                    var pedido_detalle=[];
                     for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
-                        pedido_detalle = pedido_detalle + 
-                            '{"codigo_libro":' 
-                            + document.getElementById('grilla').rows[i].cells[0].childNodes[1].value + ", "
-                            + '"precio_libro":'
-                            + document.getElementById('grilla').rows[i].cells[2].childNodes[0].value + ", "                            
-                            + '"cantidad_libro":'
-                            + document.getElementById('grilla').rows[i].cells[3].childNodes[0].value + ", "
-                            + '"valor_impuesto":'
-                            + (document.getElementById('grilla').rows[i].cells[3].childNodes[0].value * document.getElementById('grilla').rows[i].cells[2].childNodes[0].value) * igv + ", "
-                            + '"valor_descuento":'
-                            + (document.getElementById('grilla').rows[i].cells[3].childNodes[0].value * document.getElementById('grilla').rows[i].cells[2].childNodes[0].value) * document.getElementById('grilla').rows[i].cells[4].childNodes[0].value + ", "
-                            + '"porcentaje_impuesto":'
-                            + igv_t + ", "
-                            + '"porcentaje_descuento":'
-                            + document.getElementById('grilla').rows[i].cells[4].childNodes[0].value + ", "
-                            + '"costo_total_libro":'
-                            + document.getElementById('grilla').rows[i].cells[4].childNodes[0].value + "}"
-
-                            if (i==document.getElementById('grilla').rows.length-2){
-                            pedido_detalle = pedido_detalle + "]";
-                            }else{
-                            pedido_detalle = pedido_detalle + ','; 
-                            }       
+                        var imp=
+                        pedido_detalle.push({
+                            codigo_libro: document.getElementById('grilla').rows[i].cells[0].childNodes[1].value,
+                            precio_libro: document.getElementById('grilla').rows[i].cells[2].childNodes[0].value,
+                            cantidad_libro: document.getElementById('grilla').rows[i].cells[3].childNodes[0].value,
+                            valor_impuesto: document.getElementById('grilla').rows[i].cells[3].childNodes[0].value * document.getElementById('grilla').rows[i].cells[2].childNodes[0].value * igv,
+                            valor_descuento: document.getElementById('grilla').rows[i].cells[4].childNodes[0].value,
+                            porcentaje_impuesto: igv_t,
+                            porcentaje_descuento: document.getElementById('grilla').rows[i].cells[4].childNodes[0].value,
+                            costo_total_libro:document.getElementById('grilla').rows[i].cells[5].childNodes[0].value
+                        });
+                             
                     }
-
                    
-                    if(pedido_detalle=="["){
-                       
-                        alert("Registre correctamente los campos as");
-                    } else {
-                                        //Datos Cabecera Pedido
-                        var dataString= 'cod_emp='+cod_emp+
-                                        '&cod_suc='+cod_suc+
-                                        '&cod_cli='+cod_cli+
-										'&tipo_doc='+tipo_doc+
-                                        '&fec_pedido='+fec_pedido+
-                                        '&ped_usu='+ped_usu+
-                                        '&tip_ven='+tip_ven+
-                                        '&con_ven='+con_ven+
-                                        //Datos Cabecera Guia
-                                        '&cod_ser='+cod_ser+
-                                        '&cod_usu='+cod_usu+
-                                        '&pedido_detalle='+pedido_detalle;
-
-                                                          
-                                                              
+                                                                                                                      
                         $.ajax({
                           type: "POST",
                           url: "insertar_datos.php",
-                          data: dataString,
+                          data: {
+                                cod_emp:cod_emp,
+                                cod_suc:cod_suc,
+                                cod_cli:cod_cli,
+                                fec_pedido:fec_pedido,
+                                ped_usu:ped_usu,
+                                cod_ser:cod_ser,
+                                cod_usu:cod_usu,
+                                tipo_doc:tipo_doc,
+                                tip_ven:tip_ven,
+                                con_ven:con_ven,
+                                pedido_detalle:JSON.stringify(pedido_detalle),
+                                },
                           cache: false,
                           success: function(result){
                             
-                         
+                            
 							var res = jQuery.parseJSON(result);
                            
                             alert(res.mensaje);
@@ -166,9 +146,9 @@
                             alert("error");
                           }
                         });
-                    }
+                    
                     return false;   
-                    }
+        }
                 });
                 //Busqueda de titulos segun el codgo de barra proporcionado
                 $("#valor_ide").change(function() {
@@ -184,7 +164,7 @@
                         if(res.nombre===""){
                             alert("Título no registrado, proceda a agregarlo en el menú correspondiente");
                         }else{
-
+                        alert(res.codigo);
                         $("#valor_uno").val(res.nombre);
 
                         $("#tituloID").val(res.codigo);
@@ -209,12 +189,12 @@
 
                 $("#valor_tres").change(function() {
                         cadena = "<tr>";
-                        cadena = cadena + "<td><input name='codigo[]' class='input username' type='text' value='"+ $("#valor_ide").val() +"'  OnFocus='this.blur()'/><input name='codigo_titulo[]' id='codigo_titulo[]' type='hidden' value='"+ $("#tituloID").val() +"'/></td>";
+                        cadena = cadena + "<td><input name='codigo[]' class='codigo' type='text' value='"+ $("#valor_ide").val() +"'  OnFocus='this.blur()'/><input name='codigo_titulo[]' id='codigo_titulo[]' type='hidden' value='"+ $("#tituloID").val() +"'/></td>";
                         cadena = cadena + "<td><input name='nombre[]' class='input username' id='nombre[]' type='text' value='"+ $("#valor_uno").val() +"'  OnFocus='this.blur()'/></td>";
                         cadena = cadena + "<td><input name='precio[]' class='precio' type='text' value='"+ $("#valor_dos").val() +"'  OnFocus='this.blur()'/></td>";
                         cadena = cadena + "<td><input name='cantidad[]' class='cantidad' id='cantidad[]' type='text' value='"+ $("#valor_tres").val() +"'  onKeyUp='sumar()'/></td>";
                         cadena = cadena + "<td><input name='descuento[]' class='descuento' id='descuento[]' type='text' value='0'  onKeyUp='sumar()'/></td>";
-                        cadena = cadena + "<td><input name='total[]' class='total' id='total[]' type='text' value='"+ $("#valor_dos").val() * $("#valor_tres").val() +"'  OnFocus='this.blur()'/></td>";
+                        cadena = cadena + "<td><input name='total[]' class='total' id='total[]' type='text' value='"+ redondear($("#valor_dos").val() * $("#valor_tres").val()) +"'  OnFocus='this.blur()'/></td>";
                         cadena = cadena + "<td><a class='elimina'><img src='delete.png' /></a></td></tr>";
                         $("#grilla tbody").append(cadena);
                         $('#frm_usu input[type="text"]').val('');
@@ -333,7 +313,9 @@
             fn_sumatotal();
             }
 
-
+            function redondear(num){
+                return Math.round(num * 100) / 100;
+            }
 
 
 

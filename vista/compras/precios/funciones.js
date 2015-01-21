@@ -221,8 +221,7 @@ $('#guardar').click(function(){
      var a_codigo = [];  
      var a_precio_def_may = []; 
      var a_precio_def_men = [];
- alert(1);
-       
+
         for(var i=0;i<tabla.column(0).data().length;i++)
         {
             a_codigo.push(tabla.column(0).data()[i]);
@@ -230,7 +229,7 @@ $('#guardar').click(function(){
             a_precio_def_men.push(tabla.column(12).data()[i]);
         }
        
-alert(2);
+
       $.ajax({
         url: "guardar.php",
         type: "POST",
