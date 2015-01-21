@@ -85,6 +85,34 @@ class reportes
 		}
 		return $this->reporte;
 	}
+		public function get_stock_tit_edit_aut_maxfecha()
+	{
+				
+		$sql="select 
+				s.int_cod_suc,
+				s.int_cod_emp,
+				s.int_cod_tit,
+				t.var_nom_tit,
+				e.var_nom_edit,
+				t.var_autor_tit,
+				s.int_cant_stk,
+				(select max(o.date_fecha_tipcam)from T_ordcomp_det o where s.int_cod_tit=o.int_cod_tit) as fec_actualizacion,
+				date(s.date_fecact_stk) as date_fecact_stk
+				from T_stock s
+				inner join T_titulos t on t.int_cod_tit=s.int_cod_tit
+				inner join T_sucursal z on z.int_cod_suc=s.int_cod_suc
+				inner join T_ordcomp_det o on t.int_cod_tit=o.int_cod_tit
+				inner join T_editoriales e where t.int_cod_edit=e.int_cod_edit
+				order by s.int_cod_tit desc;";
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->reporte[]=$reg;
+		}
+		return $this->reporte;
+	}
 
 	public function get_por_suc_cant($sucursal, $cantidad)
 	{
