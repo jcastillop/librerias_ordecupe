@@ -58,32 +58,42 @@
 		<table id="example" class="cell-border" width="100%" cellspacing="0">
         <thead>
             <tr>
+                <th rowspan="2">NUMERO CORRELATIVO</th>
                 <th rowspan="2">FECHA DE EMISIÓN</th>
                 <th rowspan="2">FECHA DE VENC.</th>
 				<th colspan="3">COMPROBANTE PAGO</th>
-				<th colspan="3">INFORMACIÓN DEL CLIENTE</th>
-                <th rowspan="2">VALOR FACT. EXPORT</th>
-                <th rowspan="2">BASE IMPONIB</th>
-                <th colspan="2">IMPORTE DE LA OPERAC.</th>
+                <th rowspan="2">N° COMPROBANTE</th>
+				<th colspan="2">INFORMACIÓN DEL PROVEEDOR</th>
+                <th colspan="2">ADQUISICIONES GRABADAS DESTINADAS A OPERACIONES GRABADAS Y/O EXPORTACION</th>
+                <th colspan="2">ADQUISICIONES GRABADAS DESTINADAS A OPERACIONES GRABADAS Y/O EXPORTACION Y A OPERACIONES NO GRABADAS</th>
+                <th colspan="2">ADQUISICIONES GRABADAS DESTINADAS A OPERACIONES NO GRABADAS</th>
+                <th rowspan="2">VALOR DE LAS ADQUISIONES NO GRABADAS</th>
                 <th rowspan="2">ISC</th>
-                <th rowspan="2">IGV</th>
+                <th rowspan="2">OTROS TRIBUTOS Y CARGOS</th>
                 <th rowspan="2">IMPORTE TOTAL</th>
+                <th rowspan="2">N° COMPROBANTE PAGO EMITIDO</th>
+                <th colspan="2">CONSTANCIA DE DEPOSITO DE DETRACCION</th>
                 <th rowspan="2">TIPO DE CAMBIO</th>
-                <th colspan="4">REF. DEL COMPROBANTE PAGO</th>
+                <th colspan="3">REFERENCIA DEL COMPROBANTE</th>
             </tr>
             <tr>
                 <th>TIPO</th>
                 <th>SERIE</th>
-				<th>NUMERO</th>
-				<th>TIPO</th>
+				<th>AÑO DE EMISION</th>
+				<th>TIPO DOCUMENTO</th>
+                <th>APELLIDOS Y NOMBRES</th>
+                <th>BASE DISPONIBLE</th>
+                <th>IGV</th>
+                <th>BASE DISPONIBLE</th>
+                <th>IGV</th>
+                <th>BASE DISPONIBLE</th>
+                <th>IGV</th>   
                 <th>NUMERO</th>
-                <th>APELLIDOS y NOMBRES Ó R.SOCIAL</th>
-                <th>EXONERADA</th>
-                <th>INAFECTA</th>
+                <th>FECHA DE EMISION</th>   
                 <th>FECHA</th>
-                <th>CD</th>
-				<th>SERIE</th>
-                <th>NUMERO</th>                
+                <th>TIPO</th>
+                <th>SERIE</th>
+                <th>N° DEL COMPROBANTE DE PAGO</th>                  
             </tr>
         </thead>
 
