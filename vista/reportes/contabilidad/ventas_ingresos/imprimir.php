@@ -127,7 +127,7 @@ $pdf->Ln();
     for ($i=0;$i<count($reg);$i++)				
         {
             $pdf->SetTextColor(0,0,0);
-            $pdf->SetFontSize(8);
+            $pdf->SetFontSize(6);
                       
             /*1*/$pdf->Cell(20, 5,$reg[$i]["fecha"], 1,0, 'C');
             /*2*/$pdf->Cell(20, 5,$reg[$i]["fecha"], 1,0, 'C');

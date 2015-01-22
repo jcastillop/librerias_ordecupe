@@ -1,11 +1,11 @@
 $(document).ready(function(){
     var empresa=1;
     var sucursal=1;
-    var anho;
+
     var dt=$('#example').dataTable();
  
 
-	$('#generar').click(function(){
+	$('#actualizar').click(function(){
         dt.fnClearTable();    
         dt.fnDestroy();
        
@@ -30,11 +30,13 @@ $(document).ready(function(){
                             },
                     
                  "aoColumns": [
+                        { "mData": 'var_nom_suc'} ,
                         { "mData": 'var_nom_tit'} ,
                         { "mData": 'var_nom_edit'} ,
                         { "mData": 'var_autor_tit' } ,
                         { "mData": 'int_cant_stk'},
-                        { "mData": 'fec_actualizacion' },
+                        { "mData": 'fec_actualizacion_compra' },
+                        { "mData": 'fec_actualizacion_venta' },
             ]     
         });
 

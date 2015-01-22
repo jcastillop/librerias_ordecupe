@@ -1,18 +1,3 @@
-
-        <script type="text/javascript">
-        function cerrar() {
-            var data = window.document.getElementById('val1').value;
-            window.opener.document.getElementById('deHijo').innerHTML = "Este texto viene de la página hijo: "+data;        
-			
-			
-            /*this.window.close();*/
-			opener.location.reload();
-        }
-		
-        </script>
-<input type="hidden" id="val1" value="" disabled="disabled"/> 
-       
-        
 <?php
 //******************************************************************
 class stock
@@ -56,9 +41,27 @@ class stock
         $array_msg = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
         $codigo_flag = $array_flag["@n_Flag"];
         $codigo_msg = $array_msg["@c_msg"];
+        /*
         echo "<script type='text/javascript'>
 		        alert('".$codigo_msg."');
 		      </script>";
+		      */
+	}
+
+		public function actualizar_stock($cod_emp,$usuario)
+	{
+		$sql="select * from T_sucursal where int_est_Suc <>0 and int_cod_emp=".$cod_emp.";";		
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			
+			$sql_stock="CALL proc_generar_stock(".$cod_emp.",".$reg["int_cod_suc"].",'".$usuario."',@n_Flag, @c_msg); ";
+			mysql_query($sql_stock,Conectar::con());
+
+		}
+			
 	}
 		
 	

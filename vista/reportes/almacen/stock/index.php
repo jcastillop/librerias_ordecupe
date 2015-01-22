@@ -25,7 +25,7 @@
 <script src="https://jquery-datatables-editable.googlecode.com/svn-history/r122/trunk/media/js/jquery.dataTables.editable.js"></script>
 <script src="http://jquery-datatables-column-filter.googlecode.com/svn/trunk/media/js/jquery.dataTables.columnFilter.js"></script>
 <script src="funciones.js"></script>
-<script src="datepicker_año_mes_español.js"></script>
+
 <!-- DataTables -->
 </head>
 <body class="dt-example">
@@ -34,10 +34,8 @@
     <h4 align="center" >Reporte de STOCK</h4>
     
     	<div class="container2" align="center" id="edicion_precios_totales" width="150px">
-            <label for="lblmes">Empresa</label>
-        	<label for="lblmes">Sucursal</label>
             
-            <input id="generar" class="enviar" value="Generar" type="button" style="width:150px;margin-top:5px;">
+            <input id="actualizar" class="enviar" value="Actualizar" type="button" style="width:150px;margin-top:5px;">
             <br>
     	</div>
 <div id="content"></div>
@@ -53,10 +51,13 @@
 		<table id="example" class="cell-border" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th>TITULO</th>
-                <th>EDITORIAL</th>
-				<th>CANTIDAD</th>
-				<th>FEC. ACTUALIZ.</th>
+                <th width="15%">SUCURSAL</th>
+                <th width="40%">TITULO</th>
+                <th width="12%">EDITORIAL</th>
+                <th width="10%">AUTOR</th>
+				<th width="5%">CANT</th>
+				<th width="9%">ACT. COMPRA.</th>
+                <th width="9%">ACT. VENTA.</th>
             </tr>
         </thead>
 

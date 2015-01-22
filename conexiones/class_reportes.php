@@ -90,19 +90,21 @@ class reportes
 				
 		$sql="select 
 				s.int_cod_suc,
+				z.var_nom_suc,
 				s.int_cod_emp,
 				s.int_cod_tit,
 				t.var_nom_tit,
 				e.var_nom_edit,
 				t.var_autor_tit,
 				s.int_cant_stk,
-				(select max(o.date_fecha_tipcam)from T_ordcomp_det o where s.int_cod_tit=o.int_cod_tit) as fec_actualizacion,
+				(select max(o.date_fecha_tipcam)from T_ordcomp_det o where s.int_cod_tit=o.int_cod_tit and s.int_cod_suc=o.int_cod_suc) as fec_actualizacion_compra,
+				(select date(max(f.date_fecadd_fact_det))from T_factura_detalle f where s.int_cod_tit=f.int_cod_tit and s.int_cod_suc=f.int_cod_suc) as fec_actualizacion_venta,
 				date(s.date_fecact_stk) as date_fecact_stk
 				from T_stock s
 				inner join T_titulos t on t.int_cod_tit=s.int_cod_tit
 				inner join T_sucursal z on z.int_cod_suc=s.int_cod_suc
-				inner join T_ordcomp_det o on t.int_cod_tit=o.int_cod_tit
-				inner join T_editoriales e where t.int_cod_edit=e.int_cod_edit
+				inner join T_editoriales e on t.int_cod_edit=e.int_cod_edit
+				where s.int_cod_emp=1
 				order by s.int_cod_tit desc;";
 		
 		$res=mysql_query($sql,Conectar::con());
