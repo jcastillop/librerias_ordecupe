@@ -52,7 +52,7 @@ class cliente
 	
 	public function get_cod_titulo_like($q)
 	{
-		$sql="select int_cod_tit, var_cod_bar_tit,var_nom_tit,dec_preven_def_tit from T_titulos where int_est_tit=1 and var_nom_tit like '%$q%'";
+		$sql="select int_cod_tit, var_cod_bar_tit,var_nom_tit,dec_preven_def_tit,dec_preven_sug_tit from T_titulos where int_est_tit=1 and var_nom_tit like '%$q%'";
 		
 		$res=mysql_query($sql,Conectar::con());
 		

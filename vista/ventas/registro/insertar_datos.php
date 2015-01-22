@@ -5,12 +5,18 @@ require_once("conexion.php");
 /*
 $descuento_produto = 1.2;
 */
+@session_start();
 
-$_cod_emp=$_POST['cod_emp'];
+if(isset($_SESSION['usuario']))
+  {$_ped_usu=$_SESSION['usuario'];}else{$_ped_usu='NR';};
+
+$_cod_emp=$_SESSION['id_empresa'];
+
+
 $_cod_suc=$_POST['cod_suc'];
 $_cod_cli=$_POST['cod_cli'];
 $_fec_pedido=$_POST['fec_pedido'];
-$_ped_usu=$_POST['ped_usu'];    
+ 
 $_cod_ser=$_POST['cod_ser'];
 $_cod_usu=$_POST['cod_usu'];
 $_tipo_doc=$_POST['tipo_doc'];

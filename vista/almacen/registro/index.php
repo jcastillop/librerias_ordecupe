@@ -181,6 +181,7 @@ require_once("../../../conexiones/class_cliente.php");
                         <td><strong>Acción:</strong> <input id="submit" name="Submit" class="enviar" value="Enviar" type="submit"></td>
                         <td><strong>Suma total:</strong> <span id="suma_total">0</span></td>
                     </tr>
+
                 </tfoot>
             </table>
             </div>

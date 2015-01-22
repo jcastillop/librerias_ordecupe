@@ -25,15 +25,13 @@ $(document).ready(function(){
         var serie = id_completo.substring(0, 3); 
         //capturamos la sucursal
         var sucursal=$_GET("sucursal");
-        //capturamos el codigo de empresa la cual debe venir de las variables de sesion
-        var empresa=1;
-        //inicializamos el ajax que permitirá ubicar los registros correspondientes                
+         //inicializamos el ajax que permitirá ubicar los registros correspondientes                
         
         $.ajax({
             type: "GET",
             url: "guias_buscar.php",
             //concatenamos los parametros que usaremos para buscar los registros
-            data: "id=" + id + "&serie=" + serie+ "&sucursal=" + sucursal + "&empresa=" + empresa,
+            data: "id=" + id + "&serie=" + serie+ "&sucursal=" + sucursal,
 
             success: function(datos){
                 //decodificando el JSON proveniente de guias_buscar.php                        
@@ -51,7 +49,7 @@ $(document).ready(function(){
                     //agregando la cadena a la grilla
                     $("#grilla tbody").append(cadena);
                     //estableciendo el foco 
-                    $("#valor_ide").focus();
+                    $("#valor_uno").focus();
                     //funcion eliminar permite activar la opcionde borrar los registros
                     fn_dar_eliminar();
                     //halla la cantidad de registros cargados a la grilla
@@ -146,11 +144,9 @@ $(document).ready(function(){
             var codigo_guia_cabecera=$("#codigo_guia_cabecera").val();
             var codigo_pedido_cabecera=$("#codigo_pedido_cabecera").val();
             var codigo_serie=$("#codigo_serie").val();
-            var cod_emp=1;
             var cod_suc = $("#sucursal").val();
             var cod_cli = $("#cliente").val();
             var fec_pedido=$("#datepicker").datepicker("option", "dateFormat", "yy-mm-dd ").val() + " 12:36:05";
-            var ped_usu='JCASTILLO';
             //Variables Cabecera Guia
             var cod_ser='1';
             var dir_env=$("#direccion_compra").val();
@@ -201,11 +197,9 @@ $(document).ready(function(){
                 var dataString= 'codigo_serie='+codigo_serie+
                                 '&codigo_guia_cabecera='+codigo_guia_cabecera+
                                 '&codigo_pedido_cabecera='+codigo_pedido_cabecera+
-                                '&cod_emp='+cod_emp+
                                 '&cod_suc='+cod_suc+
                                 '&cod_cli='+cod_cli+
                                 '&fec_pedido='+fec_pedido+
-                                '&ped_usu='+ped_usu+
                                 //Datos Cabecera Guia
                                 '&cod_ser='+cod_ser+
                                 '&dir_env='+dir_env+
@@ -315,7 +309,7 @@ $(document).ready(function(){
         
         $("#grilla tbody").append(cadena);
         $('#frm_usu input[type="text"]').val('');
-        $("#valor_ide").focus();
+        $("#valor_uno").focus();
         fn_dar_eliminar();
 		fn_cantidad();
         fn_sumatotal();

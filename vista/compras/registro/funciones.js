@@ -39,7 +39,7 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
     submitHandler: function(form) {
         //Variables Cabecera Pedido
        
-        var cod_emp=1;
+        
         var cod_suc = $("#sucursal").val();
         var fec_rec = $("#fecha_recepcion").datepicker("option", "dateFormat", "yy-mm-dd ").val();
         var desc = $("#descripcion").val();
@@ -94,8 +94,7 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
             
         //Datos compras cabecera
         
-        var dataString= 'cod_emp='+cod_emp+
-                        '&cod_suc='+cod_suc+
+        var dataString= 'cod_suc='+cod_suc+
                         '&fec_rec='+fec_rec+
                         '&desc='+desc+
                         '&nom_file='+nom_file+

@@ -1,6 +1,12 @@
 <?php
 /*Este metodo debe ser cambiado para guardar en las tablas guia detalle, producto detalle*/
 require_once("conexion.php");
+@session_start();
+
+$_cod_emp=$_SESSION['id_empresa'];
+
+if(isset($_SESSION['usuario']))
+  {$_ped_usu=$_SESSION['usuario'];}else{$_ped_usu='NR';};
 
 /*
 $descuento_produto = 1.2;
@@ -11,11 +17,10 @@ if(isset($_POST['codigo_guia_cabecera']))
   {$_codigo_guia_cabecera=$_POST['codigo_guia_cabecera'];}else{$_codigo_guia_cabecera='';};
 if(isset($_POST['codigo_pedido_cabecera']))
   {$_codigo_pedido_cabecera=$_POST['codigo_pedido_cabecera'];}else{$_codigo_pedido_cabecera='';};
-$_cod_emp=$_POST['cod_emp'];
+
 $_cod_suc=$_POST['cod_suc'];
 $_cod_cli=$_POST['cod_cli'];
 $_fec_pedido=$_POST['fec_pedido'];
-$_ped_usu=$_POST['ped_usu'];    
 $_cod_ser=$_POST['cod_ser'];
 if(!isset($_POST['dir_env'])){$_dir_env=$_POST['dir_env'];}else{$_dir_env='';};
 $_pun_part=$_POST['pun_part'];

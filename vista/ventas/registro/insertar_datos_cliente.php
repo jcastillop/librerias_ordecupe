@@ -1,11 +1,16 @@
 <?php
 require_once("conexion.php");
+@session_start();
+
+if(isset($_SESSION['usuario']))
+  {$_usuario=$_SESSION['usuario'];}else{$_usuario='NR';};
+
 
 $_tip_per=$_POST['tip_per'];
 $_rsoc=$_POST['rsoc'];
 $_ruc=$_POST['ruc'];
 $_direccion=$_POST['direccion'];
-$_usuario=$_POST['usuario'];
+
 $fecha_hora_actual =Fechas::mifechagmt(time(),-5);
 
 $query_call_spcabped = "CALL proc_ingresar_cliente('".$_rsoc."',".$_tip_per.",'"

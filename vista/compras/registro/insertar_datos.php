@@ -1,12 +1,21 @@
 <?php
 	require_once("conexion.php");
+
+	@session_start();
+
+	$_cod_emp=$_SESSION['id_empresa'];
+
+	if(isset($_SESSION['usuario']))
+  	{$_ped_usu=$_SESSION['usuario'];}else{$_ped_usu='NR';};
+
+  	if(isset($_POST['nom_file']))
+  	{$_nom_file=$_POST['nom_file'];}else{$_nom_file='NONE';};
 	
-	$_cod_emp=$_POST['cod_emp'];
+	
 	$_cod_suc=$_POST['cod_suc'];
 	$_fec_rec=$_POST['fec_rec'];
 	$_desc=$_POST['desc'];
-	$_nom_file=$_POST['nom_file'];
-	$_ped_usu='JCASTILLO';
+	
 	$_mayorista=$_POST['mayorista'];
 	$_minorista=$_POST['minorista'];
 	$fecha_actual =Fechas::mifechagmtactual(time(),-5);

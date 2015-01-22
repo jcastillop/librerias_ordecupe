@@ -73,8 +73,17 @@ $().ready(function() {
 	});
 	
 	$("#valor_uno").result(function(event, data, formatted) {
+        var precio;
+        
+        if($('#mayoreo').is(':checked')){
+          precio=data[4];
+        }else{
+          precio=data[2];
+        }
+        
+
 		$("#valor_ide").val(data[1]);
-		$("#valor_dos").val(data[2]);
+		$("#valor_dos").val(precio);
         $("#tituloID").val(data[3]);
 		$("#valor_tres").focus(3);
 		
@@ -168,14 +177,18 @@ $(document).ready(function () {
                     </select><br>
                         <label for="lblfec" style="margin-left:75px">Fecha:</label>
                         <input name ="fecha_registro" type="text" id="datepicker" class="fecha"  />
+
+                        <label name="lbl_mayoreo" id="lbl_mayoreo" style="width:80px;margin-left:10px">V. Mayoreo: </label>
+                        <input name="mayoreo" type="checkbox" style="width:20px;"  id="mayoreo" value="0" />                        
                         <label name="lbl_afecto" id="lbl_afecto" style="width:80px;margin-left:10px">V. Afecto(IGV): </label>
-                        <input name="afecto" type="checkbox" style="width:80px;"  id="afecto" value="0" />
+                        <input name="afecto" type="checkbox" style="width:20px;"  id="afecto" value="0" />
                         
                         
-     <label for="lblcond" style="margin-left:50px">Condicion:</label>
+     <label for="lblcond" style="margin-left:15px">Condicion:</label>
                         
                         
-     <label name="lbl_ventas" id="lbl_ventas" style="width:80px;margin-left:10px"><input name="ventas" type="checkbox" style="width:80px;" onclick="javascript:validaCondicion(this.checked)" id="ventas"/>Venta a Plazo: </label>
+     <label name="lbl_ventas" id="lbl_ventas" style="width:20px;margin-left:9px">
+        <input name="ventas" type="checkbox" style="width:20px;" onclick="javascript:validaCondicion(this.checked)" id="ventas"/>Venta a Plazo: </label>
                         <input name="condiciones" class="condiciones" id="condiciones" value="0" disabled type="text" />
                   <br><label for="lblcli" style="margin-left:68px"> Cliente:</label>
                     <input name="cliente" class="cliente"  type="text" id="cliente"  onKeyDown ="detectar_tecla (event);validar_ruc();" onkeyup="validar_ruc();validar_ruc_2();" onfocus="validar_datos()"  />

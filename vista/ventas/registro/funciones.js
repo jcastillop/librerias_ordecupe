@@ -6,12 +6,11 @@
                 var rsoc=$("#rsoc").val();
                 var ruc=$("#ruc").val();
                 var direccion=$("#direccion").val();
-                var usuario="JCASTILLOP";
+                
                 var dataString= 'tip_per='+tip_per+
                                         '&rsoc='+rsoc+
                                         '&ruc='+ruc+
-                                        '&direccion='+direccion+
-                                        '&usuario='+usuario;
+                                        '&direccion='+direccion;
                                         
                     $.ajax({
                           type: "POST",
@@ -76,14 +75,15 @@
                     submitHandler: function(form) {
                         //Variables Cabecera Pedido
 
-                    var cod_emp=1;
+                   
 					var tipo_doc= $("#tipo_doc").val();
                     var cod_suc = $("#sucursal").val();
                     var cod_cli = $("#clienteID").val();
                     var tip_ven = $("#ventas:checked").val()? 2:1;
+
                     var con_ven = $("#condiciones").val();
                     var fec_pedido=$("#datepicker").datepicker("option", "dateFormat", "yy-mm-dd ").val() + " 12:36:05";
-                    var ped_usu='JCASTILLO';
+                    
                     //Variables Cabecera Guia
                     var cod_ser='1';
                     var cod_usu=$("#vendedor").val();
@@ -118,11 +118,9 @@
                           type: "POST",
                           url: "insertar_datos.php",
                           data: {
-                                cod_emp:cod_emp,
                                 cod_suc:cod_suc,
                                 cod_cli:cod_cli,
                                 fec_pedido:fec_pedido,
-                                ped_usu:ped_usu,
                                 cod_ser:cod_ser,
                                 cod_usu:cod_usu,
                                 tipo_doc:tipo_doc,
@@ -156,7 +154,10 @@
                     $.ajax({
                         type: "GET",
                         url: "titulos_buscar.php",
-                        data: "id=" + $("#valor_ide").val(),
+                        data: {
+                            id: $("#valor_ide").val(),
+                            mayoreo: $("#mayoreo:checked").val()? 2:1
+                        }
                         success: function(datos){
                         
                         var res = jQuery.parseJSON(datos);
