@@ -184,6 +184,7 @@ $(document).ready(function() {
                         <th style="width: 100px;">Año</th>
                         <th style="width: 100px;">Gastos</th>
                         <th style="width: 100px;">Precios</th>
+                        <th style="width: 100px;"></th>
 					</tr>
 				</thead>
 				<tbody align="center">
@@ -203,6 +204,9 @@ $(document).ready(function() {
                         <td><?php echo $reg[$i]["año"];?></td>
                         <td align='center'><a href=" javascript:window.parent.addTab('Costos Transporte','vista/compras/gastos/index.php?id=<?php echo $reg[$i]["var_cod_comp_cab"];?>&sucursal=<?php echo $reg[$i]["int_cod_suc"];?>'); " ><img src='images/img_gastos.jpg' width='15px' height='15px'></a></td>
                         <td align='center'><a href=" javascript:window.parent.addTab('Precio Titulos','vista/compras/precios/index.php?id=<?php echo $reg[$i]["var_cod_comp_cab"];?>&sucursal=<?php echo $reg[$i]["int_cod_suc"];?>'); " ><img src='images/img_gastos.jpg' width='15px' height='15px'></a></td>				
+                   <td style="color:red"><a href=" javascript:poptastic('<?php echo $reg[$i]["pagina"];?>'); " ><img src='../../../img/images/pdf.png' width='15px' height='15px'></a></td>
+		
+                   
                     </tr>
   				<?php
 			}
