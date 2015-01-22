@@ -1,17 +1,4 @@
-</script>
-        <script type="text/javascript">
-        function cerrar() {
-            var data = window.document.getElementById('val1').value;
-            window.opener.document.getElementById('deHijo').innerHTML = "Este texto viene de la página hijo: "+data;        
-			
-			
-            /*this.window.close();*/
-			opener.location.reload();
-        }
-		
-        </script>
-<input type="hidden" id="val1" value="" disabled="disabled"/> 
-       
+ 
         
 <?php
 require("conexion.php");
@@ -30,7 +17,8 @@ class ordcomp_cabecera
 			
 			$sk=mysql_query("set @a:=0;");
 			$sql="select o.var_cod_comp_cab,p.var_rsoc_prov,od.int_cod_suc,
-				s.var_nom_suc,o.int_cod_emp,e.var_nom_emp,month(o.date_fec_rec_comp_cab) as mes,year(o.date_fec_rec_comp_cab) as año   
+				s.var_nom_suc,o.int_cod_emp,e.var_nom_emp,month(o.date_fec_rec_comp_cab) as mes,year(o.date_fec_rec_comp_cab) as año,CONCAT('reporte_historial_compras.php?','cod_emp=',o.int_cod_emp,' && cod_suc=',o.int_cod_suc,
+' && var_comp=',o.var_cod_comp_cab)pagina   
 				from T_ordcomp_cab o, T_ordcomp_det od
 				inner join T_proveedor p on od.int_cod_prov=p.int_cod_prov 
 				inner join T_sucursal s on s.int_cod_suc=od.int_cod_suc  
@@ -40,6 +28,7 @@ class ordcomp_cabecera
 				and o.int_cod_suc=od.int_cod_suc
 				group by CONCAT(o.var_cod_comp_cab, '_', p.var_rsoc_prov) 
 				order by o.var_cod_comp_cab desc;
+
 		
 		";	
 		
@@ -232,6 +221,80 @@ class ordcomp_cabecera
 		window.location='eliminar_pedidos.php?eliminado=1';
 		</script>";
 	}*/
+	
+	
+	public function get_ordcomp_cabecera_pdf($id_empresa,$id_suc,$id_var_compr)
+	{
+			
+			//$sk=mysql_query("set @a:=0;");
+		 $sql="
+			
+			    select 
+				'1'orden,o.int_cod_emp,e.var_nom_emp,o.int_cod_suc,s.var_nom_suc,o.var_cod_comp_cab,''int_cod_tit,''var_nom_tit,''int_cant_com_det,''dec_val_comp_det,''total,date(o.date_fec_rec_comp_cab)fecha,cod_impor   
+				from T_ordcomp_cab o
+      inner join T_empresa e on e.int_cod_emp=o.int_cod_emp 
+			inner join T_sucursal s on s.int_cod_suc=o.int_cod_suc
+      where o.int_cod_emp='".$id_empresa."' and o.int_cod_suc='".$id_suc."' and o.var_cod_comp_cab='".$id_var_compr."'
+		
+		";	
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->ordcomp_cabecera[]=$reg;
+		}
+			return $this->ordcomp_cabecera;
+	}
+	
+	
+	
+	public function get_ordcomp_detalle_pdf($id_empresa,$id_suc,$id_var_compr)
+	{
+			
+			$sk=mysql_query("set @a:=0;");
+			$sql="
+			
+select '2'orden,int_cod_emp_c,int_cod_suc_c,var_cod_comp_cab,int_cod_tit,var_nom_tit,int_cant_comp_det,dec_val_comp_det,(int_cant_comp_det*dec_val_comp_det)total,''fecha,''cod_impor from (
+select s.int_cod_emp_c,s.int_cod_suc_c,s.var_cod_comp_cab,s.var_cod_comp_det,s.int_cod_tit,t.var_nom_tit,s.int_cant_comp_det,s.dec_val_comp_det
+  from (
+select (d.int_cod_emp)int_cod_emp_c,(d.int_cod_suc)int_cod_suc_c,d.var_cod_comp_cab,d.var_cod_comp_det,d.int_cod_tit,d.int_cant_comp_det,dec_val_comp_det from T_ordcomp_det d
+
+where  d.var_cod_comp_cab in  (
+select var_cod_comp_cab
+				from T_ordcomp_cab o  where int_cod_emp='".$id_empresa."' and int_cod_suc='".$id_suc."' and var_cod_comp_cab='".$id_var_compr."'
+)
+) as s
+inner join T_titulos t on t.int_cod_tit=s.int_cod_tit
+)as s
+		
+		";	
+		
+		$res=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_assoc($res))
+		{
+			$this->ordcomp_cabecera[]=$reg;
+		}
+			return $this->ordcomp_cabecera;
+	}
+	
+	
+	
+	
+	/*
+	public function eliminar_pedidos($id)
+	{
+		$sql="delete from t_pedido_cabecera where var_cod_pedi_cab='$id'";
+		$res=mysql_query($sql,Conectar::con());
+		echo "<script type='text/javascript'>
+		
+		window.location='eliminar_pedidos.php?eliminado=1';
+		</script>";
+	}*/
+	
+	
+	
 }
 
 ?>
