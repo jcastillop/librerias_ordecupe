@@ -17,7 +17,8 @@ class ordcomp_cabecera
 			
 			$sk=mysql_query("set @a:=0;");
 			$sql="select o.var_cod_comp_cab,p.var_rsoc_prov,od.int_cod_suc,
-				s.var_nom_suc,o.int_cod_emp,e.var_nom_emp,month(o.date_fec_rec_comp_cab) as mes,year(o.date_fec_rec_comp_cab) as año   
+				s.var_nom_suc,o.int_cod_emp,e.var_nom_emp,month(o.date_fec_rec_comp_cab) as mes,year(o.date_fec_rec_comp_cab) as año,CONCAT('reporte_historial_compras.php?','cod_emp=',o.int_cod_emp,' && cod_suc=',o.int_cod_suc,
+' && var_comp=',o.var_cod_comp_cab)pagina   
 				from T_ordcomp_cab o, T_ordcomp_det od
 				inner join T_proveedor p on od.int_cod_prov=p.int_cod_prov 
 				inner join T_sucursal s on s.int_cod_suc=od.int_cod_suc  
@@ -27,6 +28,7 @@ class ordcomp_cabecera
 				and o.int_cod_suc=od.int_cod_suc
 				group by CONCAT(o.var_cod_comp_cab, '_', p.var_rsoc_prov) 
 				order by o.var_cod_comp_cab desc;
+
 		
 		";	
 		
