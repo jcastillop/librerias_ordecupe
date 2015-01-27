@@ -16,6 +16,13 @@
 	if($_tipo_accion>1){
 	$cant=utilitarios::get_cant_comp_gas($_cod_suc,$_cod_emp,$_cod_com);
 
+		$query_dar_baja = "update T_ordcomp_gas d SET d.int_est_comp_gas=0, d.var_usumod_comp_gas='".$_ped_usu."', d.date_fecmod_comp_gas=now() 
+	 WHERE d.int_cod_suc='".$_cod_suc."' AND d.int_cod_emp='".$_cod_emp."' 
+	 AND d.var_cod_comp_cab='".$_cod_com."' AND d.int_est_comp_gas=1";
+																
+			
+			mysql_query($query_dar_baja,Conectar::con());
+
 
 
 		for($i=0;$i<count($array);$i++){ 
@@ -27,12 +34,13 @@
 			$monto = $array[$i]->monto;
 		
 			//llamado del procedimiento almacenado para editar el detalle
-			$query_call_spcompgas = "CALL proc_modificar_comp_gas('".$_cod_com."',".$_cod_suc.","
+
+			$query_call_spcompgas = "CALL proc_insertar_comp_gas('".$_cod_com."',".$_cod_suc.","
 																.$_cod_emp.",'".$desc."',".$monto.",'".$_ped_usu."',@n_Flag, @c_msg)";
 																
 			
 			mysql_query($query_call_spcompgas,Conectar::con());
-	
+			echo $query_call_spcompgas;
 			$array_flag = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
 			$array_mensaje = mysql_fetch_array(mysql_query("Select @c_msg",Conectar::con()));
 			$mensaje = $array_mensaje["@c_msg"];
@@ -69,12 +77,12 @@
 		
 	
 			$contador=$contador+1; 
-		
+			//echo $query_call_spcompgas;
    		};
 
 
 
-   	echo "Numero de registros insertados: ".$contador;
+   echo "Numero de registros insertados: ".$contador;
 };
 
 

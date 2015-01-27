@@ -25,7 +25,7 @@
 	                                                                   .$_desc."','".$_fec_rec."','".$_ped_usu."','".$_nom_file."',".$_mayorista.",".$_minorista.",@n_Flag, @c_msg, @cod_generado)";
 	
 	mysql_query($query_call_spcompcab,Conectar::con());
-	
+	//echo $query_call_spcompcab;
 	$array_flag_com_cab = mysql_fetch_array(mysql_query("Select @n_Flag",Conectar::con()));
 	$array_codgen_com_cab = mysql_fetch_array(mysql_query("Select @cod_generado",Conectar::con()));
 	$codigo_flag_cabecera = $array_flag_com_cab["@n_Flag"];
@@ -78,5 +78,5 @@
 	}
 	
 	//echo $query_call_spcompcab;
-	echo "Numero de registros insertados: ".$contador;
+	echo "Numero de documento: ".$codigo_gen_cabecera;
 ?>
