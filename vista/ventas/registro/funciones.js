@@ -157,7 +157,7 @@
                         data: {
                             id: $("#valor_ide").val(),
                             mayoreo: $("#mayoreo:checked").val()? 2:1
-                        }
+                        },
                         success: function(datos){
                         
                         var res = jQuery.parseJSON(datos);

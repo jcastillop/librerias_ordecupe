@@ -51,7 +51,7 @@ td.highlight {
         <input id="guardar" class="enviar" value="Guardar" type="button" style="width:150px;">
         <input id="cancelar" class="enviar" value="Cancelar" type="button" style="width:150px;margin-top:5px;">
     </div>
-<div id="content"></div>
+<div id="content" align="center"><img src="loading.gif"/></div>
 	<div class="container3">
 
       <!-- Main component for a primary marketing message or call to action -->

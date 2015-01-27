@@ -97,11 +97,11 @@ $(document).ready(function() {
 		//alert(children);
 
 	} );
-*/
+
 	$('#button').click( function () {
 		alert( table.rows('.selected').data().length +' row(s) selected' );
 	} );
-
+*/
 
 } );
 

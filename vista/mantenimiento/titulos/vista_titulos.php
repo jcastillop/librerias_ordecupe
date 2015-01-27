@@ -230,8 +230,8 @@ $(document).ready(function() {
                         <th>Editorial</th>
                         <th>Género</th>
                         <th>País</th>
-                        <th>Precio Def.</th>
-                        <th>Precio Sug.</th>
+                        <th>P. por menor</th>
+                        <th>P. por mayor</th>
                         <th>Estado</th>
                         <th></th>
 				

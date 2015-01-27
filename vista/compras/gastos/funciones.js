@@ -32,7 +32,7 @@ var tipo_accion;
         cadena_precio_mercaderia= cadena_precio_mercaderia + "</tr>";
 
         $("#grilla tbody").append(cadena_precio_mercaderia);
-        //alert(jsonData.length);
+       
          tipo_accion=jsonData.length;
           for(i=1;i<jsonData.length;i++){
                 //cargando en un array en una cadena con el formato de la tabla detalle   

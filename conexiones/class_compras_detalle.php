@@ -1,5 +1,5 @@
 <?php
-require("conexion.php");
+
 class ordcomp_detalle
 {
 	//private $titulos=array();
