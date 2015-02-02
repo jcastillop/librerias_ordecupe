@@ -18,7 +18,7 @@
 	
 	$_mayorista=$_POST['mayorista'];
 	$_minorista=$_POST['minorista'];
-	$fecha_actual =Fechas::mifechagmtactual(time(),-5);
+	//$fecha_actual =Fechas::mifechagmtactual(time(),-5);
 	$array = json_decode($_POST['compra_detalle']);
 	
 	$query_call_spcompcab = "CALL proc_insertar_comp_cab(".$_cod_suc.",".$_cod_emp.",'"
@@ -56,7 +56,7 @@
 		//falta codigo de barra del libro
 		$query_call_spcompdet = "CALL proc_insertar_comp_det(".$_cod_emp.",".$_cod_suc.",'"
 																.$codigo_gen_cabecera."',".$cod_comp_det.",".$cantidad.",".$valor.","
-																.$proveedor.",'".$titulo_libro."',".$moneda.",'".$fecha_actual."','"
+																.$proveedor.",'".$titulo_libro."',".$moneda.",'".$_fec_rec."','"
 																.$_ped_usu."','".$autor_libro."','".$descripcion_libro."','".$cod_bar."','"
 																.$isbn_libro."',".$edicion_libro.",".$nropag_libro.",'".$desc_editorial_libro."','"
 																.$desc_genero_libro."','".$desc_pais."',@n_Flag, @c_msg)";

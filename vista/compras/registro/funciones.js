@@ -46,87 +46,53 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
         var mayorista = $("#mayorista").val();
         var minorista = $("#minorista").val();
         var nom_file = $("#file").val().split('\\').pop();
-        var compra_detalle = "[";
+        var compra_detalle=[];
                     
         for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
-            compra_detalle = compra_detalle + 
-            '{"codigo_barras_detalle":"' 
-            + document.getElementById('grilla').rows[i].cells[0].childNodes[0].value + '", '
-            + '"cantidad_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[1].childNodes[0].value + '", '
-            + '"titulo_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[2].childNodes[0].value + '", '
-            + '"autor_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[3].childNodes[0].value + '", '
-            + '"proveedor_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[4].childNodes[0].value + '", '   
-            + '"isbn_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[5].childNodes[0].value + '", '   
-            + '"edicion_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[6].childNodes[0].value + '", '   
-            + '"nropag_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[7].childNodes[0].value + '", '   
-            + '"editorial_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[8].childNodes[0].value + '", '   
-            + '"genero_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[9].childNodes[0].value + '", '   
-            + '"pais_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[10].childNodes[0].value + '", '
-            + '"moneda_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[11].childNodes[0].value + '", '             
-            + '"precio_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[12].childNodes[0].value + '", '    
-            + '"descripcion_libro_detalle":"'
-            + document.getElementById('grilla').rows[i].cells[13].childNodes[0].value + '"}'
-
-            if (i==document.getElementById('grilla').rows.length-2){
-              
-                compra_detalle = compra_detalle + "]";
-            }else{
-                compra_detalle = compra_detalle + ','; 
-            }       
+            compra_detalle.push({
+                codigo_barras_detalle: document.getElementById('grilla').rows[i].cells[0].childNodes[0].value,
+                cantidad_libro_detalle:document.getElementById('grilla').rows[i].cells[1].childNodes[0].value,
+                titulo_libro_detalle:document.getElementById('grilla').rows[i].cells[2].childNodes[0].value,
+                autor_libro_detalle:document.getElementById('grilla').rows[i].cells[3].childNodes[0].value,
+                proveedor_libro_detalle:document.getElementById('grilla').rows[i].cells[4].childNodes[0].value,
+                isbn_libro_detalle:document.getElementById('grilla').rows[i].cells[5].childNodes[0].value,
+                edicion_libro_detalle:document.getElementById('grilla').rows[i].cells[6].childNodes[0].value,
+                nropag_libro_detalle:document.getElementById('grilla').rows[i].cells[7].childNodes[0].value,
+                editorial_libro_detalle:document.getElementById('grilla').rows[i].cells[8].childNodes[0].value,
+                genero_libro_detalle:document.getElementById('grilla').rows[i].cells[9].childNodes[0].value,
+                pais_libro_detalle:document.getElementById('grilla').rows[i].cells[10].childNodes[0].value,
+                moneda_libro_detalle:document.getElementById('grilla').rows[i].cells[11].childNodes[0].value,
+                precio_libro_detalle:document.getElementById('grilla').rows[i].cells[12].childNodes[0].value,
+                descripcion_libro_detalle:document.getElementById('grilla').rows[i].cells[13].childNodes[0].value
+            })       
         }
-       
-        if(compra_detalle=="["){
-                       
-            alert("Registre detalle de la compra");
-        } else {
-            
-        //Datos compras cabecera
-        
-        var dataString= 'cod_suc='+cod_suc+
-                        '&fec_rec='+fec_rec+
-                        '&desc='+desc+
-                        '&nom_file='+nom_file+
-                        '&mayorista='+mayorista+
-                        '&minorista='+minorista+
-                        '&compra_detalle='+compra_detalle;
-                      
-                        $.ajax({
-                          type: "POST",
-                          url: "insertar_datos.php",
-                          data: dataString,
-                          cache: false,
-                          
-                          success: function(result){
-                            /*
-                            if(result==0){
-                               limpiarformulario("#form");
-                               alert("Guia registrada correctamente");
-                            } else {
-                               alert("Error al registrar guia: " + result);
-                            } 
-                            */
-                            limpiarformulario("#form");
-                            alert(result);   
-                            $("#condiciones").val("Compra"); 
-                          },
-                          error: function(result){
-                            alert("error");
-                          }
-                        });
-                    }  
-        
+
+
+        $.ajax({
+            type: "POST",
+            url: "insertar_datos.php",
+            data: {
+                cod_suc:cod_suc,
+                fec_rec:fec_rec,
+                desc:desc,
+                nom_file:nom_file,
+                mayorista:mayorista,
+                minorista:minorista,
+                compra_detalle:JSON.stringify(compra_detalle),
+                },
+            cache: false,
+                         
+            success: function(result){
+              
+                limpiarformulario("#form");
+                alert(result);   
+                $("#condiciones").val("Compra"); 
+            },
+            error: function(result){
+                alert("error");
+            }
+        });
+                  
         return false;   
         }
     });

@@ -99,7 +99,6 @@
 
                     var pedido_detalle=[];
                     for (var i=1;i<document.getElementById('grilla').rows.length-1;i++){ 
-                        var imp=
                         pedido_detalle.push({
                             codigo_libro: document.getElementById('grilla').rows[i].cells[0].childNodes[1].value,
                             precio_libro: document.getElementById('grilla').rows[i].cells[2].childNodes[0].value,
