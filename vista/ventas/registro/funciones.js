@@ -524,4 +524,40 @@ function validar_ruc_2(){
 
 
 
+
+ $(document).ready(function(){
+
+  $("#ruc").keyup(function(){
+	
+		 if ($("#tipo_doc").val()==2)
+		 {
+			 if ($("#ruc").val()=="")
+		 {
+			 // $("#cliente").focus();
+			 document.getElementById("cliente").focus();
+			  document.getElementById("ruc").style.borderColor = "red";
+			  document.getElementById("cliente").style.borderColor = "red";
+			  document.getElementById("tipo_doc").style.borderColor = "red";
+			 alert('CLIENTE SIN RUC, CAMBIE DE CLIENTE');
+		
+			 
+			 //$("#neto").val(0);
+		 }
+		 else
+		 {
+		 document.getElementById("ruc").style.borderColor = "#999";
+		 document.getElementById("cliente").style.borderColor = "#999";
+	     document.getElementById("tipo_doc").style.borderColor = "#999";
+		 }
+			 
+			 
+		 }
+		
+		 
+		 
+		 
+	});
+			 
+	});
+
 /*       fin validacion de cliente              */
