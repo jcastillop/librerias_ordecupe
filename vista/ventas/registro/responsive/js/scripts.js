@@ -80,11 +80,11 @@ function validar_tipo_doc(){
 		if (factura==2)
 		{
 			document.getElementById("rsocial").innerHTML = "R. SOCIAL :";
-			document.getElementById("ruc").innerHTML = "RUC :";
+			document.getElementById("rucs").innerHTML = "RUC :";
 		}
 		else
 		{
 			document.getElementById("rsocial").innerHTML = "NOMBRES:";
-			document.getElementById("ruc").innerHTML = "DNI:";
+			document.getElementById("rucs").innerHTML = "DNI:";
 		}
 	}
