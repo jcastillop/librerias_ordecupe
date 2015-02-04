@@ -70,7 +70,7 @@
       <td width="27%"><p>&nbsp;</p>
       
         <p>TIPO CLIENTE : </p></td>
-      <td colspan="2"><select name="tip_per" class="menu"   id="tip_per" onFocus="validar_tipo_doc()"   onkeypress="return tab(event,this)">
+      <td colspan="2"><select name="tip_per" class="menu"   id="tip_per" onchange="validar_tipo_doc();" onFocus="validar_tipo_doc()"   onkeypress="return tab(event,this)">
         <option>--Seleccione--</option>
         <option value="1">Persona Natural</option>
         <option value="2">Persona Juridica</option>
