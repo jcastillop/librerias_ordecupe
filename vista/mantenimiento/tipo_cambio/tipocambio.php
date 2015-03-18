@@ -32,6 +32,8 @@ www.amitjakhu.com
 <title>Agregar tipo de cambio</title>
 
 <!--STYLESHEETS-->
+<link href="../../../paquetes/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../paquetes/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
@@ -122,7 +124,7 @@ function from(id,ide,url){
 }
 
 function formulario(f) {
-	if (f.var_nom_mon.value   == '') { alert ('El campo Nombre moneda esta vacío, ingrese un dato porfavor!!');  
+	if (f.var_nom_mon.value   == '') { alert ('El campo Nombre moneda esta vacÃ­o, ingrese un dato porfavor!!');  
 	f.var_nom_mon.focus(); return false; }  
 	
  return true; } 
@@ -184,7 +186,7 @@ function formulario(f) {
           <td><input type="text" class="input username" style="width: 160px;"   name="dec_val_tc" id="dec_val_tc" onKeyPress="return tab(event,this)" /></td>
 		</tr>
 		<tr>
-          <td height="20">Descripción: </td>
+          <td height="20">DescripciÃ³n: </td>
           <td><input type="text" class="input username" style="width: 160px;"   name="var_desc_tc" id="var_desc_tc" /></td>
 		</tr>
        </table>
@@ -206,7 +208,8 @@ function formulario(f) {
 <!--END WRAPPER-->
 
 <!--GRADIENT--><!--END GRADIENT-->
-
+<script src="../../../js/jquery-vu.js"></script>
+<script src="../../../paquetes/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 
