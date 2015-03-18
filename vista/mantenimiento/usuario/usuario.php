@@ -34,6 +34,8 @@ www.amitjakhu.com
 <title>USUARIO</title>
 
 <!--STYLESHEETS-->
+<link href="../../../paquetes/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../paquetes/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
@@ -182,10 +184,12 @@ function formulario(f) {
     
     <!--FOOTER-->
     <div class="footer" >
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="GUARDAR" class="button" /><!--END LOGIN BUTTON-->
-    <!--REGISTER BUTTON--><input type="button" name="submit" value="CANCELAR" class="register"onClick="cerrarse()" /><!--END REGISTER BUTTON-->
-    <input type="hidden" id="val1" value="" disabled="disabled"/> 
-    </div>
+      <div class="text-center">
+        <!--LOGIN BUTTON--><input class="btn btn-primary" type="submit" name="submit" value="GUARDAR" /><!--END LOGIN BUTTON-->
+    <!--REGISTER BUTTON--><input class="btn btn-default" type="button" name="submit" value="CANCELAR" onClick="cerrarse()" /><!--END REGISTER BUTTON-->
+          <input type="hidden" id="val1" value="" disabled="disabled"/> 
+      </div>
+  </div>
     <!--END FOOTER-->
 
 </form>
@@ -195,7 +199,8 @@ function formulario(f) {
 <!--END WRAPPER-->
 
 <!--GRADIENT--><!--END GRADIENT-->
-
+<script src="../../../js/jquery-vu.js"></script>
+<script src="../../../paquetes/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 
