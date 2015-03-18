@@ -33,6 +33,8 @@ www.amitjakhu.com
 <title>Agregar sucursal</title>
 
 <!--STYLESHEETS-->
+<link href="../../../paquetes/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../paquetes/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
 <link href="../../../paquetes/css ventanas/style_ventana.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
@@ -251,10 +253,12 @@ function formulario(f) {
     <!--END CONTENT-->
     
     <!--FOOTER-->
-    <div class="footer" >
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="GUARDAR" class="button" /><!--END LOGIN BUTTON-->
-    <!--REGISTER BUTTON--><input type="button" name="submit" value="CANCELAR" class="register"onClick="cerrarse()" /><!--END REGISTER BUTTON-->
+  <div class="footer" >
+      <div class="text-center"
+    <!--LOGIN BUTTON--><input type="submit" name="submit" value="GUARDAR" class="btn btn-primary" /><!--END LOGIN BUTTON-->
+    <!--REGISTER BUTTON--><input type="button" name="submit" value="CANCELAR" class="btn btn-default" onClick="cerrarse()" /><!--END REGISTER BUTTON-->
     <input type="hidden" id="val1" value="" disabled="disabled"/> 
+  </div>
     </div>
     <!--END FOOTER-->
 
@@ -265,7 +269,8 @@ function formulario(f) {
 <!--END WRAPPER-->
 
 <!--GRADIENT--><!--END GRADIENT-->
-
+<script src="../../../js/jquery-vu.js"></script>
+<script src="../../../paquetes/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 
